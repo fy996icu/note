@@ -2,7 +2,7 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   title: 'dumi',
-  mode: "site",
+  mode: 'site',
   favicon:
     'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
   logo: 'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
@@ -10,7 +10,7 @@ export default defineConfig({
   navs: [
     {
       title: '常用资源',
-      path: '/resources'
+      path: '/resources',
     },
     {
       title: '框架插件',
@@ -22,15 +22,7 @@ export default defineConfig({
     },
     {
       title: '项目配置',
-      children: [
-        { title: 'Vue项目配置', path: '/guide' },
-      ],
-    },
-    {
-      title: '项目配置',
-      children: [
-        { title: 'Vue项目配置', path: '/guide' },
-      ],
+      children: [{ title: 'Vue项目配置', path: '/vueconfig' }],
     },
     {
       title: '技术文档',
@@ -45,6 +37,5 @@ export default defineConfig({
       title: 'GitHub',
       path: 'https://github.com/umijs/dumi',
     },
-
   ],
 });
