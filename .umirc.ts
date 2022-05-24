@@ -15,9 +15,9 @@ export default defineConfig({
     {
       title: '框架插件',
       children: [
-        { title: 'UI框架', path: 'https://d.umijs.org' },
-        { title: '常用插件', path: '/guide' },
-        { title: '字体图标', path: '/guide' },
+        { title: 'UI框架', path: '/ui' },
+        { title: '常用插件', path: '/plugins' },
+        { title: '字体图标', path: '/fonticon' },
       ],
     },
     {
@@ -35,7 +35,7 @@ export default defineConfig({
     },
     {
       title: 'GitHub',
-      path: 'https://github.com/umijs/dumi',
+      path: 'https://github.com/fy996icu/note_umi',
     },
   ],
 });
