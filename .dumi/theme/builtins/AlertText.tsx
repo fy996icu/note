@@ -9,7 +9,7 @@ import { Alert } from 'antd';
 import React from 'react';
 
 interface Props {
-  msg: string;
+  msg?: string;
   type?: 'success' | 'info' | 'warning' | 'error';
   children?: string;
 }
@@ -18,7 +18,7 @@ const AlertText: React.FC<Props> = (props) => {
   return (
     <>
       <Alert
-        message={props.msg}
+        message={props.msg || '提示'}
         description={props.children ? props.children : null}
         showIcon
         type={props.type ? props.type : 'info'}
