@@ -3,6 +3,9 @@ group:
   title: 快速上手
 order: 4
 ---
+
+<BackTop></BackTop>
+
 # Setup
 
 ## 参数
@@ -10,14 +13,13 @@ order: 4
 `setup` 选项是一个接收 `props` 和 `context` 的函数，并且将 `setup` 内的内容通过 `return` 暴露给组件的其余部分。
 
 ```js
-export default{
+export default {
   name: 'test',
-  setup(props,context){
-
-    return {}   // 这里返回的任何内容都可以用于组件的其余部分
-  }
+  setup(props, context) {
+    return {}; // 这里返回的任何内容都可以用于组件的其余部分
+  },
   // 组件的“其余部分”
-}
+};
 ```
 
 ### Props
@@ -28,12 +30,12 @@ export default{
 // Children 组件
 export default {
   props: {
-    title: String
+    title: String,
   },
   setup(props) {
-    console.log(props.title)
-  }
-}
+    console.log(props.title);
+  },
+};
 ```
 
 因为 `props` 是响应式的，所以不能使用 ES6 的展开运算符 `...` 解构，这样会丢失响应式。
@@ -71,18 +73,18 @@ setup(props) {
 export default {
   setup(props, context) {
     // Attribute (非响应式对象，等同于 $attrs)
-    console.log(context.attrs)
+    console.log(context.attrs);
 
     // 插槽 (非响应式对象，等同于 $slots)
-    console.log(context.slots)
+    console.log(context.slots);
 
     // 触发事件 (方法，等同于 $emit)
-    console.log(context.emit)
+    console.log(context.emit);
 
     // 暴露公共 property (函数)
-    console.log(context.expose)
-  }
-}
+    console.log(context.expose);
+  },
+};
 ```
 
 `context` 是一个普通的 JavaScript 对象，也就是说，**`context` 不是响应式的**，这意味着你可以安全地对 `context` 使用 ES6 解构。
@@ -92,8 +94,8 @@ export default {
   // 直接将 context 解构
   setup(props, { attrs, slots, emit, expose }) {
     // 其他逻辑
-  }
-}
+  },
+};
 ```
 
 `attrs` 和 `slots` 是有状态的对象，它们总是会随组件本身的更新而更新。这意味着你应该避免对它们进行解构，并始终以 `attrs.x` 或 `slots.x` 的方式引用 property。请注意，与 `props` 不同，`attrs` 和 `slots` 的 property 是非响应式的。如果你打算根据 `attrs` 或 `slots` 的更改应用副作用，那么应该在 `onBeforeUpdate` 生命周期钩子中执行此操作。
@@ -108,36 +110,36 @@ export default {
 
 在 Vue3 中定义响应式数据需要使用 `ref` 或者 `reactive` 函数。
 
-- `ref` 函数：用来将基本数据类型定义为响应式数据（ref更适合定义基本数据类型），`ref` 底层的本质其实还是 `reactive`，系统会自动根据我们给 `ref` 传入的值将它转换成 `ref(xx) -> reactive({value:xx})`。
+- `ref` 函数：用来将基本数据类型定义为响应式数据（ref 更适合定义基本数据类型），`ref` 底层的本质其实还是 `reactive`，系统会自动根据我们给 `ref` 传入的值将它转换成 `ref(xx) -> reactive({value:xx})`。
 
 - `reactive` 函数： 用来将引用类型定义为响应式数据，其本质是基于 `Proxy` 实现对象代理。
 
 ```js
-import {ref, reactive} from "vue";
+import { ref, reactive } from 'vue';
 export default {
-  name: "test",
-  setup(){
+  name: 'test',
+  setup() {
     // 基本类型
-    const nub = ref(0)
-    const str = ref('inline')
-    const boo = ref(false)
+    const nub = ref(0);
+    const str = ref('inline');
+    const boo = ref(false);
     // 引用类型
     const obj = reactive({
-      name:'inline',
-      age:'18'
-    })
-    const arr = reactive(['0','1','2'])
+      name: 'inline',
+      age: '18',
+    });
+    const arr = reactive(['0', '1', '2']);
 
-    return{
+    return {
       nub,
       str,
       boo,
 
       obj,
       arr,
-    }
-  }
-}
+    };
+  },
+};
 ```
 
 ## `toRefs` 的作用
@@ -237,22 +239,22 @@ setup(){
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+  import { defineComponent } from 'vue';
 
-export default defineComponent({
-  setup() {
-    const fun1 = (data) => {
-      // 直接调用 fun2
-      fun2(data)
-    }
-    const fun2 = (data) => {
-      console.log(data) // 输出：点我传值
-    }
-    return {
-      fun1,
-    }
-  },
-})
+  export default defineComponent({
+    setup() {
+      const fun1 = (data) => {
+        // 直接调用 fun2
+        fun2(data);
+      };
+      const fun2 = (data) => {
+        console.log(data); // 输出：点我传值
+      };
+      return {
+        fun1,
+      };
+    },
+  });
 </script>
 ```
 
@@ -266,28 +268,28 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, ref } from 'vue'
+  import { defineComponent, reactive, toRefs, ref } from 'vue';
 
-export default defineComponent({
-  setup() {
-    const str = ref('你好')
-    const state = reactive({
-      fun1(data) {
-        console.log(str.value) // 输出：你好
+  export default defineComponent({
+    setup() {
+      const str = ref('你好');
+      const state = reactive({
+        fun1(data) {
+          console.log(str.value); // 输出：你好
 
-        // 此时访问 fun2 需要 this
-        this.fun2(data)
-      },
-      fun2(data) {
-        console.log(data) // 输出：点我传值
-        console.log('我是fun2') //fun2被执行
-      },
-    })
-    return {
-      ...toRefs(state),
-    }
-  },
-})
+          // 此时访问 fun2 需要 this
+          this.fun2(data);
+        },
+        fun2(data) {
+          console.log(data); // 输出：点我传值
+          console.log('我是fun2'); //fun2被执行
+        },
+      });
+      return {
+        ...toRefs(state),
+      };
+    },
+  });
 </script>
 ```
 
@@ -308,49 +310,49 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, toRefs } from 'vue'
+  import { defineComponent, reactive, ref, toRefs } from 'vue';
 
-export default defineComponent({
-  setup() {
-    // 调用 fn1 函数，如果函数返回参数过多，可以赋值给变量并用扩展运算符暴露给组件的其余部分
-    const testFn1 = fn1()
-    // 调用 fn2 函数，也可单个接收
-    const { testFn2 } = fn2()
-    return {
-      ...toRefs(testFn1),
-      testFn2,
+  export default defineComponent({
+    setup() {
+      // 调用 fn1 函数，如果函数返回参数过多，可以赋值给变量并用扩展运算符暴露给组件的其余部分
+      const testFn1 = fn1();
+      // 调用 fn2 函数，也可单个接收
+      const { testFn2 } = fn2();
+      return {
+        ...toRefs(testFn1),
+        testFn2,
+      };
+    },
+  });
+
+  // 定义 fn1 功能
+  function fn1() {
+    const str = ref('我是fn1功能');
+    function fnOne(data) {
+      console.log(str.value); // 输出：我是fn1功能
+      fnTwo(data);
     }
-  },
-})
+    function fnTwo(data) {
+      console.log(data); // 输出：fnOne传值
+    }
+    return {
+      fnOne,
+      fnTwo,
+    };
+  }
 
-// 定义 fn1 功能
-function fn1() {
-  const str = ref('我是fn1功能')
-  function fnOne(data) {
-    console.log(str.value) // 输出：我是fn1功能
-    fnTwo(data)
+  // 定义 fn2 功能
+  function fn2() {
+    const state = reactive({
+      msg: '我是fn2功能',
+    });
+    function testFn2() {
+      console.log(state.msg); // 输出：我是fn2功能
+    }
+    return {
+      testFn2,
+    };
   }
-  function fnTwo(data) {
-    console.log(data) // 输出：fnOne传值
-  }
-  return {
-    fnOne,
-    fnTwo,
-  }
-}
-
-// 定义 fn2 功能
-function fn2() {
-  const state = reactive({
-    msg: '我是fn2功能',
-  })
-  function testFn2() {
-    console.log(state.msg) // 输出：我是fn2功能
-  }
-  return {
-    testFn2,
-  }
-}
 </script>
 ```
 
@@ -365,38 +367,38 @@ function fn2() {
 新建一个名为 `fn.js` 的文件，定义 `fn1` 和 `fn2` 方法，最后导出：
 
 ```js
-import { ref, reactive } from 'vue'
+import { ref, reactive } from 'vue';
 
 // 定义 fn1 功能
 function fn1() {
-  const str = ref('我是fn1功能')
+  const str = ref('我是fn1功能');
   function fnOne(data) {
-    console.log(str.value) // 输出：我是fn1功能
-    fnTwo(data)
+    console.log(str.value); // 输出：我是fn1功能
+    fnTwo(data);
   }
   function fnTwo(data) {
-    console.log(data) // 输出：fnOne传值
+    console.log(data); // 输出：fnOne传值
   }
   return {
     fnOne,
     fnTwo,
-  }
+  };
 }
 
 // 定义 fn2 功能
 function fn2() {
   const state = reactive({
     msg: '我是fn2功能',
-  })
+  });
   function testFn2() {
-    console.log(state.msg) // 输出：我是fn2功能
+    console.log(state.msg); // 输出：我是fn2功能
   }
   return {
     testFn2,
-  }
+  };
 }
 
-export { fn1, fn2 }
+export { fn1, fn2 };
 ```
 
 在组件中使用：正常执行且结果和方式三相同。
@@ -408,21 +410,21 @@ export { fn1, fn2 }
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs } from 'vue'
-// 从 fn 中导入 fn1 和 fn2 函数
-import { fn1, fn2 } from './fn.js'
+  import { defineComponent, toRefs } from 'vue';
+  // 从 fn 中导入 fn1 和 fn2 函数
+  import { fn1, fn2 } from './fn.js';
 
-export default defineComponent({
-  setup() {
-    // 调用 fn1 函数，如果函数返回参数过多，可以赋值给变量并用扩展运算符暴露给组件的其余部分
-    const testFn1 = fn1()
-    // 调用 fn2 函数，也可单个接收
-    const { testFn2 } = fn2()
-    return {
-      ...toRefs(testFn1),
-      testFn2,
-    }
-  },
-})
+  export default defineComponent({
+    setup() {
+      // 调用 fn1 函数，如果函数返回参数过多，可以赋值给变量并用扩展运算符暴露给组件的其余部分
+      const testFn1 = fn1();
+      // 调用 fn2 函数，也可单个接收
+      const { testFn2 } = fn2();
+      return {
+        ...toRefs(testFn1),
+        testFn2,
+      };
+    },
+  });
 </script>
 ```

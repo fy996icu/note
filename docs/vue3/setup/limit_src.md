@@ -3,6 +3,9 @@ group:
   title: Script Setup
 order: 9
 ---
+
+<BackTop></BackTop>
+
 # 限制使用 src 导入
 
 `SFC` 的三个模块都可以通过 `src` 的方式进行导入，如下所示：

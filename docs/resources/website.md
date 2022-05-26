@@ -4,6 +4,8 @@ toc: menu
 order: 5
 ---
 
+<BackTop></BackTop>
+
 # 资源网站
 
 收集的一些常用开发资源网站。
@@ -22,7 +24,7 @@ order: 5
 
 ## [MSDN](https://next.itellyou.cn/)
 
-**简介：** 里面可以下载到很多原版软件，比如 Office、windows等等，无病毒、无捆绑，超级好用。
+**简介：** 里面可以下载到很多原版软件，比如 Office、windows 等等，无病毒、无捆绑，超级好用。
 
 ## [Git 参考手册](http://gitref.justjavac.com/index.html)
 
@@ -30,4 +32,4 @@ order: 5
 
 ## [老马 VIP 全栈教程](https://malun666.github.io/aicoder_vip_doc/#/)
 
-**简介：** 老马 VIP 全栈教程非常不错，里面很多教程，例如 Vue、React、Git、Redux、Canvas等等。
+**简介：** 老马 VIP 全栈教程非常不错，里面很多教程，例如 Vue、React、Git、Redux、Canvas 等等。

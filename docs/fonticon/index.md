@@ -4,6 +4,8 @@ toc: menu
 order: 0
 ---
 
+<BackTop></BackTop>
+
 # 字体图标库
 
 ## [Iconfont](https://www.iconfont.cn/)

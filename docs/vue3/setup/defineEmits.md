@@ -3,6 +3,9 @@ group:
   title: Script Setup
 order: 4
 ---
+
+<BackTop></BackTop>
+
 # defineEmits
 
 在 `<script setup>` 中 声明 `emit` ，必须使用 `defineEmits` API，这也是一个[宏命令](/vue3/setup/define-props#编译器宏命令)。同样可采用 [运行时声明](/vue3/setup/define-props#运行时声明) 和 [类型声明](/vue3/setup/define-props#类型声明)，在类型声明下 `emit` 将具备完美的类型推断。
@@ -13,7 +16,7 @@ order: 4
 
 ```html
 <script setup lang="ts">
-const emit = defineEmits(['getdata'])
+  const emit = defineEmits(['getdata']);
 </script>
 ```
 
@@ -30,13 +33,13 @@ const emit = defineEmits(['getdata'])
   <Children @getdata="handleData" />
 </template>
 <script setup lang="ts">
-import Children from './Children.vue'
+  import Children from './Children.vue';
 
-// 用于接收子组件传递过来的数据
-const handleData = (data) => {
-  // 输出：子组件传递过来的数据 {name: '张三', age: 30}
-  console.log('子组件传递过来的数据', data)
-}
+  // 用于接收子组件传递过来的数据
+  const handleData = (data) => {
+    // 输出：子组件传递过来的数据 {name: '张三', age: 30}
+    console.log('子组件传递过来的数据', data);
+  };
 </script>
 ```
 
@@ -48,16 +51,17 @@ const handleData = (data) => {
 </template>
 
 <script setup lang="ts">
-const data = { name: '张三', age: 30 }
-// 使用 defineEmits 接收一个数组，数组里面是自定义事件名称
-const emit = defineEmits(['getdata'])
+  const data = { name: '张三', age: 30 };
+  // 使用 defineEmits 接收一个数组，数组里面是自定义事件名称
+  const emit = defineEmits(['getdata']);
 
-// 定义一个事件，emit用于触发自定义事件 getdata，并传递数据 data
-const sentData = () => {
-  emit('getdata', data)
-}
+  // 定义一个事件，emit用于触发自定义事件 getdata，并传递数据 data
+  const sentData = () => {
+    emit('getdata', data);
+  };
 </script>
 ```
+
 ## 类型声明
 
 使用类型声明可以完美的支持 IDE 的类型推断和检查。
@@ -69,17 +73,17 @@ const sentData = () => {
   <ChildrenBox @getdata="handleData" @getmsg="handleMsg" />
 </template>
 <script setup lang="ts">
-import ChildrenBox from './ChildrenBox.vue'
+  import ChildrenBox from './ChildrenBox.vue';
 
-// 用于接收子组件传递过来的数据
-const handleData = (data: any) => {
-  // 输出：子组件传递过来的数据 {name: '张三', age: 30}
-  console.log('子组件传递过来的数据', data)
-}
-const handleMsg = (data: any) => {
-  // 输出：子组件传递过来的数据 Hello
-  console.log('子组件传递过来的数据', data)
-}
+  // 用于接收子组件传递过来的数据
+  const handleData = (data: any) => {
+    // 输出：子组件传递过来的数据 {name: '张三', age: 30}
+    console.log('子组件传递过来的数据', data);
+  };
+  const handleMsg = (data: any) => {
+    // 输出：子组件传递过来的数据 Hello
+    console.log('子组件传递过来的数据', data);
+  };
 </script>
 ```
 
@@ -91,31 +95,30 @@ const handleMsg = (data: any) => {
 </template>
 
 <script setup lang="ts">
-// 约束 data 的类型
-interface User {
-  name: string
-  age: number
-}
-const data = { name: '张三', age: 30 }
-const msg = 'Hello'
+  // 约束 data 的类型
+  interface User {
+    name: string;
+    age: number;
+  }
+  const data = { name: '张三', age: 30 };
+  const msg = 'Hello';
 
-const emit = defineEmits<{
-  // 约束自定义事件getdata，参数data类型为 User，返回值：void
-  (e: 'getdata', data: User): void
-  // 约束自定义事件getmsg，参数data类型为 string，返回值：void
-  (e: 'getmsg', data: string): void
-}>()
+  const emit = defineEmits<{
+    // 约束自定义事件getdata，参数data类型为 User，返回值：void
+    (e: 'getdata', data: User): void;
+    // 约束自定义事件getmsg，参数data类型为 string，返回值：void
+    (e: 'getmsg', data: string): void;
+  }>();
 
-// 定义一个事件，emit用于触发自定义事件 getdata 和 getmsg，并分别传递数据
-const sentData = () => {
-  // 此处的data类型必须是 User类型，不然会报错
-  emit('getdata', data)
+  // 定义一个事件，emit用于触发自定义事件 getdata 和 getmsg，并分别传递数据
+  const sentData = () => {
+    // 此处的data类型必须是 User类型，不然会报错
+    emit('getdata', data);
 
-  // 此处的msg类型必须是 string类型，不然会报错
-  emit('getmsg', msg)
-}
+    // 此处的msg类型必须是 string类型，不然会报错
+    emit('getmsg', msg);
+  };
 </script>
-
 ```
 
 ## 注意事项

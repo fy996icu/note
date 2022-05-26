@@ -3,6 +3,9 @@ group:
   title: 快速上手
 order: 10
 ---
+
+<BackTop></BackTop>
+
 # 动态组件 & 异步组件
 
 ## 动态组件
@@ -20,7 +23,6 @@ order: 10
 
 - 一个组件选项对象。
 
-
 案例：点击 `动态切换组件` 按钮，切换显示 `Grandson` 组件。
 
 ```html
@@ -30,28 +32,28 @@ order: 10
 </template>
 
 <script lang="ts">
-// 导入普通组价
-import Children from './Children.vue'
-import Grandson from './Grandson.vue'
-import { defineComponent, ref } from 'vue'
-export default defineComponent({
-  components: {
-    Children,
-    Grandson,
-  },
-  setup() {
-    // 默认显示Children组件
-    const currentComponent = ref('Children')
-    // 切换组件
-    const changeComponent = () => {
-      currentComponent.value = 'Grandson'
-    }
-    return {
-      currentComponent,
-      changeComponent,
-    }
-  },
-})
+  // 导入普通组价
+  import Children from './Children.vue';
+  import Grandson from './Grandson.vue';
+  import { defineComponent, ref } from 'vue';
+  export default defineComponent({
+    components: {
+      Children,
+      Grandson,
+    },
+    setup() {
+      // 默认显示Children组件
+      const currentComponent = ref('Children');
+      // 切换组件
+      const changeComponent = () => {
+        currentComponent.value = 'Grandson';
+      };
+      return {
+        currentComponent,
+        changeComponent,
+      };
+    },
+  });
 </script>
 ```
 
@@ -61,20 +63,20 @@ export default defineComponent({
 
 ### 简介
 
-vue3中的Async Components异步组件使用进行了很大的改动，改动如下：
+vue3 中的 Async Components 异步组件使用进行了很大的改动，改动如下：
 
-- 使用 `defineAsyncComponent` 方法来定义async components异步组件。
+- 使用 `defineAsyncComponent` 方法来定义 async components 异步组件。
 
 - 组件配置项的 `component` 重新命名为 `loader`。
 
-- `loader` 函数（对应vue2的component函数）不再接受 `resolve` 和 `reject` 参数，并且必须返回 `Promise`。
+- `loader` 函数（对应 vue2 的 component 函数）不再接受 `resolve` 和 `reject` 参数，并且必须返回 `Promise`。
 
-### vue2的使用方式
+### vue2 的使用方式
 
-vue2中通过一个返回 `Promise` 函数来定义async components异步组件：
+vue2 中通过一个返回 `Promise` 函数来定义 async components 异步组件：
 
 ```js
-const asyncLazy = () => import('./Lazy.vue')
+const asyncLazy = () => import('./Lazy.vue');
 ```
 
 多配置方式如下：
@@ -85,21 +87,21 @@ const asyncLazy = {
   delay: 200,
   timeout: 3000,
   error: ErrorComponent,
-  loading: LoadingComponent
-}
+  loading: LoadingComponent,
+};
 ```
 
-### vue3的使用方式
+### vue3 的使用方式
 
-在vue3中，定义async components异步组件必须使用 `defineAsyncComponent` 方法来明确定义async components异步组件而不是同步组件。同时，`component` 配置项重新命名为 `loader`。示例如下：
+在 vue3 中，定义 async components 异步组件必须使用 `defineAsyncComponent` 方法来明确定义 async components 异步组件而不是同步组件。同时，`component` 配置项重新命名为 `loader`。示例如下：
 
 ```js
-import { defineAsyncComponent } from 'vue' // 需要引入defineAsyncComponent
-import ErrorComponent from './components/ErrorComponent.vue'
-import LoadingComponent from './components/LoadingComponent.vue'
+import { defineAsyncComponent } from 'vue'; // 需要引入defineAsyncComponent
+import ErrorComponent from './components/ErrorComponent.vue';
+import LoadingComponent from './components/LoadingComponent.vue';
 
 // 无配置项定义方式
-const asyncLazy = defineAsyncComponent(() => import('./Lazy.vue'))
+const asyncLazy = defineAsyncComponent(() => import('./Lazy.vue'));
 
 // 配置项定义方式
 const asyncLazyWithOptions = defineAsyncComponent({
@@ -108,8 +110,8 @@ const asyncLazyWithOptions = defineAsyncComponent({
   delay: 200,
   timeout: 3000,
   errorComponent: ErrorComponent,
-  loadingComponent: LoadingComponent
-})
+  loadingComponent: LoadingComponent,
+});
 ```
 
 ### 配置项说明
@@ -117,7 +119,7 @@ const asyncLazyWithOptions = defineAsyncComponent({
 对于高阶用法，`defineAsyncComponent` 可以接受一个以下格式的对象：
 
 ```js
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent } from 'vue';
 
 const AsyncComp = defineAsyncComponent({
   // 工厂函数
@@ -143,12 +145,12 @@ const AsyncComp = defineAsyncComponent({
   onError(error, retry, fail, attempts) {
     if (error.message.match(/fetch/) && attempts <= 3) {
       // 请求发生错误时重试，最多可尝试 3 次
-      retry()
+      retry();
     } else {
       // 注意，retry/fail 就像 promise 的 resolve/reject 一样：
       // 必须调用其中一个才能继续错误处理。
-      fail()
+      fail();
     }
-  }
-})
+  },
+});
 ```

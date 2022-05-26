@@ -3,6 +3,9 @@ group:
   title: Script Setup
 order: 5
 ---
+
+<BackTop></BackTop>
+
 # defineExpose
 
 ## 默认关闭
@@ -16,14 +19,14 @@ order: 5
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import Children from './Children.vue'
-const childRef = ref(null)
+  import { onMounted, ref } from 'vue';
+  import Children from './Children.vue';
+  const childRef = ref(null);
 
-onMounted(() => {
-  // 发现 [[Target]] 什么都没有，不会出现子组件的 count属性 和 setCount方法
-  console.log(childRef.value) // 输出：[[Target]]
-})
+  onMounted(() => {
+    // 发现 [[Target]] 什么都没有，不会出现子组件的 count属性 和 setCount方法
+    console.log(childRef.value); // 输出：[[Target]]
+  });
 </script>
 ```
 
@@ -35,14 +38,14 @@ onMounted(() => {
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-// 子组件的 count 属性
-const count = ref(0)
+  import { ref } from 'vue';
+  // 子组件的 count 属性
+  const count = ref(0);
 
-// 子组件定义的 setCount 方法
-const setCount = () => {
-  count.value++
-}
+  // 子组件定义的 setCount 方法
+  const setCount = () => {
+    count.value++;
+  };
 </script>
 ```
 
@@ -56,15 +59,15 @@ const setCount = () => {
   <Children ref="childRef" />
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import Children from './Children.vue'
-const childRef = ref(null)
+  import { onMounted, ref } from 'vue';
+  import Children from './Children.vue';
+  const childRef = ref(null);
 
-onMounted(() => {
-  // 发现 [[Target]] 出现子组件的 count属性 和 setCount方法
-  // 输出：[[Target]]- count：0  setCount: () => ()
-  console.log(childRef.value)
-})
+  onMounted(() => {
+    // 发现 [[Target]] 出现子组件的 count属性 和 setCount方法
+    // 输出：[[Target]]- count：0  setCount: () => ()
+    console.log(childRef.value);
+  });
 </script>
 ```
 
@@ -75,20 +78,20 @@ onMounted(() => {
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+  import { ref } from 'vue';
 
-// 子组件的 count 属性
-const count = ref(0)
+  // 子组件的 count 属性
+  const count = ref(0);
 
-// 子组件定义的 setCount 方法
-const setCount = () => {
-  console.log('子组件方法')
-}
-// 使用 defineExpose 宏命令将属性和方法暴露出去
-defineExpose({
-  count,
-  setCount,
-})
+  // 子组件定义的 setCount 方法
+  const setCount = () => {
+    console.log('子组件方法');
+  };
+  // 使用 defineExpose 宏命令将属性和方法暴露出去
+  defineExpose({
+    count,
+    setCount,
+  });
 </script>
 ```
 

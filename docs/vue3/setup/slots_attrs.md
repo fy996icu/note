@@ -3,6 +3,9 @@ group:
   title: Script Setup
 order: 6
 ---
+
+<BackTop></BackTop>
+
 # useSlots 和 useAttrs
 
 在 `<script setup>` 使用 `slots` 和 `attrs` 的情况应该是很罕见的，因为可以在模板中通过 `$slots` 和 `$attrs` 来访问它们。在你的确需要使用它们的罕见场景中，可以分别用 `useSlots` 和 `useAttrs` 两个辅助函数：
@@ -24,10 +27,10 @@ order: 6
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import Children from './Children.vue'
-// 定义动态属性
-const count = ref(0)
+  import { ref } from 'vue';
+  import Children from './Children.vue';
+  // 定义动态属性
+  const count = ref(0);
 </script>
 ```
 
@@ -48,19 +51,19 @@ const count = ref(0)
 </template>
 
 <script setup lang="ts">
-// 导入 useAttrs 、useSlots 函数
-import { useAttrs, useSlots } from 'vue'
-// 获取属性 attrs
-const attrs = useAttrs()
+  // 导入 useAttrs 、useSlots 函数
+  import { useAttrs, useSlots } from 'vue';
+  // 获取属性 attrs
+  const attrs = useAttrs();
 
-// 获取插槽 slots
-const slots = useSlots()
+  // 获取插槽 slots
+  const slots = useSlots();
 
-// 输出：[Target]] 中有属性：count: 0，mag: "你好啊"
-console.log(attrs)
+  // 输出：[Target]] 中有属性：count: 0，mag: "你好啊"
+  console.log(attrs);
 
-// 输出：[Target]] 中有插槽：default: (...args) => {}，footer: (...args) => {}
-console.log(slots)
+  // 输出：[Target]] 中有插槽：default: (...args) => {}，footer: (...args) => {}
+  console.log(slots);
 </script>
 ```
 

@@ -3,6 +3,9 @@ group:
   title: 快速上手
 order: 8
 ---
+
+<BackTop></BackTop>
+
 # Ref 数组
 
 ## 2.x 语法
@@ -14,37 +17,35 @@ order: 8
 ```html
 <template>
   <ul>
-    <li v-for="item in arrData" :key="item.id" ref="liDom">
-      {{ item.name }}
-    </li>
+    <li v-for="item in arrData" :key="item.id" ref="liDom">{{ item.name }}</li>
   </ul>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      arrData: [
-        {
-          id: "0",
-          name: "张三",
-        },
-        {
-          id: "1",
-          name: "李四",
-        },
-        {
-          id: "2",
-          name: "王五",
-        },
-      ],
-    };
-  },
-  mounted() {
-    // 组件挂载完成获取 li 标签 DOM
-    console.log(this.$refs.liDom); // 输出：[li, li, li]
-  },
-};
+  export default {
+    data() {
+      return {
+        arrData: [
+          {
+            id: '0',
+            name: '张三',
+          },
+          {
+            id: '1',
+            name: '李四',
+          },
+          {
+            id: '2',
+            name: '王五',
+          },
+        ],
+      };
+    },
+    mounted() {
+      // 组件挂载完成获取 li 标签 DOM
+      console.log(this.$refs.liDom); // 输出：[li, li, li]
+    },
+  };
 </script>
 ```
 
@@ -60,23 +61,23 @@ export default {
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
-export default defineComponent({
-  setup() {
-    // 数据
-    const data = ref<string[]>(['张三', '李四', '王五'])
-    // 创建 ref 数组容器
-    const liNodeListRefs = ref<HTMLLIElement[]>([])
-    // 定义一个获取 DOM 的函数
-    const setItemRef = (el: any) => {
-      if (el) liNodeListRefs.value.push(el)
-    }
-    onMounted(() => {
-      console.log(liNodeListRefs.value) // 输出：Proxy [li, li, li]
-    })
-    return { data, setItemRef }
-  },
-})
+  import { defineComponent, onMounted, ref } from 'vue';
+  export default defineComponent({
+    setup() {
+      // 数据
+      const data = ref<string[]>(['张三', '李四', '王五']);
+      // 创建 ref 数组容器
+      const liNodeListRefs = ref<HTMLLIElement[]>([]);
+      // 定义一个获取 DOM 的函数
+      const setItemRef = (el: any) => {
+        if (el) liNodeListRefs.value.push(el);
+      };
+      onMounted(() => {
+        console.log(liNodeListRefs.value); // 输出：Proxy [li, li, li]
+      });
+      return { data, setItemRef };
+    },
+  });
 </script>
 ```
 
@@ -93,20 +94,20 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance, onMounted, ref } from 'vue'
-export default defineComponent({
-  setup() {
-    // 数据
-    const data = ref<string[]>(['张三', '李四', '王五'])
-    onMounted(() => {
-      // 通过 getCurrentInstance() 获取到当前组件实例
-      const internalInstance = getCurrentInstance() as any
+  import { defineComponent, getCurrentInstance, onMounted, ref } from 'vue';
+  export default defineComponent({
+    setup() {
+      // 数据
+      const data = ref<string[]>(['张三', '李四', '王五']);
+      onMounted(() => {
+        // 通过 getCurrentInstance() 获取到当前组件实例
+        const internalInstance = getCurrentInstance() as any;
 
-      // 获取 $refs
-      console.log(internalInstance.ctx.$refs.liDom) // 输出：[li, li, li]
-    })
-    return { data }
-  },
-})
+        // 获取 $refs
+        console.log(internalInstance.ctx.$refs.liDom); // 输出：[li, li, li]
+      });
+      return { data };
+    },
+  });
 </script>
 ```

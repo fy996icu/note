@@ -4,6 +4,8 @@ toc: menu
 order: 7
 ---
 
+<BackTop></BackTop>
+
 # 调试工具
 
 ## VConsole

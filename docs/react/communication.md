@@ -3,9 +3,13 @@ title: 组件间通信
 toc: menu
 order: 5
 ---
+
+<BackTop></BackTop>
+
 # 组件间通信
 
 在使用 React 的过程中，不可避免的需要组件间进行消息传递（通信），组件间通信大体有下面几种情况：
+
 - 父组件向子组件通信
 - 子组件向父组件通信
 - 跨级组件之间通信
@@ -93,6 +97,7 @@ export default Father;
 ## 跨级组件通信
 
 所谓跨级组件通信，就是父组件向子组件的子组件通信，向更深层的子组件通信。跨级组件通信可以采用下面两种方式：
+
 - 中间组件层层传递 props
 - 使用 context 对象
 
@@ -151,9 +156,10 @@ export default Father;
 ## 非嵌套组件间通信
 
 非嵌套组件，就是没有任何包含关系的组件，包括兄弟组件以及不在同一个父级中的非兄弟组件。对于非嵌套组件，可以采用下面两种方式：
+
 - 利用二者共同父组件的 context 对象进行通信
-- pubsub-js实现发布/订阅
-- Redux实现数据共享
+- pubsub-js 实现发布/订阅
+- Redux 实现数据共享
 
 方法一：不好使，增加耦合度。`不推荐`
 
@@ -187,10 +193,10 @@ const Father = () => {
 // 子组件1
 const Child1 = () => {
   const sugar = '大白兔';
-  const sentSugar = ()=>{
+  const sentSugar = () => {
     // 发布一个名为getSugar的消息
     PubSub.publish('getSugar', sugar);
-  }
+  };
   return (
     <div>
       <h2>子组件1有一颗{sugar}，现在要给子组件2</h2>
@@ -203,15 +209,15 @@ const Child1 = () => {
 const Child2 = () => {
   const [sugar, setSugar] = useState();
   // 组件挂载完成就订阅getSugar消息
-  useEffect(()=>{
+  useEffect(() => {
     const pub = PubSub.subscribe('getSugar', (_, value) => {
-      setSugar(value)
+      setSugar(value);
     });
-    return ()=>{
+    return () => {
       // 组件卸载取消订阅
-      PubSub.unsubscribe(pub)
-    }
-  },[])
+      PubSub.unsubscribe(pub);
+    };
+  }, []);
   return (
     <div>
       {/* 输出：子组件2得到子组件1给的大白兔 */}
@@ -223,7 +229,7 @@ const Child2 = () => {
 export default Father;
 ```
 
-**Redux实现数据共享**
+**Redux 实现数据共享**
 
 ```bash
 # 安装依赖
@@ -238,12 +244,12 @@ $ yarn add redux-thunk
 $ yarn add redux-devtools-extension
 ```
 
-Redux目录：
+Redux 目录：
 
 ```sh
 ├── public
 └── src
-    ├── router          
+    ├── router
     └── redux               # redux文件夹
         ├── actions         # action文件夹
         │   └── xxx.js      # action模块
@@ -254,27 +260,28 @@ Redux目录：
         └── store.js        # 全局store
 ```
 
-以全局loading为例：实现一个全局加载效果。
+以全局 loading 为例：实现一个全局加载效果。
 
 1.新建`constans.js`文件，定义打开加载和关闭加载的常量。
 
 ```js
 // constans.js
 // action中type常量
-export const OPENLOADING = "openLoading";
-export const CLOSELOADING = "closeLoading";
+export const OPENLOADING = 'openLoading';
+export const CLOSELOADING = 'closeLoading';
 ```
 
 2.新建`reducers`文件夹，新建`loading.js`文件和`index.js`文件。
 
 `loading.js`
+
 ```js
 // loading.js
-import { OPENLOADING, CLOSELOADING } from "../constans";  // 引入常量
+import { OPENLOADING, CLOSELOADING } from '../constans'; // 引入常量
 // 初始化state
 const initStatus = {
   spinning: false,
-  tip: "加载中..."
+  tip: '加载中...',
 };
 
 // 处理不同的action type
@@ -292,11 +299,12 @@ export default (preState = initStatus, action) => {
 ```
 
 `index.js`
+
 ```js
 // 合并reducer
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 // 全局loading
-import loading from "./loading";
+import loading from './loading';
 
 // 将所有reducer汇总为一个reducer
 export default combineReducers({ loading });
@@ -305,11 +313,12 @@ export default combineReducers({ loading });
 3.新建`actions`文件夹，新建`loading.js`文件。
 
 `loading.js`
-```js
-import { OPENLOADING, CLOSELOADING } from "../constans";
 
-export const openLoading = data => ({ type: OPENLOADING, data });
-export const closeLoading = data => ({ type: CLOSELOADING, data });
+```js
+import { OPENLOADING, CLOSELOADING } from '../constans';
+
+export const openLoading = (data) => ({ type: OPENLOADING, data });
+export const closeLoading = (data) => ({ type: CLOSELOADING, data });
 ```
 
 4.新建`store.js`文件
@@ -318,22 +327,19 @@ export const closeLoading = data => ({ type: CLOSELOADING, data });
 
 ```js
 // 创建store对象
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, createStore } from 'redux';
 
 // 引入reducer
-import reducers from "./reducers";
+import reducers from './reducers';
 
 // 引入redux-thunk，用于支持异步action
-import thunk from "redux-thunk";
+import thunk from 'redux-thunk';
 
 // 引入redux-devtools-extension
-import { composeWithDevTools } from "redux-devtools-extension";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 // 暴露store
-export default createStore(
-  reducers,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+export default createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 ```
 
 5.修改入口`index.js`文件。
@@ -353,15 +359,16 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
-6.使用redux修改共享数据。
+
+6.使用 redux 修改共享数据。
 
 ```js
 // 引入store和常量
-import store from "../redux/store";
-import { OPENLOADING, CLOSELOADING } from "../redux/constans";
+import store from '../redux/store';
+import { OPENLOADING, CLOSELOADING } from '../redux/constans';
 
 // 打开loading加载
-store.dispatch({ type: OPENLOADING, data: "玩儿命加载中..." });
+store.dispatch({ type: OPENLOADING, data: '玩儿命加载中...' });
 
 // 关闭loading加载
 store.dispatch({ type: CLOSELOADING });

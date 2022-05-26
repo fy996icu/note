@@ -3,6 +3,9 @@ title: 高阶组件
 toc: menu
 order: 8
 ---
+
+<BackTop></BackTop>
+
 # 高阶组件
 
 ## 介绍
@@ -94,9 +97,10 @@ const Wrap = () => {
 
 export default Wrap;
 ```
+
 <!-- ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/HocExample.png) -->
 
-**返回的组件含有props**
+**返回的组件含有 props**
 
 需要将 `props` 传给 `WrappedComponent` 组件。
 
@@ -174,10 +178,10 @@ export default Wrap;
 
 <!-- ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/HocExample2.png) -->
 
-**给高阶组件设置displayName**
+**给高阶组件设置 displayName**
 
 - 使用高阶组件的存在的问题：得到的组件名称会相同。
-- 原因：默认情况下，React使用 `组件名称` 作为 `displayName`。
+- 原因：默认情况下，React 使用 `组件名称` 作为 `displayName`。
 - 解决方式：为高阶组件设置 `displayName` 便于调试时区分不同的组件。
 - `displayName` 的作用：同于设置调试信息（ `React Developer Tools` 信息）。
 
@@ -185,7 +189,9 @@ export default Wrap;
 
 ```js
 function withSubscription(WrappedComponent) {
-  class WithSubscription extends React.Component {/* ... */}
+  class WithSubscription extends React.Component {
+    /* ... */
+  }
 
   // 调用getDisplayName方法设置displayName
   WithSubscription.displayName = `WithSubscription(${getDisplayName(WrappedComponent)})`;

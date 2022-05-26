@@ -4,6 +4,8 @@ toc: menu
 order: 1
 ---
 
+<BackTop></BackTop>
+
 # 核心概念
 
 ## 三大核心概念

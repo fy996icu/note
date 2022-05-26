@@ -4,6 +4,8 @@ toc: menu
 order: 2
 ---
 
+<BackTop></BackTop>
+
 # JavaScript 插件
 
 ## uuid 生成

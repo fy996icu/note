@@ -4,6 +4,8 @@ toc: menu
 order: 0
 ---
 
+<BackTop></BackTop>
+
 # 项目目录
 
 <Alert type="info">

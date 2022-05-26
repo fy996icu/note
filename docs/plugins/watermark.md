@@ -4,6 +4,8 @@ toc: menu
 order: 6
 ---
 
+<BackTop></BackTop>
+
 # 添加水印
 
 ## 图片加水印

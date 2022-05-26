@@ -3,15 +3,18 @@ title: 实现插槽
 toc: menu
 order: 6
 ---
+
+<BackTop></BackTop>
+
 # 实现插槽
 
-React中并没有 `插槽` 的概念，但是可以通过 `组合` 的方式来模拟实现插槽。
+React 中并没有 `插槽` 的概念，但是可以通过 `组合` 的方式来模拟实现插槽。
 
 React 有十分强大的组合模式。我们推荐使用 `组合` 而非继承来实现组件间的代码重用，可以将任何东西作为 `props` 进行传递。
 
 ## 默认插槽
 
-在React中要实现类似 `Vue` 中的默认插槽，要借助 `props.children` 来实现。
+在 React 中要实现类似 `Vue` 中的默认插槽，要借助 `props.children` 来实现。
 
 ```jsx | pure
 import React from 'react';
@@ -43,7 +46,7 @@ export default Father;
 
 ## 具名插槽
 
-在React中要实现类似 `Vue` 中的具名插槽，要借助 `props` 来传递组件实现。
+在 React 中要实现类似 `Vue` 中的具名插槽，要借助 `props` 来传递组件实现。
 
 ```jsx | pure
 import React from 'react';

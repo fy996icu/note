@@ -4,6 +4,8 @@ toc: menu
 order: 3
 ---
 
+<BackTop></BackTop>
+
 # 集成 UI 库
 
 ## Vue 系列

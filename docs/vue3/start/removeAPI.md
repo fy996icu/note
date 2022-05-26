@@ -3,7 +3,10 @@ group:
   title: 快速上手
 order: 11
 ---
-# 被移除的API
+
+<BackTop></BackTop>
+
+# 被移除的 API
 
 ## `keyCode` 修饰符
 
@@ -17,7 +20,7 @@ order: 11
 
 应该尽量避免使用它；它已经被弃用了一段时间。相反的，如果它在你的浏览器中被实现了的话，你应该使用 `KeyboardEvent.code`。 无语的是，有一些浏览器还是没有实现它，所以你在使用之前必须要小心，确认你所使用的那个被所有目标浏览器所支持。
 
-[更多详情查看MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/keyCode)
+[更多详情查看 MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/keyCode)
 
 ### 2.x 语法
 
@@ -37,8 +40,8 @@ order: 11
 
 ```js
 Vue.config.keyCodes = {
-  f1: 112
-}
+  f1: 112,
+};
 ```
 
 ```html
@@ -55,16 +58,16 @@ Vue.config.keyCodes = {
 
 ```html
 <!-- Vue 3 在 v-on 上使用按键修饰符 -->
-<input v-on:keyup.page-down="nextPage">
+<input v-on:keyup.page-down="nextPage" />
 
 <!-- 同时匹配 q 和 Q -->
-<input v-on:keypress.q="quit">
+<input v-on:keypress.q="quit" />
 ```
 
 如果使用符号键，例如 `,` 键：
 
 ```html
-<input v-on:keypress.,="commaPress">
+<input v-on:keypress.,="commaPress" />
 ```
 
 语法的限制导致某些特定字符无法被匹配，比如 `"`、`'`、`/`、`=`、`>` 和 `.`。对于这些字符，你应该在监听器内使用 `event.key` 代替。
@@ -82,12 +85,13 @@ Vue.config.keyCodes = {
   export default {
     filters: {
       currencyUSD(value) {
-        return '$' + value
-      }
-    }
-  }
+        return '$' + value;
+      },
+    },
+  };
 </script>
 ```
+
 替换为如下：
 
 ```html
@@ -101,58 +105,59 @@ Vue.config.keyCodes = {
     props: {
       accountBalance: {
         type: Number,
-        required: true
-      }
+        required: true,
+      },
     },
     computed: {
       accountInUSD() {
-        return '$' + this.accountBalance
-      }
-    }
-  }
+        return '$' + this.accountBalance;
+      },
+    },
+  };
 </script>
 ```
+
 ## 移除 `$on`、`$off` 和 `$once` 方法
 
 在 Vue2.x 中可以通过 `EventBus` 的方法来实现组件通信：
 
 ```js
-var EventBus = new Vue()
-Vue.prototype.$EventBus = EventBus
+var EventBus = new Vue();
+Vue.prototype.$EventBus = EventBus;
 
 /* 业务代码 */
 // 监听一个事件
-this.$EventBus.$on("custom-event", ()=>{})  
+this.$EventBus.$on('custom-event', () => {});
 
 // 触发一个事件
-this.$EventBus.$emit("custom-event")
+this.$EventBus.$emit('custom-event');
 
 // 解除事件监听
-this.$EventBus.$off("custom-event")
+this.$EventBus.$off('custom-event');
 ```
 
 这种用法在 Vue 3 中就不行了，在 Vue 3 中 移除了 `$on`、`$off` 等方法，而是推荐使用 [mitt](https://github.com/developit/mitt) 方案来代替：
 
 ```js
-import mitt from 'mitt'
-const emitter = mitt()
+import mitt from 'mitt';
+const emitter = mitt();
 
 // 监听一个事件
-emitter.on('foo', e => console.log('foo', e) )
+emitter.on('foo', (e) => console.log('foo', e));
 
 // 监听所有事件
-emitter.on('*', (type, e) => console.log(type, e) )
+emitter.on('*', (type, e) => console.log(type, e));
 
 // 触发一个事件
-emitter.emit('foo', { a: 'b' })
+emitter.emit('foo', { a: 'b' });
 
 // 清除所有事件
-emitter.all.clear()
+emitter.all.clear();
 
 // 使用处理函数
 function onFoo() {}
-emitter.on('foo', onFoo)    // 监听
-emitter.off('foo', onFoo)   // 解除监听
+emitter.on('foo', onFoo); // 监听
+emitter.off('foo', onFoo); // 解除监听
 ```
 
 ## 移除 `$children`
@@ -169,22 +174,22 @@ emitter.off('foo', onFoo)   // 解除监听
 </template>
 
 <script>
-import Children from './Children'
+  import Children from './Children';
 
-export default {
-  components: {
-    Children
-  },
-  mounted() {
-    console.log(this.$children) // [VueComponent]
-  }
-}
+  export default {
+    components: {
+      Children,
+    },
+    mounted() {
+      console.log(this.$children); // [VueComponent]
+    },
+  };
 </script>
 ```
 
 在 Vue3 中如果要获取子组件实例，可以使用 `$refs`。
 
-***此是Vue3 中使用 Vue2 的写法，不建议这样用：***
+**_此是 Vue3 中使用 Vue2 的写法，不建议这样用：_**
 
 ```html
 <!-- 此是Vue3 中使用 Vue2 的写法，不建议这样用 -->
@@ -195,16 +200,16 @@ export default {
 </template>
 
 <script>
-import Children from './Children'
+  import Children from './Children';
 
-export default {
-  components: {
-    Children
-  },
-  mounted() {
-    console.log(this.$refs.childrenRef)
-  }
-}
+  export default {
+    components: {
+      Children,
+    },
+    mounted() {
+      console.log(this.$refs.childrenRef);
+    },
+  };
 </script>
 ```
 
@@ -217,25 +222,25 @@ export default {
 </template>
 
 <script lang="ts">
-import Children from './Children.vue'
-import { defineComponent, onMounted, ref } from 'vue'
-export default defineComponent({
-  components: {
-    Children,
-  },
-  setup() {
-    // 创建 ref
-    const childrenRef = ref(null)
-    // 组件挂载完成
-    onMounted(() => {
-      // 访问子组件实例
-      console.log(childrenRef.value)
-    })
-    return {
-      childrenRef,
-    }
-  },
-})
+  import Children from './Children.vue';
+  import { defineComponent, onMounted, ref } from 'vue';
+  export default defineComponent({
+    components: {
+      Children,
+    },
+    setup() {
+      // 创建 ref
+      const childrenRef = ref(null);
+      // 组件挂载完成
+      onMounted(() => {
+        // 访问子组件实例
+        console.log(childrenRef.value);
+      });
+      return {
+        childrenRef,
+      };
+    },
+  });
 </script>
 ```
 
@@ -248,14 +253,14 @@ export default defineComponent({
 ```js
 const Comp = Vue.extend({
   props: ['username'],
-  template: '<div>{{ username }}</div>'
-})
+  template: '<div>{{ username }}</div>',
+});
 
 new Comp({
   propsData: {
-    username: 'Evan'
-  }
-})
+    username: 'Evan',
+  },
+});
 ```
 
 在 3.x 中，如果你需要在实例创建时向根组件传入 prop，你应该使用 `createApp` 的第二个参数：
@@ -264,17 +269,17 @@ new Comp({
 const app = createApp(
   {
     props: ['username'],
-    template: '<div>{{ username }}</div>'
+    template: '<div>{{ username }}</div>',
   },
-  { username: 'Evan' }
-)
+  { username: 'Evan' },
+);
 ```
 
 ## 移除 `$destroy`
 
 用户不应再手动管理单个 Vue 组件的生命周期。
 
-## 移除 `$set`、`$delete` 
+## 移除 `$set`、`$delete`
 
 全局函数 `set` 和 `delete` 以及实例方法 `$set` 和 `$delete`。基于代理的变化检测已经不再需要它们了。
 
@@ -284,31 +289,29 @@ const app = createApp(
 
 ```html
 <template>
-  <div>
-    {{ userInfo }}
-  </div>
+  <div>{{ userInfo }}</div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      userInfo: {
-        name: "张三",
-        age: 30,
-      },
-    };
-  },
-  created() {
-    // 动态给 userInfo 添加 sex 属性，并赋值 "男"
-    this.$set(this.userInfo, "sex", "男");
+  export default {
+    data() {
+      return {
+        userInfo: {
+          name: '张三',
+          age: 30,
+        },
+      };
+    },
+    created() {
+      // 动态给 userInfo 添加 sex 属性，并赋值 "男"
+      this.$set(this.userInfo, 'sex', '男');
 
-    // 动态删除 userInfo 的 age 属性
-    this.$delete(this.userInfo, "age");
+      // 动态删除 userInfo 的 age 属性
+      this.$delete(this.userInfo, 'age');
 
-    console.log(this.userInfo);
-  },
-};
+      console.log(this.userInfo);
+    },
+  };
 </script>
 ```
 
@@ -317,65 +320,62 @@ export default {
 在 Vue3.x 中使用的是 [Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 代理，从而实现基本操作的拦截和自定义（如属性查找、赋值、枚举、函数调用等）。可以直接动态新增或者删除对象属性了。
 
 ```html
-<template>
-  {{ userInfo }}
-</template>
+<template> {{ userInfo }} </template>
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+  import { defineComponent, reactive } from 'vue';
 
-export default defineComponent({
-  setup() {
-    const userInfo = reactive({
-      name: '张三',
-      age: 30,
-    })
-    // 添加属性 sex 并赋值为 "男"
-    userInfo.sex = '男'
+  export default defineComponent({
+    setup() {
+      const userInfo = reactive({
+        name: '张三',
+        age: 30,
+      });
+      // 添加属性 sex 并赋值为 "男"
+      userInfo.sex = '男';
 
-    // 删除属性 age
-    delete userInfo.age
+      // 删除属性 age
+      delete userInfo.age;
 
-    // 响应式的
-    console.log(userInfo)
-    return {
-      userInfo,
-    }
-  },
-})
+      // 响应式的
+      console.log(userInfo);
+      return {
+        userInfo,
+      };
+    },
+  });
 </script>
 ```
+
 **TypeScript 中**
 
 ```html
-<template>
-  {{ userInfo }}
-</template>
+<template> {{ userInfo }} </template>
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+  import { defineComponent, reactive } from 'vue';
 
-export default defineComponent({
-  setup() {
-    interface User {
-      name: string
-      age?: number
-      [key: string]: any
-    }
-    const userInfo = reactive<User>({
-      name: '张三',
-      age: 30,
-    })
-    // 添加属性 sex 并赋值为 "男"
-    userInfo.sex = '男'
+  export default defineComponent({
+    setup() {
+      interface User {
+        name: string;
+        age?: number;
+        [key: string]: any;
+      }
+      const userInfo = reactive<User>({
+        name: '张三',
+        age: 30,
+      });
+      // 添加属性 sex 并赋值为 "男"
+      userInfo.sex = '男';
 
-    // 删除属性 age
-    delete userInfo.age
+      // 删除属性 age
+      delete userInfo.age;
 
-    // 响应式的
-    console.log(userInfo)
-    return {
-      userInfo,
-    }
-  },
-})
+      // 响应式的
+      console.log(userInfo);
+      return {
+        userInfo,
+      };
+    },
+  });
 </script>
 ```

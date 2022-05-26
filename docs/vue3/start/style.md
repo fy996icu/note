@@ -3,18 +3,22 @@ group:
   title: 快速上手
 order: 13
 ---
+
+<BackTop></BackTop>
+
 # style 特性
 
 ## `<style scoped>`
 
 ### 原理
+
 当 `<style>` 标签带有 `scoped` attribute 的时候，它的 CSS 只会应用到当前组件的元素上。这类似于 `Shadow DOM` 中的样式封装。它带有一些注意事项，不过好处是不需要任何的 polyfill。它是通过 PostCSS 转换以下内容来实现的：
 
 ```html
 <style scoped>
-.example {
-  color: red;
-}
+  .example {
+    color: red;
+  }
 </style>
 
 <template>
@@ -26,9 +30,9 @@ order: 13
 
 ```html
 <style>
-.example[data-v-f3f3eg9] {
-  color: red;
-}
+  .example[data-v-f3f3eg9] {
+    color: red;
+  }
 </style>
 
 <template>
@@ -42,9 +46,9 @@ order: 13
 
 ```html
 <style scoped>
-.a :deep(.b) {
-  color: red;
-}
+  .a :deep(.b) {
+    color: red;
+  }
 </style>
 ```
 
@@ -52,9 +56,9 @@ order: 13
 
 ```html
 <style>
-.a[data-v-f13b4d11] .b {
-  color: red;
-}
+  .a[data-v-f13b4d11] .b {
+    color: red;
+  }
 </style>
 ```
 
@@ -68,9 +72,9 @@ order: 13
 
 ```html
 <style scoped>
-:slotted(div) {
-  color: red;
-}
+  :slotted(div) {
+    color: red;
+  }
 </style>
 ```
 
@@ -80,9 +84,9 @@ order: 13
 
 ```html
 <style scoped>
-:global(.red) {
-  color: red;
-}
+  :global(.red) {
+    color: red;
+  }
 </style>
 ```
 
@@ -90,9 +94,9 @@ order: 13
 
 ```html
 <style>
-.red {
-  color: red;
-}
+  .red {
+    color: red;
+  }
 </style>
 ```
 
@@ -102,11 +106,11 @@ order: 13
 
 ```html
 <style>
-/* global styles */
+  /* global styles */
 </style>
 
 <style scoped>
-/* local styles */
+  /* local styles */
 </style>
 ```
 
@@ -128,9 +132,9 @@ order: 13
 </template>
 
 <style module>
-.red {
-  color: red;
-}
+  .red {
+    color: red;
+  }
 </style>
 ```
 
@@ -144,9 +148,9 @@ order: 13
 </template>
 
 <style module="classes">
-.red {
-  color: red;
-}
+  .red {
+    color: red;
+  }
 </style>
 ```
 
@@ -156,18 +160,18 @@ order: 13
 
 ```html
 <script setup lang="ts">
-import { useCssModule } from "vue";
-const css = useCssModule();
-console.log(css);		// { blue: "_blue_13cse_5", red: "_red_13cse_2"}
+  import { useCssModule } from 'vue';
+  const css = useCssModule();
+  console.log(css); // { blue: "_blue_13cse_5", red: "_red_13cse_2"}
 </script>
 
 <style module>
-.red {
-  color: red;
-}
-.blue {
-  color: blue;
-}
+  .red {
+    color: red;
+  }
+  .blue {
+    color: blue;
+  }
 </style>
 ```
 
@@ -177,10 +181,10 @@ console.log(css);		// { blue: "_blue_13cse_5", red: "_red_13cse_2"}
 
 ```html
 <script setup lang="ts">
-import { ref } from "vue";
-const color = ref('red');
-// 2m 后变成蓝色
-setTimeout(() => color.value = 'blue' , 2000);
+  import { ref } from 'vue';
+  const color = ref('red');
+  // 2m 后变成蓝色
+  setTimeout(() => (color.value = 'blue'), 2000);
 </script>
 
 <template>
@@ -188,53 +192,54 @@ setTimeout(() => color.value = 'blue' , 2000);
 </template>
 
 <style scoped>
-p {
-  color: v-bind(color);
-}
+  p {
+    color: v-bind(color);
+  }
 </style>
 ```
 
 编译后：
 
 **JS**
+
 ```js
 /* Analyzed bindings: {
   "ref": "setup-const",
   "color": "setup-ref"
 } */
-import { useCssVars as _useCssVars, defineComponent as _defineComponent } from 'vue'
-import { openBlock as _openBlock, createElementBlock as _createElementBlock } from 'vue'
+import { useCssVars as _useCssVars, defineComponent as _defineComponent } from 'vue';
+import { openBlock as _openBlock, createElementBlock as _createElementBlock } from 'vue';
 
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 const __sfc__ = /*#__PURE__*/ _defineComponent({
   setup(__props) {
     _useCssVars((_ctx) => ({
       // 可以看到，编译后的值 和 一个 hash 值映射，并且具备响应式， css 的 var 便可以获取到这个 hash 映射的值
       'f13b4d11-color': color.value,
-    }))
+    }));
 
-    const color = ref('red')
+    const color = ref('red');
     // 2m 后变成蓝色
-    setTimeout(() => (color.value = 'blue'), 2000)
+    setTimeout(() => (color.value = 'blue'), 2000);
 
     return (_ctx, _cache) => {
-      return _openBlock(), _createElementBlock('p', null, 'hello')
-    }
+      return _openBlock(), _createElementBlock('p', null, 'hello');
+    };
   },
-})
-__sfc__.__scopeId = 'data-v-f13b4d11'
-__sfc__.__file = 'App.vue'
-export default __sfc__
+});
+__sfc__.__scopeId = 'data-v-f13b4d11';
+__sfc__.__file = 'App.vue';
+export default __sfc__;
 ```
 
 **CSS**
 
 ```html
 <style>
-p[data-v-f13b4d11] {
-  color: var(--f13b4d11-color);
-}
+  p[data-v-f13b4d11] {
+    color: var(--f13b4d11-color);
+  }
 </style>
 ```
 

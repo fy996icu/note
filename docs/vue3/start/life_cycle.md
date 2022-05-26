@@ -4,34 +4,35 @@ group:
 order: 2
 ---
 
+<BackTop></BackTop>
+
 # 生命周期钩子
 
 ## 生命周期示意图
 
 ![img](https://img-blog.csdnimg.cn/4e974a3679d34fdd9582edf36e4646fe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbmF2eXNpcjg=,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-
-## Vue2 和 Vue3对比
+## Vue2 和 Vue3 对比
 
 你可以通过在生命周期钩子前面加上 “`on`” 来访问组件的生命周期钩子。
 
 下表包含如何在 `setup ()` 内部调用生命周期钩子：
 
-| 选项式 API      | Composition API       |
-| -------------------- | --------------------------- |
-| `beforeCreate` | Not needed* |
-| `created` | Not needed* |
-| `beforeMount` | `onBeforeMount` |
-| `mounted` | `onMounted` |
-| `beforeUpdate` | `onBeforeUpdate` |
-| `updated` | `onUpdated` |
-| `beforeUnmount` | `onBeforeUnmount` |
-| `unmounted` | `onUnmounted` |
-| `errorCaptured` | `onErrorCaptured` |
-| `renderTracked` | `onRenderTracked` |
+| 选项式 API        | Composition API     |
+| ----------------- | ------------------- |
+| `beforeCreate`    | Not needed\*        |
+| `created`         | Not needed\*        |
+| `beforeMount`     | `onBeforeMount`     |
+| `mounted`         | `onMounted`         |
+| `beforeUpdate`    | `onBeforeUpdate`    |
+| `updated`         | `onUpdated`         |
+| `beforeUnmount`   | `onBeforeUnmount`   |
+| `unmounted`       | `onUnmounted`       |
+| `errorCaptured`   | `onErrorCaptured`   |
+| `renderTracked`   | `onRenderTracked`   |
 | `renderTriggered` | `onRenderTriggered` |
-| `activated` | `onActivated` |
-| `deactivated` | `onDeactivated` |
+| `activated`       | `onActivated`       |
+| `deactivated`     | `onDeactivated`     |
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vue2%E5%92%8Cvue3%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%AF%B9%E5%BA%94%E5%9B%BE.png)
 
@@ -49,77 +50,85 @@ order: 2
 </template>
 
 <script lang="ts">
-import { ref, onMounted, onUpdated, onUnmounted, onBeforeMount, onBeforeUpdate, onBeforeUnmount } from 'vue'
+  import {
+    ref,
+    onMounted,
+    onUpdated,
+    onUnmounted,
+    onBeforeMount,
+    onBeforeUpdate,
+    onBeforeUnmount,
+  } from 'vue';
 
-export default {
-  beforeCreate() {
-    console.log('beforeCreate()')
-  },
+  export default {
+    beforeCreate() {
+      console.log('beforeCreate()');
+    },
 
-  created() {
-    console.log('created')
-  },
+    created() {
+      console.log('created');
+    },
 
-  beforeMount() {
-    console.log('beforeMount')
-  },
+    beforeMount() {
+      console.log('beforeMount');
+    },
 
-  mounted() {
-    console.log('mounted')
-  },
+    mounted() {
+      console.log('mounted');
+    },
 
-  beforeUpdate() {
-    console.log('beforeUpdate')
-  },
+    beforeUpdate() {
+      console.log('beforeUpdate');
+    },
 
-  updated() {
-    console.log('updated')
-  },
+    updated() {
+      console.log('updated');
+    },
 
-  beforeUnmount() {
-    console.log('beforeUnmount')
-  },
+    beforeUnmount() {
+      console.log('beforeUnmount');
+    },
 
-  unmounted() {
-    console.log('unmounted')
-  },
+    unmounted() {
+      console.log('unmounted');
+    },
 
-  setup() {
-    const msg = ref('abc')
+    setup() {
+      const msg = ref('abc');
 
-    const update = () => {
-      msg.value += '--'
-    }
+      const update = () => {
+        msg.value += '--';
+      };
 
-    onBeforeMount(() => {
-      console.log('--onBeforeMount')
-    })
+      onBeforeMount(() => {
+        console.log('--onBeforeMount');
+      });
 
-    onMounted(() => {
-      console.log('--onMounted')
-    })
+      onMounted(() => {
+        console.log('--onMounted');
+      });
 
-    onBeforeUpdate(() => {
-      console.log('--onBeforeUpdate')
-    })
+      onBeforeUpdate(() => {
+        console.log('--onBeforeUpdate');
+      });
 
-    onUpdated(() => {
-      console.log('--onUpdated')
-    })
+      onUpdated(() => {
+        console.log('--onUpdated');
+      });
 
-    onBeforeUnmount(() => {
-      console.log('--onBeforeUnmount')
-    })
+      onBeforeUnmount(() => {
+        console.log('--onBeforeUnmount');
+      });
 
-    onUnmounted(() => {
-      console.log('--onUnmounted')
-    })
+      onUnmounted(() => {
+        console.log('--onUnmounted');
+      });
 
-    return {
-      msg,
-      update
-    }
-  }
-}
+      return {
+        msg,
+        update,
+      };
+    },
+  };
 </script>
 ```

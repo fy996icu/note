@@ -4,6 +4,8 @@ toc: menu
 order: 3
 ---
 
+<BackTop></BackTop>
+
 # 配置 env 环境变量
 
 ## 命名

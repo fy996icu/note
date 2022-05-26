@@ -4,6 +4,8 @@ toc: menu
 order: 12
 ---
 
+<BackTop></BackTop>
+
 # Hook
 
 ## 介绍
@@ -32,20 +34,20 @@ Hook 就是 JavaScript 函数，但是使用它们会有两个额外的规则：
 const [state, setState] = useState(initialState);
 ```
 
-`useState()` 返回一个状态 `state` 以及更新state的函数 `setState()`。
+`useState()` 返回一个状态 `state` 以及更新 state 的函数 `setState()`。
 
 `useState()` 在初始化渲染的时候返回的 `state` 和 传入的 `initialState` 值相同。
 
-注意：state 和 setState是可以自定义的，如果你高兴，你甚至可以定义为 A 和 B。
+注意：state 和 setState 是可以自定义的，如果你高兴，你甚至可以定义为 A 和 B。
 
-### 修改state的值
+### 修改 state 的值
 
 ```js
 // 返回的第一个值始终是更新后最新的 state。
-setState(newState)
+setState(newState);
 ```
 
-示例：实现每点击一次增加1
+示例：实现每点击一次增加 1
 
 ```jsx
 import React, { useState } from 'react';
@@ -105,6 +107,7 @@ const Counter = () => {
 
 export default Counter;
 ```
+
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useStateExp02.png)
 
 ### 普通更新和函数式更新两种方式的区别
@@ -146,12 +149,12 @@ const Counter = () => {
 
 export default Counter;
 ```
+
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useStateExp03.png)
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useStateExp04.png)
 
-
-当我设置为异步更新，点击按钮延迟到3s之后去调用 `setCount` 函数，当我快速点击按钮时，也就是说在3s多次去触发更新，但是只有一次生效，因为 `count` 的值是没有变化的。
+当我设置为异步更新，点击按钮延迟到 3s 之后去调用 `setCount` 函数，当我快速点击按钮时，也就是说在 3s 多次去触发更新，但是只有一次生效，因为 `count` 的值是没有变化的。
 
 当使用函数式更新 `state` 的时候，这种问题就没有了，因为它可以获取之前的 `state` 值，也就是代码中的 `prevCount` 每次都是最新的值。
 
@@ -159,19 +162,19 @@ export default Counter;
 其实这个特点和类组件中 setState 类似，可以接收一个新的 state 值更新，也可以函数式更新。如果新的 state 需要通过使用先前的 state 计算得出，那么就要使用函数式更新。
 </Alert>
 
-### useState超级重要的知识点<Badge>重要</Badge>
+### useState 超级重要的知识点<Badge>重要</Badge>
 
-使用useState的注意点：
+使用 useState 的注意点：
 
-1. useState最好写到函数的起始位置，主要是便于阅读。
+1. useState 最好写到函数的起始位置，主要是便于阅读。
 
-2. useState严禁出现在代码块(判断和循环等)中。
+2. useState 严禁出现在代码块(判断和循环等)中。
 
-3. useState返回的函数(数组的第二项)，这个函数的引用是不会变化的(优化性能)。
+3. useState 返回的函数(数组的第二项)，这个函数的引用是不会变化的(优化性能)。
 
 4. 如果使用函数改变数据，若数据和之前的数据完全相等(使用`Object.is`)，则不会重新渲染，由于 `Object.is` 是浅比较，所以如果状态是一个对象的时候要小心操作了。
 
-5. 如果使用函数改变数据，传入的值不会和原来的数据进行合并而是直接进行替换(**跟setState完全不一样**)，所以在修改对象的时候，我们要先将之前的对象保存下来。
+5. 如果使用函数改变数据，传入的值不会和原来的数据进行合并而是直接进行替换(**跟 setState 完全不一样**)，所以在修改对象的时候，我们要先将之前的对象保存下来。
 
 ```jsx
 import React, { useState } from 'react';
@@ -203,6 +206,7 @@ const Wrap = () => {
 
 export default Wrap;
 ```
+
 执行：`setObj({ age: 30 });`
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useStateExp05.png)
@@ -211,10 +215,9 @@ export default Wrap;
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useStateExp06.png)
 
+6. 不要直接去改变 state 的值。
 
-6. 不要直接去改变state的值。
-
-7. 如果要实现强制刷新组件的情况: 如果是类组件我们都会使用 `forceUpdate`，在函数组件中，我们可以用 `useState` 来实现，使用useState的改变state的函数传入一个 `空对象` ，因为**每次传入一个空对象的地址不一样**所以一定会刷新。
+7. 如果要实现强制刷新组件的情况: 如果是类组件我们都会使用 `forceUpdate`，在函数组件中，我们可以用 `useState` 来实现，使用 useState 的改变 state 的函数传入一个 `空对象` ，因为**每次传入一个空对象的地址不一样**所以一定会刷新。
 
 ```jsx
 import React, { useState } from 'react';
@@ -237,7 +240,6 @@ export default Wrap;
 ```
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useStateExp07.png)
-
 
 8. 如果某些状态之间没有必然的联系, 应该分化为不同的状态而非合并成一个对象。
 
@@ -280,9 +282,7 @@ export default Wrap;
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useStateExp09.png)
 
-
 10. 因为组件被卸载会导致状态被清空，所以当我们需要频繁的隐藏显示一个组件的时候最好使用 `style` 的`display` 的方式来进行操作，同时这种操作从渲染原理层面来说也更利于效率的提升。
-
 
 ## useEffect
 
@@ -294,10 +294,11 @@ export default Wrap;
 
 ```js
 // 第一个参数didUpdate为一个函数，第二个参数为数组（指定依赖）
-useEffect(didUpdate, [])
+useEffect(didUpdate, []);
 ```
 
 ### 作用
+
 1. 可作为类式组件中的 `componentDidMount` 生命周期函数，第二个参数为 `[]`。
 
 2. 可作为类式组件中的 `componentDidUpdate` 生命周期函数，第二个参数为指定的依赖。
@@ -368,11 +369,9 @@ const value = useContext(MyContext);
 
 - **错误：** `useContext(MyContext.Provider)`
 
-如果你在接触 Hook 前已经对 context API 比较熟悉，那应该可以理解，
-`useContext(MyContext)` 相当于 class 组件中的 `static contextType = MyContext` 或者 `<MyContext.Consumer>` 。
+如果你在接触 Hook 前已经对 context API 比较熟悉，那应该可以理解， `useContext(MyContext)` 相当于 class 组件中的 `static contextType = MyContext` 或者 `<MyContext.Consumer>` 。
 
-`useContext(MyContext)` 只是让你能够读取 context 的值以及订阅 context 的变化。你仍然需要在上层组件树中使用 `<MyContext.Provider>` 来为下层组件提供 context。
-:::
+`useContext(MyContext)` 只是让你能够读取 context 的值以及订阅 context 的变化。你仍然需要在上层组件树中使用 `<MyContext.Provider>` 来为下层组件提供 context。 :::
 
 ### 使用方式
 
@@ -490,12 +489,12 @@ function Wrap() {
 
 export default Wrap;
 ```
-![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useLayoutEffectExp01.png)
 
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useLayoutEffectExp01.png)
 
 ## useMemo
 
-要理解 `useMemo` 得先理解 `React.memo`，React默认有多余的 render。
+要理解 `useMemo` 得先理解 `React.memo`，React 默认有多余的 render。
 
 ### React.memo
 
@@ -567,12 +566,12 @@ const Wrap = () => {
 
 export default Wrap;
 ```
+
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/ReactMemoExp01.png)
 
+**使用 React.memo 包裹父组件**
 
-**使用React.memo包裹父组件**
-
-使用 `React.memo` 包裹父组件，当父组件更新，但是传入Child组件的 `props` 没有更新，Child组件就不会更新。（传入的props是地址引用的除外）
+使用 `React.memo` 包裹父组件，当父组件更新，但是传入 Child 组件的 `props` 没有更新，Child 组件就不会更新。（传入的 props 是地址引用的除外）
 
 ```jsx
 import React, { useState } from 'react';
@@ -612,9 +611,9 @@ export default Wrap;
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/ReactMemoExp02.png)
 
-这玩意有一个bug，当给Child组件props传递一个 `onClickChild` 函数之后，一秒破功，因为 Wrap组件渲染时，会再次执行 `onClickChild` ，生成新的函数新旧函数虽然功能一样，但是 `地址引用` 不一样！
+这玩意有一个 bug，当给 Child 组件 props 传递一个 `onClickChild` 函数之后，一秒破功，因为 Wrap 组件渲染时，会再次执行 `onClickChild` ，生成新的函数新旧函数虽然功能一样，但是 `地址引用` 不一样！
 
-**当传递给子组件的是一个引用地址时，React.memo依然阻止不了子组件重新渲染**
+**当传递给子组件的是一个引用地址时，React.memo 依然阻止不了子组件重新渲染**
 
 传递给子组件的地址引用每次都会不同，如下示例：
 
@@ -675,7 +674,7 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 - 只有当依赖变化时，才会计算出新的 value，如果依赖不变，那么就重用之前的 value。
 
-- 这不就是 Vue 2的 `computed` 吗？。
+- 这不就是 Vue 2 的 `computed` 吗？。
 
 **示例：**
 
@@ -720,7 +719,6 @@ export default Wrap;
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useMemoExp01.png)
 
-
 ### 注意
 
 如果你的 `value` 是一个函数，那么你就要写成 `useMemo(() => x => console.log(x))` 这是一个返回函数的函数。是不是很难用？于是就有了 `useCallback`。
@@ -728,12 +726,9 @@ export default Wrap;
 ## useCallback
 
 ```js
-const memoizedCallback = useCallback(
-  () => {
-    doSomething(a, b);
-  },
-  [a, b],
-);
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
 ```
 
 把内联回调函数及依赖项数组作为参数传入 `useCallback`，它将返回该回调函数的 `memoized` 版本，该回调函数仅在某个依赖项改变时才会更新。当你把回调函数传递给经过优化的并使用引用相等性去避免非必要渲染（例如 `shouldComponentUpdate`）的子组件时，它将非常有用。
@@ -764,7 +759,7 @@ const Wrap = () => {
 
   // useCallback包裹空函数onClickChild，依赖项传入[name]，表示只有name改变才会重新计算得到onClickChild2
   const onClickChild = () => {};
-  const onClickChild2 = useCallback(onClickChild , [name]);
+  const onClickChild2 = useCallback(onClickChild, [name]);
 
   return (
     <div>
@@ -820,7 +815,7 @@ export default Wrap;
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useRefExp01.png)
 
-### 使用useRef访问DOM
+### 使用 useRef 访问 DOM
 
 点击 ”聚焦输入框“ 按钮，输入框会获得焦点。
 
@@ -867,7 +862,7 @@ function Timer() {
 ## useImperativeHandle
 
 ```js
-useImperativeHandle(ref, createHandle, [deps])
+useImperativeHandle(ref, createHandle, [deps]);
 ```
 
 ### 介绍
@@ -910,7 +905,7 @@ export default Wrap;
 
 ### React.forwardRef
 
-`React.forwardRef` 会创建一个React组件，这个组件能够将其接受的 ref 属性转发到其组件树下的另一个组件中。
+`React.forwardRef` 会创建一个 React 组件，这个组件能够将其接受的 ref 属性转发到其组件树下的另一个组件中。
 
 `React.forwardRef` 接受渲染函数作为参数。React 将使用 `props` 和 `ref` 作为参数来调用此函数。此函数应返回 React 节点。
 
@@ -928,7 +923,7 @@ const ref = React.createRef();
 
 在上述的示例中，React 会将 `<FancyButton ref={ref}>` 元素的 `ref` 作为第二个参数传递给 `React.forwardRef` 函数中的渲染函数。该渲染函数会将 `ref` 传递给 `<button ref={ref}>` 元素。因此，当 React 附加了 ref 属性之后，`ref.current` 将直接指向 `<button>` DOM 元素实例。
 
-**useImperativeHandle结合forwardRef示例：**
+**useImperativeHandle 结合 forwardRef 示例：**
 
 父组件调用子组件绑定 ref 元素的 `focus()` 和 `value()`:
 
@@ -972,4 +967,5 @@ const Wrap = () => {
 
 export default Wrap;
 ```
+
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/useImperativeHandleExp01.png)

@@ -3,7 +3,10 @@ group:
   title: 快速上手
 order: 12
 ---
-# v-model的变更
+
+<BackTop></BackTop>
+
+# v-model 的变更
 
 用于自定义组件时，`v-model` prop 和事件默认名称已更改。
 
@@ -31,11 +34,12 @@ order: 12
 <ChildComponent :value="show" @input="show = $event" />
 ```
 
-`Children` 组件绑定 `v-model` 传递 `show` 给子组件，子组件通过 `value` prop得到父组件传递过来的 `show`，通过 `emit` 得到父组件传递的自定义事件 `input`。
+`Children` 组件绑定 `v-model` 传递 `show` 给子组件，子组件通过 `value` prop 得到父组件传递过来的 `show`，通过 `emit` 得到父组件传递的自定义事件 `input`。
 
 子组件通过 `this.$emit()` 触发 `input` 事件，并向 `input` 事件传递参数。
 
-**Father组件**
+**Father 组件**
+
 ```html
 <template>
   <div>
@@ -45,22 +49,22 @@ order: 12
 </template>
 
 <script>
-import Children from "./Children.vue";
-export default {
-  name: "Father",
-  components: {
-    Children,
-  },
-  data() {
-    return {
-      show: "显示",
-    };
-  },
-};
+  import Children from './Children.vue';
+  export default {
+    name: 'Father',
+    components: {
+      Children,
+    },
+    data() {
+      return {
+        show: '显示',
+      };
+    },
+  };
 </script>
 ```
 
-**Children组件**
+**Children 组件**
 
 ```html
 <template>
@@ -71,35 +75,34 @@ export default {
 </template>
 
 <script>
-export default {
-  props: {
-    value: {
-      type: String,
-      require: true,
-      default: "显示",
+  export default {
+    props: {
+      value: {
+        type: String,
+        require: true,
+        default: '显示',
+      },
     },
-  },
-  emits: ["input"],
-  data() {
-    return {};
-  },
-  methods: {
-    handleChange() {
-      // 报错：通过props传递给子组件的值，不能在子组件内部修改props。
-      // this.value = "隐藏";
+    emits: ['input'],
+    data() {
+      return {};
+    },
+    methods: {
+      handleChange() {
+        // 报错：通过props传递给子组件的值，不能在子组件内部修改props。
+        // this.value = "隐藏";
 
-      // 通过自定义事件来修改父组件的值
-      this.$emit("input", "隐藏");
+        // 通过自定义事件来修改父组件的值
+        this.$emit('input', '隐藏');
+      },
     },
-  },
-};
+  };
 </script>
 ```
 
 ### 单向数据流
 
-根据单向数据流的规则，子组件不能直接修改父组件传递的 `props`。例如：`this.value='隐藏'`
-。这样浏览器控制台会报错：<font v-pre color="red">Avoid mutating a prop directly since the value will be overwritten whenever the parent component re-renders. Instead, use a data or computed property based on the prop's value. Prop being mutated: "value"。</font>
+根据单向数据流的规则，子组件不能直接修改父组件传递的 `props`。例如：`this.value='隐藏'` 。这样浏览器控制台会报错：<font v-pre color="red">Avoid mutating a prop directly since the value will be overwritten whenever the parent component re-renders. Instead, use a data or computed property based on the prop's value. Prop being mutated: "value"。</font>
 
 必须通过 `this.$emit()` 触发自定义事件，并通过传参进行修改。
 
@@ -122,30 +125,30 @@ export default {
 </template>
 
 <script>
-export default {
-  // model 用于更改 prop 和 事件名称
-  model: {
-    prop: "title",    // 此时 value 变成了 title
-    event: "change",  // 此时 input 事件变成了 change 事件
-  },
-  props: {
-    title: {
-      type: String,
-      require: true,
-      default: "显示",
+  export default {
+    // model 用于更改 prop 和 事件名称
+    model: {
+      prop: 'title', // 此时 value 变成了 title
+      event: 'change', // 此时 input 事件变成了 change 事件
     },
-  },
-  emits: ["change"],
-  data() {
-    return {};
-  },
-  methods: {
-    handleChange() {
-      // 此时触发的就应该是更名后的 change 事件，而不是 input事件
-      this.$emit("change", "隐藏");
+    props: {
+      title: {
+        type: String,
+        require: true,
+        default: '显示',
+      },
     },
-  },
-};
+    emits: ['change'],
+    data() {
+      return {};
+    },
+    methods: {
+      handleChange() {
+        // 此时触发的就应该是更名后的 change 事件，而不是 input事件
+        this.$emit('change', '隐藏');
+      },
+    },
+  };
 </script>
 ```
 
@@ -160,7 +163,7 @@ export default {
 有些时候我们需要对某个 `prop` 进行 `双向绑定`，除了用 `v-model` 的方式，我们还可以用 `update:myPropName` 的方式抛出事件从而达到双向绑定的目的。
 
 ```js
-this.$emit('update:title', newValue)
+this.$emit('update:title', newValue);
 ```
 
 然后父组件可以在需要时监听该事件，并更新本地的 data property。例如：
@@ -177,7 +180,7 @@ this.$emit('update:title', newValue)
 
 案例：
 
-**Father组件**
+**Father 组件**
 
 ```html
 <!-- 父组件 -->
@@ -189,22 +192,22 @@ this.$emit('update:title', newValue)
 </template>
 
 <script>
-import Children from "./Children.vue";
-export default {
-  name: "Father",
-  components: {
-    Children,
-  },
-  data() {
-    return {
-      show: "显示",
-    };
-  },
-};
+  import Children from './Children.vue';
+  export default {
+    name: 'Father',
+    components: {
+      Children,
+    },
+    data() {
+      return {
+        show: '显示',
+      };
+    },
+  };
 </script>
 ```
 
-**Children组件**
+**Children 组件**
 
 ```html
 <!-- 子组件 -->
@@ -216,25 +219,25 @@ export default {
 </template>
 
 <script>
-export default {
-  props: {
-    title: {
-      type: String,
-      require: true,
-      default: "显示",
+  export default {
+    props: {
+      title: {
+        type: String,
+        require: true,
+        default: '显示',
+      },
     },
-  },
-  emits: ["update:title"],
-  data() {
-    return {};
-  },
-  methods: {
-    handleChange() {
-      // 通过触发 update:title 事件来实现 prop 双向绑定
-      this.$emit("update:title", "隐藏");
+    emits: ['update:title'],
+    data() {
+      return {};
     },
-  },
-};
+    methods: {
+      handleChange() {
+        // 通过触发 update:title 事件来实现 prop 双向绑定
+        this.$emit('update:title', '隐藏');
+      },
+    },
+  };
 </script>
 ```
 
@@ -242,9 +245,9 @@ export default {
 
 ### 基本语法
 
-在 Vue3.x 中，自定义组件上的 `v-model` 相当于传递了prop `modelValue` 和事件 `update:modelValue`。
+在 Vue3.x 中，自定义组件上的 `v-model` 相当于传递了 prop `modelValue` 和事件 `update:modelValue`。
 
-对比 Vue2.x的变更：`value` 更改为了 `modelValue`，`input` 事件更改为了 `update:modelValue`。
+对比 Vue2.x 的变更：`value` 更改为了 `modelValue`，`input` 事件更改为了 `update:modelValue`。
 
 ```html
 <ChildComponent v-model="show" />
@@ -256,7 +259,7 @@ export default {
 
 `Father` 组件中通过给 `Children` 组件绑定 `v-model`，子组件通过 `setup` 函数得到，`props` 和 `emit`函数。 props 中的 `modelValue` 就是 Vue2.x 中 `v-model` 的 `value`，emit 触发的 `update:modelValue` 就是 `input`。
 
-**Father组件**
+**Father 组件**
 
 ```html
 <!-- 父组件 -->
@@ -266,23 +269,23 @@ export default {
 </template>
 
 <script lang="ts">
-import Children from './Children.vue'
-import { defineComponent, ref } from 'vue'
-export default defineComponent({
-  components: {
-    Children,
-  },
-  setup() {
-    let show = ref('显示')
-    return {
-      show,
-    }
-  },
-})
+  import Children from './Children.vue';
+  import { defineComponent, ref } from 'vue';
+  export default defineComponent({
+    components: {
+      Children,
+    },
+    setup() {
+      let show = ref('显示');
+      return {
+        show,
+      };
+    },
+  });
 </script>
 ```
 
-**Children组件**
+**Children 组件**
 
 ```html
 <!-- Children组件 -->
@@ -292,34 +295,34 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  props: {
-    modelValue: {
-      type: String,
-      require: true,
-      default: '显示',
+  import { defineComponent } from 'vue';
+  export default defineComponent({
+    props: {
+      modelValue: {
+        type: String,
+        require: true,
+        default: '显示',
+      },
     },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const handleChange = () => {
-      // 不能直接修改props，props是只读的
-      // 报错：Set operation on key "modelValue" failed: target is readonly.
-      // props.modelValue = '隐藏'
+    emits: ['update:modelValue'],
+    setup(props, { emit }) {
+      const handleChange = () => {
+        // 不能直接修改props，props是只读的
+        // 报错：Set operation on key "modelValue" failed: target is readonly.
+        // props.modelValue = '隐藏'
 
-      // 通过触发自定义事件修改
-      emit('update:modelValue', '隐藏')
-    }
-    return {
-      handleChange,
-    }
-  },
-})
+        // 通过触发自定义事件修改
+        emit('update:modelValue', '隐藏');
+      };
+      return {
+        handleChange,
+      };
+    },
+  });
 </script>
 ```
 
-### props只读
+### props 只读
 
 根据单向数据流的规则，子组件不能直接修改父组件传递的 props。例如：`props.modelValue = '隐藏'` 。这样浏览器控制台会报错：<font v-pre color="red">Set operation on key "modelValue" failed: target is readonly.</font>
 
@@ -352,25 +355,25 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  props: {
-    title: {
-      type: String,
-      require: true,
-      default: '显示',
+  import { defineComponent } from 'vue';
+  export default defineComponent({
+    props: {
+      title: {
+        type: String,
+        require: true,
+        default: '显示',
+      },
     },
-  },
-  emits: ['update:title'],
-  setup(props, { emit }) {
-    const handleChange = () => {
-      emit('update:title', '隐藏')
-    }
-    return {
-      handleChange,
-    }
-  },
-})
+    emits: ['update:title'],
+    setup(props, { emit }) {
+      const handleChange = () => {
+        emit('update:title', '隐藏');
+      };
+      return {
+        handleChange,
+      };
+    },
+  });
 </script>
 ```
 
@@ -411,38 +414,38 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  props: {
-    modelValue: {
-      type: String,
-      require: true,
-      default: 'helloWorld',
+  import { defineComponent } from 'vue';
+  export default defineComponent({
+    props: {
+      modelValue: {
+        type: String,
+        require: true,
+        default: 'helloWorld',
+      },
+      // 添加到组件 v-model 的修饰符将通过 modelModifiers prop 提供给组件。
+      modelModifiers: {
+        type: Object,
+        default: () => ({}),
+      },
     },
-    // 添加到组件 v-model 的修饰符将通过 modelModifiers prop 提供给组件。
-    modelModifiers: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    console.log(props.modelModifiers.capitalize) // 输出：true
+    emits: ['update:modelValue'],
+    setup(props, { emit }) {
+      console.log(props.modelModifiers.capitalize); // 输出：true
 
-    // input监听
-    const handleChange = (event: Event) => {
-      let value = (event.target as HTMLInputElement).value
-      // 如果绑定了修饰符 capitalize 就将 value 首字母大写
-      if (props.modelModifiers.capitalize) {
-        value = value.charAt(0).toUpperCase() + value.slice(1)
-      }
-      emit('update:modelValue', value)
-    }
-    return {
-      handleChange,
-    }
-  },
-})
+      // input监听
+      const handleChange = (event: Event) => {
+        let value = (event.target as HTMLInputElement).value;
+        // 如果绑定了修饰符 capitalize 就将 value 首字母大写
+        if (props.modelModifiers.capitalize) {
+          value = value.charAt(0).toUpperCase() + value.slice(1);
+        }
+        emit('update:modelValue', value);
+      };
+      return {
+        handleChange,
+      };
+    },
+  });
 </script>
 ```
 
@@ -463,37 +466,37 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  props: {
-    title: {
-      type: String,
-      require: true,
-      default: 'helloWorld',
+  import { defineComponent } from 'vue';
+  export default defineComponent({
+    props: {
+      title: {
+        type: String,
+        require: true,
+        default: 'helloWorld',
+      },
+      // 对于带参数的 v-model 的修饰符绑定，生成的 prop 名称将为 arg + "Modifiers"：
+      titleModifiers: {
+        type: Object,
+        default: () => ({}),
+      },
     },
-    // 对于带参数的 v-model 的修饰符绑定，生成的 prop 名称将为 arg + "Modifiers"：
-    titleModifiers: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-  emits: ['update:title'],
-  setup(props, { emit }) {
-    console.log(props.titleModifiers.capitalize) // 输出：true
+    emits: ['update:title'],
+    setup(props, { emit }) {
+      console.log(props.titleModifiers.capitalize); // 输出：true
 
-    // input监听
-    const handleChange = (event: Event) => {
-      let value = (event.target as HTMLInputElement).value
-      // 如果绑定了修饰符 capitalize 就将 value 首字母大写
-      if (props.titleModifiers.capitalize) {
-        value = value.charAt(0).toUpperCase() + value.slice(1)
-      }
-      emit('update:title', value)
-    }
-    return {
-      handleChange,
-    }
-  },
-})
+      // input监听
+      const handleChange = (event: Event) => {
+        let value = (event.target as HTMLInputElement).value;
+        // 如果绑定了修饰符 capitalize 就将 value 首字母大写
+        if (props.titleModifiers.capitalize) {
+          value = value.charAt(0).toUpperCase() + value.slice(1);
+        }
+        emit('update:title', value);
+      };
+      return {
+        handleChange,
+      };
+    },
+  });
 </script>
 ```

@@ -4,6 +4,8 @@ toc: menu
 order: 2
 ---
 
+<BackTop></BackTop>
+
 # 基本应用
 
 ## Action

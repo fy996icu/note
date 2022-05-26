@@ -4,6 +4,8 @@ toc: menu
 order: 3
 ---
 
+<BackTop></BackTop>
+
 # 媒体播放器
 
 ## 西瓜播放器

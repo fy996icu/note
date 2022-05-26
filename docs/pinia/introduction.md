@@ -4,6 +4,8 @@ toc: menu
 order: 1
 ---
 
+<BackTop></BackTop>
+
 # 入门
 
 ## 安装
@@ -19,12 +21,12 @@ $ npm install pinia
 在 `src/main.ts` 文件，使用 `Vue.use()` 方法将 `pinia` 作为插件使用：
 
 ```ts
-import { createApp } from 'vue'
+import { createApp } from 'vue';
 // 导入 pinia 的 createPinia方法
-import { createPinia } from 'pinia'
-import App from './App.vue'
+import { createPinia } from 'pinia';
+import App from './App.vue';
 
-createApp(App).use(createPinia()).mount('#app')
+createApp(App).use(createPinia()).mount('#app');
 ```
 
 ## 创建 `Store`
@@ -33,14 +35,14 @@ createApp(App).use(createPinia()).mount('#app')
 
 ### `defineStore`
 
-`Pinia` 是通过 `defineStore()` 这个方法来定义的，它的第一个参数为当前 `store` 的 `id`（store名称），**需要保证唯一**。
+`Pinia` 是通过 `defineStore()` 这个方法来定义的，它的第一个参数为当前 `store` 的 `id`（store 名称），**需要保证唯一**。
 
 ```ts
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 // user 相当于id，要唯一
 export default defineStore('user', {
   // 其他配置
-})
+});
 ```
 
 ### `useStore`
@@ -53,11 +55,11 @@ export default defineStore('user', {
   <h1>Pinia</h1>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
+  // 导入 user 模块
+  import useUserStore from '../store/user';
 
-// 使用 useUserStore
-const user = useUserStore()
+  // 使用 useUserStore
+  const user = useUserStore();
 </script>
 ```
 

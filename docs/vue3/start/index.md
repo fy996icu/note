@@ -4,7 +4,9 @@ group:
 order: 0
 ---
 
-# 认识Vue3
+<BackTop></BackTop>
+
+# 认识 Vue3
 
 ## 了解相关信息
 
@@ -15,7 +17,6 @@ order: 0
 - **<font v-pre color="red">Vue3 支持 vue2 的大多数特性。</font>**
 
 - **<font v-pre color="red">更好的支持 Typescript。</font>**
-
 
 ## 性能提升
 
@@ -48,7 +49,7 @@ order: 0
 - **<font v-pre color="red">Composition (组合) API</font>**
 
 - **<font v-pre color="red">setup</font>**
- 
+
   - ref 和 reactive
 
   - computed 和 watch

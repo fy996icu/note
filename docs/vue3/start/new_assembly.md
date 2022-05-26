@@ -3,15 +3,18 @@ group:
   title: 快速上手
 order: 9
 ---
+
+<BackTop></BackTop>
+
 # 新的组件
 
 ## Fragment(片断)
 
- - 在 Vue2 中: 组件必须有一个根标签。
+- 在 Vue2 中: 组件必须有一个根标签。
 
- - 在 Vue3 中: 组件可以没有根标签, 内部会将多个标签包含在一个 `Fragment` 虚拟元素中。
+- 在 Vue3 中: 组件可以没有根标签, 内部会将多个标签包含在一个 `Fragment` 虚拟元素中。
 
- - 好处: 减少标签层级, 减小内存占用。
+- 好处: 减少标签层级, 减小内存占用。
 
 ### 2.x 语法
 
@@ -32,22 +35,22 @@ order: 9
 </template>
 ```
 
- ## Teleport(瞬移)
+## Teleport(瞬移)
 
  <Alert type="info">
   Teleport 提供了一种干净的方法，允许我们控制在 DOM 中哪个父节点下呈现 HTML，而不必求助于全局状态或将其拆分为两个组件。
 </Alert>
 
- `Teleport` 组件的作用主要用来将模板内的 DOM 元素移动到其他位置。
+`Teleport` 组件的作用主要用来将模板内的 DOM 元素移动到其他位置。
 
- 场景：像 `modals`，`toast` 等这样的元素，很多情况下，我们将它完全的和我们的 `Vue` 应用的 `DOM` 完全剥离，管理起来反而会方便容易很多，同时我们依然可以使用组件的 `data` 或 `props`。
+场景：像 `modals`，`toast` 等这样的元素，很多情况下，我们将它完全的和我们的 `Vue` 应用的 `DOM` 完全剥离，管理起来反而会方便容易很多，同时我们依然可以使用组件的 `data` 或 `props`。
 
- ### to
+### to
 
- `to` - `string` 类型 : 必须是有效的查询 `选择器` 或 `HTMLElement` (如果在浏览器环境中使用)。指定将在其中移动 `teleport` 内容的目标元素。
+`to` - `string` 类型 : 必须是有效的查询 `选择器` 或 `HTMLElement` (如果在浏览器环境中使用)。指定将在其中移动 `teleport` 内容的目标元素。
 
- ```html
- <!-- 正确 -->
+```html
+<!-- 正确 -->
 <teleport to="#some-id" />
 <teleport to=".some-class" />
 <teleport to="[data-teleport]" />
@@ -55,24 +58,25 @@ order: 9
 <!-- 错误 -->
 <teleport to="h1" />
 <teleport to="some-string" />
- ```
+```
 
- ```html
- <template>
+```html
+<template>
   <teleport to="body">
     <div class="box">将此节点渲染在app外，body内</div>
   </teleport>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  setup() {
-    return {}
-  },
-})
+  import { defineComponent } from 'vue';
+  export default defineComponent({
+    setup() {
+      return {};
+    },
+  });
 </script>
 ```
+
 `to="body"` 表示将该 `teleport` 组件插槽部分渲染在 `body` 内。
 
 ### disabled
@@ -87,12 +91,12 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  setup() {
-    return {}
-  },
-})
+  import { defineComponent } from 'vue';
+  export default defineComponent({
+    setup() {
+      return {};
+    },
+  });
 </script>
 ```
 
@@ -117,16 +121,16 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import Children from './Children.vue'
-import { defineComponent } from 'vue'
-export default defineComponent({
-  components: {
-    Children,
-  },
-  setup() {
-    return {}
-  },
-})
+  import Children from './Children.vue';
+  import { defineComponent } from 'vue';
+  export default defineComponent({
+    components: {
+      Children,
+    },
+    setup() {
+      return {};
+    },
+  });
 </script>
 ```
 
@@ -138,14 +142,14 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  // 接收父组件传递过来的 msg
-  props: ['msg'],
-  setup() {
-    return {}
-  },
-})
+  import { defineComponent } from 'vue';
+  export default defineComponent({
+    // 接收父组件传递过来的 msg
+    props: ['msg'],
+    setup() {
+      return {};
+    },
+  });
 </script>
 ```
 
@@ -173,6 +177,7 @@ export default defineComponent({
   <div>B</div>
 </div>
 ```
+
 ## Suspense(不确定的)
 
 `<suspense>` 组件有两个插槽。它们都只接收一个直接子节点。`default` 插槽里的节点会尽可能展示出来。如果不能，则展示 `fallback` 插槽里的节点。
@@ -192,17 +197,17 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent } from 'vue'
-// 导入异步组价
-const Children = defineAsyncComponent(() => import('./Children.vue'))
-export default defineComponent({
-  components: {
-    Children,
-  },
-  setup() {
-    return {}
-  },
-})
+  import { defineAsyncComponent, defineComponent } from 'vue';
+  // 导入异步组价
+  const Children = defineAsyncComponent(() => import('./Children.vue'));
+  export default defineComponent({
+    components: {
+      Children,
+    },
+    setup() {
+      return {};
+    },
+  });
 </script>
 ```
 
@@ -212,8 +217,7 @@ export default defineComponent({
 
 另一个触发 `fallback` 的方式是让后代组件从 `setup` 函数中返回一个 `Promise`。通常这是通过 `async` 实现的，而不是显式地返回一个 `Promise`。
 
-
-**Father组件**
+**Father 组件**
 
 ```html
 <!-- Father组件 -->
@@ -229,20 +233,21 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-// 导入普通组价
-import Children from './Children.vue'
-import { defineComponent } from 'vue'
-export default defineComponent({
-  components: {
-    Children,
-  },
-  setup() {
-    return {}
-  },
-})
+  // 导入普通组价
+  import Children from './Children.vue';
+  import { defineComponent } from 'vue';
+  export default defineComponent({
+    components: {
+      Children,
+    },
+    setup() {
+      return {};
+    },
+  });
 </script>
 ```
-**Children组件**
+
+**Children 组件**
 
 ```html
 <!-- Children组件 -->
@@ -252,24 +257,24 @@ export default defineComponent({
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  async setup() {
-    // userInfo是一个Promise
-    const userInfo = await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          name: '张三',
-          age: 30,
-        })
-      }, 2000)
-    })
-    return {
-      // 返回一个Promise数据
-      userInfo,
-    }
-  },
-})
+  import { defineComponent } from 'vue';
+  export default defineComponent({
+    async setup() {
+      // userInfo是一个Promise
+      const userInfo = await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            name: '张三',
+            age: 30,
+          });
+        }, 2000);
+      });
+      return {
+        // 返回一个Promise数据
+        userInfo,
+      };
+    },
+  });
 </script>
 ```
 

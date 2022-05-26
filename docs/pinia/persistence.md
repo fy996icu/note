@@ -4,6 +4,8 @@ toc: menu
 order: 5
 ---
 
+<BackTop></BackTop>
+
 # 数据持久化
 
 `Pinia` 和 `Vuex` 同样存在 `store` 中数据在页面刷新后会被重置，`Pinia` 中解决这个问题我们可以使用插件 `pinia-plugin-persist` 。
@@ -27,29 +29,29 @@ $ npm i pinia-plugin-persist
 ```ts
 // src/store/index.ts
 
-import { createPinia } from 'pinia'
+import { createPinia } from 'pinia';
 // 导入 pinia 数据持久化插件
-import piniaPluginPersist from 'pinia-plugin-persist'
+import piniaPluginPersist from 'pinia-plugin-persist';
 
 // 创建 store
-const store = createPinia()
+const store = createPinia();
 
 // 使用插件
-store.use(piniaPluginPersist)
+store.use(piniaPluginPersist);
 
-export default store
+export default store;
 ```
 
 修改 `/src/main.ts` 文件：
 
 ```ts
 // src/main.ts
-import { createApp } from 'vue'
+import { createApp } from 'vue';
 // 导入 store
-import store from './store'
-import App from './App.vue'
+import store from './store';
+import App from './App.vue';
 
-createApp(App).use(store).mount('#app')
+createApp(App).use(store).mount('#app');
 ```
 
 ## 开启数据持久化
@@ -58,7 +60,7 @@ createApp(App).use(store).mount('#app')
 
 ```ts
 // user.ts
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 export default defineStore('user', {
   state: () => {
     // 定义数据
@@ -69,19 +71,19 @@ export default defineStore('user', {
         age: 30,
       },
       count: 0,
-    }
+    };
   },
   actions: {
     // 实现 count 加 payload
     increment(payload: number) {
-      this.count += payload
+      this.count += payload;
     },
   },
   // 开启数据持久化
   persist: {
     enabled: true,
   },
-})
+});
 ```
 
 当我们操作过 `store` 数据后，就可以在本地储存中看到储存的数据了。
@@ -96,7 +98,7 @@ export default defineStore('user', {
 
 ```ts
 // user.ts
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 export default defineStore('user', {
   state: () => {
     // 定义数据
@@ -107,12 +109,12 @@ export default defineStore('user', {
         age: 30,
       },
       count: 0,
-    }
+    };
   },
   actions: {
     // 实现 count 加 payload
     increment(payload: number) {
-      this.count += payload
+      this.count += payload;
     },
   },
   // 开启数据持久化
@@ -127,12 +129,12 @@ export default defineStore('user', {
       },
     ],
   },
-})
+});
 ```
+
 此时我们能看到储存的方式和 key 都发生了改变：
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/pinia-persist2.png)
-
 
 ## 持久化部分 `State`
 
@@ -140,7 +142,7 @@ export default defineStore('user', {
 
 ```ts
 // user.ts
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 export default defineStore('user', {
   state: () => {
     // 定义数据
@@ -151,12 +153,12 @@ export default defineStore('user', {
         age: 30,
       },
       count: 0,
-    }
+    };
   },
   actions: {
     // 实现 count 加 payload
     increment(payload: number) {
-      this.count += payload
+      this.count += payload;
     },
   },
   // 开启数据持久化
@@ -173,7 +175,7 @@ export default defineStore('user', {
       },
     ],
   },
-})
+});
 ```
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/pinia-persist3.png)

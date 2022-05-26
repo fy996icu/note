@@ -4,6 +4,8 @@ toc: menu
 order: 0
 ---
 
+<BackTop></BackTop>
+
 # Vue 插件
 
 ## 组合实用程序

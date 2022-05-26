@@ -4,6 +4,8 @@ toc: menu
 order: 0
 ---
 
+<BackTop></BackTop>
+
 # PC 端框架
 
 ## Vue 系列

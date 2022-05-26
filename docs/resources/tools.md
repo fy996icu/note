@@ -3,6 +3,9 @@ title: 实用工具
 toc: menu
 order: 4
 ---
+
+<BackTop></BackTop>
+
 # 实用工具
 
 一些常用的开发工具收集。
@@ -21,7 +24,7 @@ order: 4
 
 ## [CSS 加载图标生成](https://loading.io/#)
 
-**简介：** 可以在线生成好看的 css 加载图标，可以是 css 、 svg等。
+**简介：** 可以在线生成好看的 css 加载图标，可以是 css 、 svg 等。
 
 ## [Icons8](https://icons8.com/preloaders)
 
@@ -45,12 +48,12 @@ order: 4
 
 ## [StorySet 自定义插画](https://storyset.com/)
 
-**简介：** StorySet是一个提供免费插画的网站，你可以按照标签，颜色进行插图筛选，将合适的插图用于你的项目之中。你还可以对插图进行简单的自定义，改变颜色，隐藏不想要的内容，插图支持png格式和svg格式进行保存。
+**简介：** StorySet 是一个提供免费插画的网站，你可以按照标签，颜色进行插图筛选，将合适的插图用于你的项目之中。你还可以对插图进行简单的自定义，改变颜色，隐藏不想要的内容，插图支持 png 格式和 svg 格式进行保存。
 
-## [Shape Dividers形状生成](https://www.shapedivider.app/)
+## [Shape Dividers 形状生成](https://www.shapedivider.app/)
 
 **简介：** Shapedivider 是一款自定义形状分隔线生成工具，适用于电脑网页设计及手机网页，这是免费的 Web 应用程序，使设计人员和开发人员可以根据他们的项目要求，使用自定义代码快速导出精美的预制 SVG 形状分隔器。可以帮助设计人员和开发人员加快实现此类工作的速度。
 
-## [Animista动画生成](https://animista.net/)
+## [Animista 动画生成](https://animista.net/)
 
-**简介：** Animista是一个CSS动画库，你可以在这里玩一系列现成的CSS动画，并只下载你将要使用的动画。
+**简介：** Animista 是一个 CSS 动画库，你可以在这里玩一系列现成的 CSS 动画，并只下载你将要使用的动画。

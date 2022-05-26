@@ -4,6 +4,8 @@ toc: menu
 order: 3
 ---
 
+<BackTop></BackTop>
+
 # Getters
 
 `Getters` 完全等同于 `store` 中 `state` 的 `computed values`。可以使用 `defineStore()` 中的 `getters` 属性定义它们。
@@ -16,7 +18,7 @@ order: 3
 
 ```ts
 // user.ts
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 export default defineStore('user', {
   state: () => {
     // 定义数据
@@ -27,7 +29,7 @@ export default defineStore('user', {
         age: 30,
       },
       count: 2,
-    }
+    };
   },
   getters: {
     // 将 count 乘以两倍
@@ -37,10 +39,10 @@ export default defineStore('user', {
     // 更新 name
     updateName(name: string) {
       // 通过 this 访问 state
-      this.userInfo.name = name
+      this.userInfo.name = name;
     },
   },
-})
+});
 ```
 
 ## 使用 `getters`
@@ -56,11 +58,11 @@ export default defineStore('user', {
   <h1>计数器：{{ doubleCount }}</h1>
 </template>
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import useUserStore from '../store/user'
-// 使用 storeToRefs 函数，直接解构获取 state
-// doubleCount 为 getters 中定义的计算属性
-const { title, doubleCount } = storeToRefs(useUserStore())
+  import { storeToRefs } from 'pinia';
+  import useUserStore from '../store/user';
+  // 使用 storeToRefs 函数，直接解构获取 state
+  // doubleCount 为 getters 中定义的计算属性
+  const { title, doubleCount } = storeToRefs(useUserStore());
 </script>
 ```
 
@@ -78,14 +80,14 @@ const { title, doubleCount } = storeToRefs(useUserStore())
   <button @click="handleChange">修改count</button>
 </template>
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import useUserStore from '../store/user'
-// 使用 storeToRefs 函数，直接解构获取 state
-// doubleCount 为 getters 中定义的计算属性
-const { title, doubleCount, count } = storeToRefs(useUserStore())
+  import { storeToRefs } from 'pinia';
+  import useUserStore from '../store/user';
+  // 使用 storeToRefs 函数，直接解构获取 state
+  // doubleCount 为 getters 中定义的计算属性
+  const { title, doubleCount, count } = storeToRefs(useUserStore());
 
-// 修改 count 的方法，将 count 更改为：10，此时 doubleCount 变为：20
-const handleChange = () => (count.value = 10)
+  // 修改 count 的方法，将 count 更改为：10，此时 doubleCount 变为：20
+  const handleChange = () => (count.value = 10);
 </script>
 ```
 
@@ -97,7 +99,7 @@ const handleChange = () => (count.value = 10)
 
 ```ts
 // user.ts
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 export default defineStore('user', {
   state: () => {
     // 定义数据
@@ -108,7 +110,7 @@ export default defineStore('user', {
         age: 30,
       },
       count: 2,
-    }
+    };
   },
   getters: {
     // 将 count 乘以两倍
@@ -117,17 +119,17 @@ export default defineStore('user', {
     // 将 count 乘以两倍再加1，必须显示定义返回的类型
     doubleCountPlus(): number {
       // 通过 this 访问到过 doubleCount
-      return this.doubleCount + 1
+      return this.doubleCount + 1;
     },
   },
   actions: {
     // 更新 name
     updateName(name: string) {
       // 通过 this 访问 state
-      this.userInfo.name = name
+      this.userInfo.name = name;
     },
   },
-})
+});
 ```
 
 ```html
@@ -141,11 +143,11 @@ export default defineStore('user', {
   <h1>计数器Plus：{{ doubleCountPlus }}</h1>
 </template>
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import useUserStore from '../store/user'
-// 使用 storeToRefs 函数，直接解构获取 state
-// doubleCount 和 doubleCountPlus 为 getters 中定义的计算属性
-const { title, doubleCount, doubleCountPlus } = storeToRefs(useUserStore())
+  import { storeToRefs } from 'pinia';
+  import useUserStore from '../store/user';
+  // 使用 storeToRefs 函数，直接解构获取 state
+  // doubleCount 和 doubleCountPlus 为 getters 中定义的计算属性
+  const { title, doubleCount, doubleCountPlus } = storeToRefs(useUserStore());
 </script>
 ```
 
@@ -155,18 +157,18 @@ const { title, doubleCount, doubleCountPlus } = storeToRefs(useUserStore())
 
 ```ts
 // user.ts
-import { useOtherStore } from './other-store'
+import { useOtherStore } from './other-store';
 export default defineStore('user', {
   state: () => ({
     // ...
   }),
   getters: {
     otherGetter(state) {
-      const otherStore = useOtherStore()
-      return state.localData + otherStore.data
+      const otherStore = useOtherStore();
+      return state.localData + otherStore.data;
     },
   },
-})
+});
 ```
 
 ## 传递参数给 `getters`
@@ -177,7 +179,7 @@ export default defineStore('user', {
 
 ```ts
 // user.ts
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 export default defineStore('user', {
   state: () => {
     // 定义数据
@@ -188,7 +190,7 @@ export default defineStore('user', {
         age: 30,
       },
       count: 2,
-    }
+    };
   },
   getters: {
     // 将 count 乘以 payload 倍数
@@ -198,10 +200,10 @@ export default defineStore('user', {
     // 更新 name
     updateName(name: string) {
       // 通过 this 访问 state
-      this.userInfo.name = name
+      this.userInfo.name = name;
     },
   },
-})
+});
 ```
 
 组件中使用：`multipleCount(payload)`。
@@ -217,11 +219,11 @@ export default defineStore('user', {
   <h1>计数器乘以10倍：{{ multipleCount(10) }}</h1>
 </template>
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import useUserStore from '../store/user'
-// 使用 storeToRefs 函数，直接解构获取 state
-// multipleCount 为 getters 中定义的计算属性
-const { title, count, multipleCount } = storeToRefs(useUserStore())
+  import { storeToRefs } from 'pinia';
+  import useUserStore from '../store/user';
+  // 使用 storeToRefs 函数，直接解构获取 state
+  // multipleCount 为 getters 中定义的计算属性
+  const { title, count, multipleCount } = storeToRefs(useUserStore());
 </script>
 ```
 

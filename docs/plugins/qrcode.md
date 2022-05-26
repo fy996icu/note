@@ -4,6 +4,8 @@ toc: menu
 order: 8
 ---
 
+<BackTop></BackTop>
+
 # 生成二维码
 
 ## node-qrcode

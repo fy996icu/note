@@ -4,6 +4,8 @@ toc: menu
 order: 1
 ---
 
+<BackTop></BackTop>
+
 # VueRouter 配置
 
 ## 基本配置

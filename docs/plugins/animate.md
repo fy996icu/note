@@ -4,6 +4,8 @@ toc: menu
 order: 9
 ---
 
+<BackTop></BackTop>
+
 # 动画库
 
 ## 页面滚动显示动画

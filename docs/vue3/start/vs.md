@@ -4,7 +4,9 @@ group:
 order: 3
 ---
 
-# 组合式API vs 选项式API
+<BackTop></BackTop>
+
+# 组合式 API vs 选项式 API
 
 ## Option API 的问题
 

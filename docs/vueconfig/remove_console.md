@@ -4,6 +4,8 @@ toc: menu
 order: 4
 ---
 
+<BackTop></BackTop>
+
 # 去掉打印日志
 
 目的：去掉生产环境的 console.log 日志，保留开发环境的 console.log 日志。

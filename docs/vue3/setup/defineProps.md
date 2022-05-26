@@ -3,6 +3,9 @@ group:
   title: Script Setup
 order: 3
 ---
+
+<BackTop></BackTop>
+
 # defineProps
 
 ## 运行时声明和类型声明
@@ -52,9 +55,9 @@ vue 官网中提到了这样的一个概念 —— `Compiler Macros`（翻译过
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import Children from './Children.vue'
-const count = ref(0)
+  import { ref } from 'vue';
+  import Children from './Children.vue';
+  const count = ref(0);
 </script>
 ```
 
@@ -68,18 +71,18 @@ const count = ref(0)
 </template>
 
 <script setup lang="ts">
-// 使用 defineProps 宏命令声明 props 不需要导入
-const props = defineProps({
-  msg: String,
-  count: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
-})
+  // 使用 defineProps 宏命令声明 props 不需要导入
+  const props = defineProps({
+    msg: String,
+    count: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+  });
 
-// 输出：{msg: '你好啊', count: 0}
-console.log(props)
+  // 输出：{msg: '你好啊', count: 0}
+  console.log(props);
 </script>
 ```
 
@@ -91,13 +94,13 @@ console.log(props)
   "count": "props",
   "props": "setup-const"
 } */
-import { defineComponent as _defineComponent } from 'vue'
+import { defineComponent as _defineComponent } from 'vue';
 import {
   toDisplayString as _toDisplayString,
   createElementVNode as _createElementVNode,
   openBlock as _openBlock,
   createElementBlock as _createElementBlock,
-} from 'vue'
+} from 'vue';
 
 const __sfc__ = /*#__PURE__*/ _defineComponent({
   props: {
@@ -109,7 +112,7 @@ const __sfc__ = /*#__PURE__*/ _defineComponent({
     },
   },
   setup(__props) {
-    const props = __props
+    const props = __props;
 
     return (_ctx, _cache) => {
       return (
@@ -118,20 +121,19 @@ const __sfc__ = /*#__PURE__*/ _defineComponent({
           _createElementVNode('li', null, _toDisplayString(__props.msg), 1 /* TEXT */),
           _createElementVNode('li', null, _toDisplayString(__props.count), 1 /* TEXT */),
         ])
-      )
-    }
+      );
+    };
   },
-})
-__sfc__.__file = 'App.vue'
-export default __sfc__
+});
+__sfc__.__file = 'App.vue';
+export default __sfc__;
 ```
 
 如上示例：父组件子组件 `Children` 传递了名为 `msg` 数据类型为 `String` 的值和一个名为 `count` 数据类型为 `Number` 的值。
 
 子组件通过 `defineProps` 宏命令声明并约束了 `msg` 数据类型为 `String`；`count` 的数据类型为 `Number`，并且必填，默认值是 `0`。
 
-**<font v-pre color="red">注意事项：</font>**
-如果父组件传递给子组件 `Children` 的 props 不满足子组件内部 `defineProps` 宏命令声明并约束的条件，在编辑器里面不会报错，但是在**运行时**会在控制台发出警告：例如我们将父组件传递给子组件的 `count` 改为 `String` 类型的值。
+**<font v-pre color="red">注意事项：</font>** 如果父组件传递给子组件 `Children` 的 props 不满足子组件内部 `defineProps` 宏命令声明并约束的条件，在编辑器里面不会报错，但是在**运行时**会在控制台发出警告：例如我们将父组件传递给子组件的 `count` 改为 `String` 类型的值。
 
 ```html
 <!-- Father组件 -->
@@ -141,9 +143,9 @@ export default __sfc__
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import Children from './Children.vue'
-const count = ref("我很好")
+  import { ref } from 'vue';
+  import Children from './Children.vue';
+  const count = ref('我很好');
 </script>
 ```
 
@@ -161,9 +163,9 @@ const count = ref("我很好")
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import Children from './Children.vue'
-const count = ref(0)
+  import { ref } from 'vue';
+  import Children from './Children.vue';
+  const count = ref(0);
 </script>
 ```
 
@@ -177,15 +179,15 @@ const count = ref(0)
 </template>
 
 <script setup lang="ts">
-// 使用 defineProps 宏命令声明 props 不需要导入
-// 使用 ts 类型约束
-const props = defineProps<{
-  msg?: string
-  count: number
-}>()
+  // 使用 defineProps 宏命令声明 props 不需要导入
+  // 使用 ts 类型约束
+  const props = defineProps<{
+    msg?: string;
+    count: number;
+  }>();
 
-// 输出：{msg: '你好啊', count: 0}
-console.log(props)
+  // 输出：{msg: '你好啊', count: 0}
+  console.log(props);
 </script>
 ```
 
@@ -197,13 +199,13 @@ console.log(props)
   "count": "props",
   "props": "setup-const"
 } */
-import { defineComponent as _defineComponent } from 'vue'
+import { defineComponent as _defineComponent } from 'vue';
 import {
   toDisplayString as _toDisplayString,
   createElementVNode as _createElementVNode,
   openBlock as _openBlock,
   createElementBlock as _createElementBlock,
-} from 'vue'
+} from 'vue';
 
 const __sfc__ = /*#__PURE__*/ _defineComponent({
   props: {
@@ -211,9 +213,9 @@ const __sfc__ = /*#__PURE__*/ _defineComponent({
     count: { type: Number, required: true },
   },
   setup(__props) {
-    const props = __props
+    const props = __props;
 
-    console.log(props)
+    console.log(props);
 
     return (_ctx, _cache) => {
       return (
@@ -222,12 +224,12 @@ const __sfc__ = /*#__PURE__*/ _defineComponent({
           _createElementVNode('li', null, _toDisplayString(__props.msg), 1 /* TEXT */),
           _createElementVNode('li', null, _toDisplayString(__props.count), 1 /* TEXT */),
         ])
-      )
-    }
+      );
+    };
   },
-})
-__sfc__.__file = 'App.vue'
-export default __sfc__
+});
+__sfc__.__file = 'App.vue';
+export default __sfc__;
 ```
 
 如果 `Father` 组件中将传递给 `Children` 子组件的 `count` 属性的值改为字符串类型，那么在编辑器中就会发现 ts 报错 `不能将类型“string”分配给类型“number”。`。
@@ -241,7 +243,7 @@ export default __sfc__
 - 不能同时使用运行时声明和类型声明。`defineProps` 只能是要么使用运行时声明，要么使用类型声明。同时使用两种声明方式会导致编译报错。
 
 - 使用类型声明的时候，静态分析(也就是约束的类型) 会自动生成等效的运行时声明，以确保正确的运行时行为。（从上述例子的编译结果就可以看出来）
- 
+
 - 类型声明在开发环境下，编译器会试着从类型来推断对应的运行时验证。例如这里从 `msg: string` 类型中推断出 `msg: String`。如果类型是对导入类型的引用，这里的推断结果会是 `msg: null `(与 `any` 类型相等)，因为编译器没有外部文件的信息。
 
 - 类型声明在生产模式下，编译器会生成数组格式的声明来减少打包体积 (这里的 props 会被编译成 `['foo', 'bar']`)。
@@ -263,9 +265,9 @@ export default __sfc__
 ```ts
 declare namespace List {
   export interface Basic {
-    id: number
-    content: string
-    isDone: boolean
+    id: number;
+    content: string;
+    isDone: boolean;
   }
 }
 ```
@@ -275,8 +277,8 @@ declare namespace List {
 ```ts
 // 这样是可以支持的
 const props = defineProps<{
-  title: string,
-  list: List.Basic[],
+  title: string;
+  list: List.Basic[];
 }>();
 ```
 
@@ -284,8 +286,8 @@ const props = defineProps<{
 
 | 类型 | 优点 | 缺点 |
 | --- | --- | --- |
-| 运行时声明 | 不使用 `ts` 的情况下能够对 `props` 进行一定的、运行时的类型校验 | 1. 运行时校验。 2. 只能进行基本类型的校验。3. 编码时无任何提示。|
-| 类型声明 | 完美的支持类型的校验，包括 `props` 的完美类型约束、父组件在传 `props` 时的提示以及子组件在使用 `props` 的提示。 | 目前 `ts` 的接口暂时只支持写在文件内，未来应该会实现可从外部导入的，但目前可通过ts自动扫描types来解决。 |
+| 运行时声明 | 不使用 `ts` 的情况下能够对 `props` 进行一定的、运行时的类型校验 | 1. 运行时校验。 2. 只能进行基本类型的校验。3. 编码时无任何提示。 |
+| 类型声明 | 完美的支持类型的校验，包括 `props` 的完美类型约束、父组件在传 `props` 时的提示以及子组件在使用 `props` 的提示。 | 目前 `ts` 的接口暂时只支持写在文件内，未来应该会实现可从外部导入的，但目前可通过 ts 自动扫描 types 来解决。 |
 
 因此，强烈推荐使用类型声明的 `defineProps`。
 
@@ -297,12 +299,12 @@ const props = defineProps<{
 
 `withDefaults()` 方法接收两个参数：
 
-- 参数1：`defineProps` 类型声明。
+- 参数 1：`defineProps` 类型声明。
 
-- 参数2：`defaultValueOptions` 需要设置的默认值，该参数是一个 `Object`。
+- 参数 2：`defaultValueOptions` 需要设置的默认值，该参数是一个 `Object`。
 
 ```js
-withDefaults(defineProps, defaultValueOptions)
+withDefaults(defineProps, defaultValueOptions);
 ```
 
 具体用法：
@@ -330,13 +332,13 @@ const props = withDefaults(
   <Children msg="你好啊" :users="users" />
 </template>
 <script setup lang="ts">
-import { reactive } from 'vue'
-import Children from './Children.vue'
-// 定义一个数组
-const users = reactive([
-  { id: 1, name: '张三', age: 30 },
-  { id: 2, name: '李四', age: 32 },
-])
+  import { reactive } from 'vue';
+  import Children from './Children.vue';
+  // 定义一个数组
+  const users = reactive([
+    { id: 1, name: '张三', age: 30 },
+    { id: 2, name: '李四', age: 32 },
+  ]);
 </script>
 ```
 
@@ -350,25 +352,25 @@ const users = reactive([
 </template>
 
 <script setup lang="ts">
-// 定义 Users 接口
-interface Users {
-  id: number
-  name: string
-  age: number
-}
+  // 定义 Users 接口
+  interface Users {
+    id: number;
+    name: string;
+    age: number;
+  }
 
-// 使用 defineProps、withDefaults 宏命令不需要导入
-const props = withDefaults(
-  defineProps<{
-    msg?: string
-    users: Users[] // 使用 Users 接口约束 users
-  }>(),
-  // 设置默认值
-  {
-    msg: 'Heelo',
-    users: () => [{ id: 3, name: '王五', age: 50 }],
-  },
-)
+  // 使用 defineProps、withDefaults 宏命令不需要导入
+  const props = withDefaults(
+    defineProps<{
+      msg?: string;
+      users: Users[]; // 使用 Users 接口约束 users
+    }>(),
+    // 设置默认值
+    {
+      msg: 'Heelo',
+      users: () => [{ id: 3, name: '王五', age: 50 }],
+    },
+  );
 </script>
 ```
 
@@ -380,13 +382,13 @@ const props = withDefaults(
   "users": "props",
   "props": "setup-const"
 } */
-import { defineComponent as _defineComponent } from 'vue'
+import { defineComponent as _defineComponent } from 'vue';
 import {
   toDisplayString as _toDisplayString,
   createElementVNode as _createElementVNode,
   openBlock as _openBlock,
   createElementBlock as _createElementBlock,
-} from 'vue'
+} from 'vue';
 
 // 使用 defineProps、withDefaults 宏命令不需要导入
 
@@ -396,7 +398,7 @@ const __sfc__ = /*#__PURE__*/ _defineComponent({
     users: { type: Array, required: true, default: () => [{ id: 3, name: '王五', age: 50 }] },
   },
   setup(__props) {
-    const props = __props
+    const props = __props;
 
     // 定义 Users 接口
 
@@ -407,12 +409,12 @@ const __sfc__ = /*#__PURE__*/ _defineComponent({
           _createElementVNode('li', null, _toDisplayString(__props.msg), 1 /* TEXT */),
           _createElementVNode('li', null, _toDisplayString(__props.users), 1 /* TEXT */),
         ])
-      )
-    }
+      );
+    };
   },
-})
-__sfc__.__file = 'App.vue'
-export default __sfc__
+});
+__sfc__.__file = 'App.vue';
+export default __sfc__;
 ```
 
 上面代码会被编译为等价的运行时 `props` 的 `default` `选项，如下所示。此外，withDefaults` 辅助函数提供了对默认值的类型检查，并确保返回的 `props` 的类型删除了已声明默认值的属性的可选标志。

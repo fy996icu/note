@@ -4,6 +4,8 @@ toc: menu
 order: 2
 ---
 
+<BackTop></BackTop>
+
 # Vuex 配置
 
 ## Vuex 持久化

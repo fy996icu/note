@@ -4,6 +4,8 @@ group:
 order: 7
 ---
 
+<BackTop></BackTop>
+
 # getCurrentInstance
 
 在 Vue2 中访问当前组件实例使用 `this`，但是在 Vue3 中无法使用 `this`，但是我们可以通过 `getCurrentInstance` 访问当前组件实例。
@@ -17,17 +19,17 @@ order: 7
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance } from 'vue'
-export default defineComponent({
-  setup() {
-    // 通过 getCurrentInstance() 获取到当前组件实例
-    const internalInstance = getCurrentInstance()
+  import { defineComponent, getCurrentInstance } from 'vue';
+  export default defineComponent({
+    setup() {
+      // 通过 getCurrentInstance() 获取到当前组件实例
+      const internalInstance = getCurrentInstance();
 
-    // 当前组件实例
-    console.log(internalInstance)
-    return {}
-  },
-})
+      // 当前组件实例
+      console.log(internalInstance);
+      return {};
+    },
+  });
 </script>
 ```
 
@@ -38,34 +40,34 @@ export default defineComponent({
 ```js
 const MyComponent = {
   setup() {
-    const internalInstance = getCurrentInstance() // 有效
+    const internalInstance = getCurrentInstance(); // 有效
 
-    const id = useComponentId() // 有效
+    const id = useComponentId(); // 有效
 
     const handleClick = () => {
-      getCurrentInstance() // 无效
-      useComponentId() // 无效
+      getCurrentInstance(); // 无效
+      useComponentId(); // 无效
 
-      internalInstance // 有效
-    }
+      internalInstance; // 有效
+    };
 
     onMounted(() => {
-      getCurrentInstance() // 有效
-    })
+      getCurrentInstance(); // 有效
+    });
 
     return () =>
       h(
         'button',
         {
-          onClick: handleClick
+          onClick: handleClick,
         },
-        `uid: ${id}`
-      )
-  }
-}
+        `uid: ${id}`,
+      );
+  },
+};
 
 // 在组合式函数中调用也可以正常执行
 function useComponentId() {
-  return getCurrentInstance().uid
+  return getCurrentInstance().uid;
 }
 ```

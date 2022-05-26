@@ -4,6 +4,7 @@ toc: menu
 order: 10
 ---
 
+<BackTop></BackTop>
 
 # Render Props
 
@@ -27,7 +28,6 @@ order: 10
 示例：使用 `render props` 让 `Content` 组件向 `Left` 和 `Right` 组件传值。
 
 ```jsx
-
 import React from 'react';
 
 // 使用render props让Content组件向Left和Right组件传值。

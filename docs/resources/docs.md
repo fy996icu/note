@@ -3,6 +3,9 @@ title: 技术文档
 toc: menu
 order: 1
 ---
+
+<BackTop></BackTop>
+
 # 技术文档
 
 常用的一些技术文档收集。
@@ -11,7 +14,7 @@ order: 1
 
 ### [Vue](https://cn.vuejs.org/)
 
-**简介：** Vue 是一套用于构建用户界面的渐进式JavaScript框架。
+**简介：** Vue 是一套用于构建用户界面的渐进式 JavaScript 框架。
 
 ### [Vue Router](https://router.vuejs.org/zh/)
 
@@ -59,11 +62,11 @@ order: 1
 
 ### [uni-app](https://uniapp.dcloud.io/)
 
-**简介：** uni-app 是一个使用 Vue.js (opens new window)开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、Web（响应式）、以及各种小程序（微信/支付宝/百度/头条/飞书/QQ/快手/钉钉/淘宝）、快应用等多个平台。
+**简介：** uni-app 是一个使用 Vue.js (opens new window)开发所有前端应用的框架，开发者编写一套代码，可发布到 iOS、Android、Web（响应式）、以及各种小程序（微信/支付宝/百度/头条/飞书/QQ/快手/钉钉/淘宝）、快应用等多个平台。
 
 ### [Cola-Designer](https://colaiven.gitee.io/cola-designer-doc/)
 
-**简介：** 基于VUE的拖拽式数据报表设计器。实现完全拖拽 + 配置式生成大屏，设计即生产。内置element、dataV、echarts等优秀开源的报表常用组件，满足基本的设计需求。
+**简介：** 基于 VUE 的拖拽式数据报表设计器。实现完全拖拽 + 配置式生成大屏，设计即生产。内置 element、dataV、echarts 等优秀开源的报表常用组件，满足基本的设计需求。
 
 ## React 系列
 
@@ -85,7 +88,7 @@ order: 1
 
 ### [Create React App](https://www.html.cn/create-react-app/)
 
-**简介：** 通过运行一个命令来建立现代Web应用程序，React 官方脚手架。
+**简介：** 通过运行一个命令来建立现代 Web 应用程序，React 官方脚手架。
 
 ### [UmiJS](https://umijs.org/zh-CN)
 
@@ -111,7 +114,6 @@ order: 1
 
 **简介：** React Native 应用程序的路由和导航。
 
-
 ## JavaScript 系列
 
 ### [MDN](https://developer.mozilla.org/zh-CN/)
@@ -126,17 +128,17 @@ order: 1
 
 **简介：** 《ECMAScript 6 入门教程》是一本开源的 JavaScript 语言教程，全面介绍 ECMAScript 6 新引入的语法特性。
 
-### [网道JavaScript](https://wangdoc.com/javascript/index.html)
+### [网道 JavaScript](https://wangdoc.com/javascript/index.html)
 
 **简介：** 全面介绍 JavaScript 核心语法，覆盖了 ES5 和 DOM 规范的所有内容。
 
-### [廖雪峰JavaScript教程](https://www.liaoxuefeng.com/wiki/1022910821149312)
+### [廖雪峰 JavaScript 教程](https://www.liaoxuefeng.com/wiki/1022910821149312)
 
-**简介：** 这是小白的零基础JavaScript全栈教程。
+**简介：** 这是小白的零基础 JavaScript 全栈教程。
 
-### [JavaScript教程集合](http://caibaojian.com/book/)
+### [JavaScript 教程集合](http://caibaojian.com/book/)
 
-**简介：** 里面很多JavaScript全栈教程，ES6、React、Vue、Canvas、前端开发者手册等等，就是个大杂烩。
+**简介：** 里面很多 JavaScript 全栈教程，ES6、React、Vue、Canvas、前端开发者手册等等，就是个大杂烩。
 
 ### [JavaScript 面试题](https://www.axihe.com/map/js-focus.html)
 
@@ -144,7 +146,7 @@ order: 1
 
 ### [TypeScript](https://www.tslang.cn/)
 
-**简介：** TypeScript是JavaScript类型的超集，它可以编译成纯JavaScript。
+**简介：** TypeScript 是 JavaScript 类型的超集，它可以编译成纯 JavaScript。
 
 ### [Nodejs](http://nodejs.cn/)
 
@@ -170,7 +172,7 @@ order: 1
 
 ### [Sass](https://www.sass.hk/)
 
-**简介：** Sass(Scss)是世界上最成熟、稳定和强大的专业级CSS扩展语言,Sass(Scss)中文网主要致力于Sass(Scss)在中国的推广,通过Sass(Scss)来改变前端工程师,提高效率,降低成本。
+**简介：** Sass(Scss)是世界上最成熟、稳定和强大的专业级 CSS 扩展语言,Sass(Scss)中文网主要致力于 Sass(Scss)在中国的推广,通过 Sass(Scss)来改变前端工程师,提高效率,降低成本。
 
 ### [Stylus](https://www.stylus-lang.cn/)
 
@@ -184,7 +186,7 @@ order: 1
 
 查看 [中文文档](https://www.tailwindcss.cn/)
 
-**简介：** Tailwind CSS 是一个功能类优先的 CSS 框架,它由 Adam Wathan 创建。本站提供 Tailwind CSS 官方文档中文翻译致力于为广大国内开发者提供准确的中文文档,助力开发者掌握并使用这一框架。无需离开您的HTML，即可快速建立现代网站。
+**简介：** Tailwind CSS 是一个功能类优先的 CSS 框架,它由 Adam Wathan 创建。本站提供 Tailwind CSS 官方文档中文翻译致力于为广大国内开发者提供准确的中文文档,助力开发者掌握并使用这一框架。无需离开您的 HTML，即可快速建立现代网站。
 
 ### [css-doodle](https://css-doodle.com/)
 

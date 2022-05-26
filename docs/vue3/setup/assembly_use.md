@@ -3,6 +3,9 @@ group:
   title: Script Setup
 order: 2
 ---
+
+<BackTop></BackTop>
+
 # 组件的使用
 
 ## 组件自动注册
@@ -16,8 +19,8 @@ order: 2
 </template>
 
 <script setup>
-// 导入组件
-import ChildComponent from './ChildComponent.vue'
+  // 导入组件
+  import ChildComponent from './ChildComponent.vue';
 </script>
 ```
 
@@ -29,19 +32,19 @@ import ChildComponent from './ChildComponent.vue'
 /* Analyzed bindings: {
   "ChildComponent": "setup-const"
 } */
-import { openBlock as _openBlock, createBlock as _createBlock } from "vue"
-import ChildComponent from './ChildComponent.vue'
+import { openBlock as _openBlock, createBlock as _createBlock } from 'vue';
+import ChildComponent from './ChildComponent.vue';
 
 const __sfc__ = {
   setup(__props) {
     return (_ctx, _cache) => {
       // ChildComponent 当成变量引用且直接在 setup 函数导出
-      return (_openBlock(), _createBlock(ChildComponent))
-    }
-  }
-}
-__sfc__.__file = "App.vue"
-export default __sfc__
+      return _openBlock(), _createBlock(ChildComponent);
+    };
+  },
+};
+__sfc__.__file = 'App.vue';
+export default __sfc__;
 ```
 
 ## 动态组件
@@ -52,8 +55,8 @@ export default __sfc__
 
 ```html
 <script setup>
-import Foo from './Foo.vue'
-import Bar from './Bar.vue'
+  import Foo from './Foo.vue';
+  import Bar from './Bar.vue';
 </script>
 
 <template>
@@ -88,12 +91,12 @@ import Bar from './Bar.vue'
   </div>
 </template>
 <script>
-export default {
-  name: "List",
-  props: {
-    list: Array
-  }
-};
+  export default {
+    name: 'List',
+    props: {
+      list: Array,
+    },
+  };
 </script>
 ```
 
@@ -104,44 +107,7 @@ export default {
 递归组件的数据层级一般是多级或者后端返回的数据层级未知，例如下面这种形式：
 
 ```js
-list: [{
-  name: "节点1",
-  children: [{
-    name: "节点1-1",
-    children: [{
-        name: "节点1-1-1"
-      },
-      {
-        name: "节点1-1-2"
-      }]
-  },{
-    name: "节点1-2",
-    children: [{
-        name: "节点1-2-1"
-      },
-      {
-        name: "节点1-2-2"
-      }]
-  }]
-}]
-```
-
-### 具体实现
-
-父组件 `FatherBox.vue`:
-
-```html
-<template>
-  <!-- 使用递归组件 -->
-  <ListChild :list="list" />
-</template>
-
-<script setup lang="ts">
-// 导入递归组件
-import ListChild from './components/ListChild.vue'
-import { ref } from 'vue'
-// 定义递归组件数据
-const list = ref([
+list: [
   {
     name: '节点1',
     children: [
@@ -169,7 +135,53 @@ const list = ref([
       },
     ],
   },
-])
+];
+```
+
+### 具体实现
+
+父组件 `FatherBox.vue`:
+
+```html
+<template>
+  <!-- 使用递归组件 -->
+  <ListChild :list="list" />
+</template>
+
+<script setup lang="ts">
+  // 导入递归组件
+  import ListChild from './components/ListChild.vue';
+  import { ref } from 'vue';
+  // 定义递归组件数据
+  const list = ref([
+    {
+      name: '节点1',
+      children: [
+        {
+          name: '节点1-1',
+          children: [
+            {
+              name: '节点1-1-1',
+            },
+            {
+              name: '节点1-1-2',
+            },
+          ],
+        },
+        {
+          name: '节点1-2',
+          children: [
+            {
+              name: '节点1-2-1',
+            },
+            {
+              name: '节点1-2-2',
+            },
+          ],
+        },
+      ],
+    },
+  ]);
 </script>
 ```
 
@@ -191,9 +203,9 @@ const list = ref([
 </template>
 
 <script setup lang="ts">
-defineProps({
-  list: Array,
-})
+  defineProps({
+    list: Array,
+  });
 </script>
 ```
 
@@ -202,7 +214,7 @@ defineProps({
 请注意这种方式相比于 `import` 导入的组件和自主注册的组件优先级更低。所有如果有命名的 `import` 导入和组件的推断名冲突了，可以使用 `import` 别名导入：
 
 ```js
-import { ListChild as ListChildBox } from './components/ListChild.vue'
+import { ListChild as ListChildBox } from './components/ListChild.vue';
 ```
 
 ## 命名空间组件
@@ -221,8 +233,8 @@ export { Foo, Bar };
 `index.vue` 基于命名空间使用组件:
 
 ```html
-<script setup lang='ts'>
-import * as Form from "../Components";
+<script setup lang="ts">
+  import * as Form from '../Components';
 </script>
 
 <template>
@@ -237,14 +249,14 @@ import * as Form from "../Components";
 
 ```html
 <script lang="ts">
-export default { name: 'CustomComponentsName' }
+  export default { name: 'CustomComponentsName' };
 </script>
 
 <script setup lang="ts">
-// code
+  // code
 </script>
 
 <template>
-	<p>利用 script 自定义组件名称</p>
+  <p>利用 script 自定义组件名称</p>
 </template>
 ```

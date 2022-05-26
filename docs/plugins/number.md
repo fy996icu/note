@@ -4,6 +4,8 @@ toc: menu
 order: 5
 ---
 
+<BackTop></BackTop>
+
 # 数字处理
 
 ## 格式化数字

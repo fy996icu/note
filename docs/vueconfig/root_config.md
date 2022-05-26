@@ -4,6 +4,8 @@ toc: menu
 order: 6
 ---
 
+<BackTop></BackTop>
+
 # 根配置文件
 
 ## .browserslistrc

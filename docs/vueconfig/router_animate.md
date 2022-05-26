@@ -4,6 +4,8 @@ toc: menu
 order: 5
 ---
 
+<BackTop></BackTop>
+
 # 路由切换动画
 
 作用：路由切换时添加一个过渡效果。

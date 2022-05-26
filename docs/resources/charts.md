@@ -4,14 +4,15 @@ toc: menu
 order: 3
 ---
 
+<BackTop></BackTop>
+
 # 数据可视化
 
 常用的数据可视化插件。
 
 ## [Echarts](https://echarts.apache.org/zh/index.html)
 
-**简介：** ECharts是一款基于JavaScript的数据可视化图表库，提供直观，生动，可交互，可个性化定制的数据可视化图表。ECharts最初由百度团队开源，并于2018年初捐赠给Apache基金会，成为ASF孵化级项目。2021年1月26日晚，Apache基金会官方宣布ECharts项目正式毕业。
-
+**简介：** ECharts 是一款基于 JavaScript 的数据可视化图表库，提供直观，生动，可交互，可个性化定制的数据可视化图表。ECharts 最初由百度团队开源，并于 2018 年初捐赠给 Apache 基金会，成为 ASF 孵化级项目。2021 年 1 月 26 日晚，Apache 基金会官方宣布 ECharts 项目正式毕业。
 
 ## [Echarts 社区示例](https://www.makeapie.cn/echarts)
 
@@ -60,7 +61,6 @@ order: 3
 **简介：** 一款强大的 3D 可视化库，非常强大。
 
 查看 [中文文档](http://www.webgl3d.cn/)
-
 
 ## [DataV.GeoAtlas](http://datav.aliyun.com/portal/school/atlas/area_selector?spm=a2crr.b71357980.0.0.578a26c0JXeysF)
 

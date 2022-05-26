@@ -4,6 +4,8 @@ toc: menu
 order: 0
 ---
 
+<BackTop></BackTop>
+
 # 认识 Redux
 
 ## 简介

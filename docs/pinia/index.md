@@ -4,6 +4,8 @@ toc: menu
 order: 0
 ---
 
+<BackTop></BackTop>
+
 # 简介
 
 `Pinia` 是 `Vue` 新一代的轻量级状态管理库，相当于 `Vuex`，也是 `Vue` 核心团队推荐的状态管理库。

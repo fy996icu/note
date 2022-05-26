@@ -4,6 +4,8 @@ toc: menu
 order: 11
 ---
 
+<BackTop></BackTop>
+
 # Refs 转发
 
 Ref 转发是一项将 ref 自动地通过组件传递到其一子组件的技巧。
@@ -14,11 +16,7 @@ Ref 转发是一项将 ref 自动地通过组件传递到其一子组件的技�
 
 ```jsx | pure
 function FancyButton(props) {
-  return (
-    <button className="FancyButton">
-      {props.children}
-    </button>
-  );
+  return <button className="FancyButton">{props.children}</button>;
 }
 ```
 
@@ -50,13 +48,15 @@ const Wrap = () => {
 
   // 获取FancyButton按钮文本
   const handleBtn = () => {
-    alert(ref.current.innerHTML)
-  }
+    alert(ref.current.innerHTML);
+  };
   return (
     <>
       <p>F12查看FancyButton按钮DOM</p>
       <FancyButton ref={ref}>FancyButton按钮</FancyButton>
-      <button type="button" onClick={handleBtn}>获取FancyButton按钮文本</button>
+      <button type="button" onClick={handleBtn}>
+        获取FancyButton按钮文本
+      </button>
     </>
   );
 };

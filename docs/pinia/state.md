@@ -4,8 +4,9 @@ toc: menu
 order: 2
 ---
 
-# State
+<BackTop></BackTop>
 
+# State
 
 ## 创建 `State`
 
@@ -14,7 +15,7 @@ order: 2
 在 `src/store/user.ts` 中创建 `State`:
 
 ```ts
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 export default defineStore('user', {
   state: () => {
     // 定义数据
@@ -24,9 +25,9 @@ export default defineStore('user', {
         name: '张三',
         age: 30,
       },
-    }
+    };
   },
-})
+});
 ```
 
 ## 使用 `State`
@@ -42,11 +43,11 @@ export default defineStore('user', {
   <h1>{{ user.title }}</h1>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
+  // 导入 user 模块
+  import useUserStore from '../store/user';
 
-// 使用 useUserStore
-const user = useUserStore()
+  // 使用 useUserStore
+  const user = useUserStore();
 </script>
 ```
 
@@ -58,12 +59,12 @@ const user = useUserStore()
   <h1>{{ title }}</h1>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
-// 导入 user 模块
-import useUserStore from '../store/user'
+  import { computed } from 'vue';
+  // 导入 user 模块
+  import useUserStore from '../store/user';
 
-// 结合 computed 计算属性使用
-const title = computed(() => useUserStore().title)
+  // 结合 computed 计算属性使用
+  const title = computed(() => useUserStore().title);
 </script>
 ```
 
@@ -77,13 +78,13 @@ const title = computed(() => useUserStore().title)
   <h1>{{ title }}</h1>
 </template>
 <script setup lang="ts">
-// 导入 storeToRefs 函数
-import { storeToRefs } from 'pinia'
-// 导入 user 模块
-import useUserStore from '../store/user'
+  // 导入 storeToRefs 函数
+  import { storeToRefs } from 'pinia';
+  // 导入 user 模块
+  import useUserStore from '../store/user';
 
-// 使用 storeToRefs 函数包裹 useUserStore，解构获取
-const { title } = storeToRefs(useUserStore())
+  // 使用 storeToRefs 函数包裹 useUserStore，解构获取
+  const { title } = storeToRefs(useUserStore());
 </script>
 ```
 
@@ -101,13 +102,13 @@ const { title } = storeToRefs(useUserStore())
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  // 直接修改
-  user.title = '学习 Pinia'
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    // 直接修改
+    user.title = '学习 Pinia';
+  };
 </script>
 ```
 
@@ -125,15 +126,15 @@ const handleChange = () => {
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  // 通过 $patch 函数接收一个对象修改
-  user.$patch({
-    title: '学习 Pinia',
-  })
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    // 通过 $patch 函数接收一个对象修改
+    user.$patch({
+      title: '学习 Pinia',
+    });
+  };
 </script>
 ```
 
@@ -151,17 +152,17 @@ const handleChange = () => {
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-// 通过 $patch 函数修改
-const handleChange = () => {
-  user.$patch({
-    userInfo: {
-      name: '李四',
-    },
-  })
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  // 通过 $patch 函数修改
+  const handleChange = () => {
+    user.$patch({
+      userInfo: {
+        name: '李四',
+      },
+    });
+  };
 </script>
 ```
 
@@ -172,7 +173,7 @@ const handleChange = () => {
 将 `user.ts` 修改成一下内容：
 
 ```ts
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 export default defineStore('user', {
   state: () => {
     // 定义数据
@@ -193,9 +194,9 @@ export default defineStore('user', {
           price: 10,
         },
       ],
-    }
+    };
   },
-})
+});
 ```
 
 将 `fruits` 中的第一项 "水蜜桃" 改为 "菠萝"：
@@ -209,20 +210,20 @@ export default defineStore('user', {
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  // 通过 $patch 函数修改，将 `fruits` 中的第一项 "水蜜桃" 改为 "菠萝"：
-  // 这样会造成数据丢失
-  user.$patch({
-    fruits: [
-      {
-        name: '菠萝',
-      },
-    ],
-  })
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    // 通过 $patch 函数修改，将 `fruits` 中的第一项 "水蜜桃" 改为 "菠萝"：
+    // 这样会造成数据丢失
+    user.$patch({
+      fruits: [
+        {
+          name: '菠萝',
+        },
+      ],
+    });
+  };
 </script>
 ```
 
@@ -238,29 +239,28 @@ const handleChange = () => {
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  // 通过 $patch 函数修改，将 `fruits` 中的第一项 "水蜜桃" 改为 "菠萝"：
-  user.$patch({
-    fruits: [
-      {
-        name: '菠萝',
-        price: 5,
-      },
-      {
-        name: '西瓜',
-        price: 10,
-      },
-    ],
-  })
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    // 通过 $patch 函数修改，将 `fruits` 中的第一项 "水蜜桃" 改为 "菠萝"：
+    user.$patch({
+      fruits: [
+        {
+          name: '菠萝',
+          price: 5,
+        },
+        {
+          name: '西瓜',
+          price: 10,
+        },
+      ],
+    });
+  };
 </script>
 ```
 
 很显然，这样的方式并不好使，解决这个问题可以使用 [$patch 接收函数修改](/pinia/state#patch-接收函数修改)。
-
 
 ### `$patch` 接收函数修改
 
@@ -278,17 +278,17 @@ const handleChange = () => {
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-// 通过 $patch 函数修改
-const handleChange = () => {
-  user.$patch((state) => {
-    state.title = '学习 Pinia'
-    state.userInfo.name = '李四'
-    state.userInfo.age = 50
-  })
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  // 通过 $patch 函数修改
+  const handleChange = () => {
+    user.$patch((state) => {
+      state.title = '学习 Pinia';
+      state.userInfo.name = '李四';
+      state.userInfo.age = 50;
+    });
+  };
 </script>
 ```
 
@@ -304,16 +304,16 @@ const handleChange = () => {
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  // 通过 $patch 函数修改，将 `fruits` 中的第一项 "水蜜桃" 改为 "菠萝"：
-  // 不会造成数据丢失，也不需要传入整个 state
-  user.$patch((state) => {
-    state.fruits[0].name = '菠萝'
-  })
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    // 通过 $patch 函数修改，将 `fruits` 中的第一项 "水蜜桃" 改为 "菠萝"：
+    // 不会造成数据丢失，也不需要传入整个 state
+    user.$patch((state) => {
+      state.fruits[0].name = '菠萝';
+    });
+  };
 </script>
 ```
 
@@ -326,7 +326,7 @@ const handleChange = () => {
 修改 `src/store/user.ts` ，添加 `actions` 选项：
 
 ```ts
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 export default defineStore('user', {
   state: () => {
     // 定义数据
@@ -346,16 +346,16 @@ export default defineStore('user', {
           price: 10,
         },
       ],
-    }
+    };
   },
   actions: {
     // 更新 name
     updateName(name: string) {
       // 通过 this 访问 state
-      this.userInfo.name = name
+      this.userInfo.name = name;
     },
   },
-})
+});
 ```
 
 将 `userInfo` 中的 `name` 改为 "李四"：
@@ -368,14 +368,14 @@ export default defineStore('user', {
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  // 将姓名更改为 "李四"
-  // 通过触发 actions 中定义的 updateName 方法修改
-  user.updateName('李四')
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    // 将姓名更改为 "李四"
+    // 通过触发 actions 中定义的 updateName 方法修改
+    user.updateName('李四');
+  };
 </script>
 ```
 
@@ -392,29 +392,29 @@ const handleChange = () => {
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  // 通过触发 $state 替换整个 state
-  user.$state = {
-    title: '学习 Pinia',
-    userInfo: {
-      name: '李四',
-      age: 50,
-    },
-    fruits: [
-      {
-        name: '菠萝',
-        price: 10,
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    // 通过触发 $state 替换整个 state
+    user.$state = {
+      title: '学习 Pinia',
+      userInfo: {
+        name: '李四',
+        age: 50,
       },
-      {
-        name: '芒果',
-        price: 20,
-      },
-    ],
-  }
-}
+      fruits: [
+        {
+          name: '菠萝',
+          price: 10,
+        },
+        {
+          name: '芒果',
+          price: 20,
+        },
+      ],
+    };
+  };
 </script>
 ```
 
@@ -432,32 +432,32 @@ const handleChange = () => {
   <button @click="handleReset">重置</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  // 通过触发 $state 替换整个 state
-  user.$state = {
-    title: '学习 Pinia',
-    userInfo: {
-      name: '李四',
-      age: 50,
-    },
-    fruits: [
-      {
-        name: '菠萝',
-        price: 10,
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    // 通过触发 $state 替换整个 state
+    user.$state = {
+      title: '学习 Pinia',
+      userInfo: {
+        name: '李四',
+        age: 50,
       },
-      {
-        name: '芒果',
-        price: 20,
-      },
-    ],
-  }
-}
+      fruits: [
+        {
+          name: '菠萝',
+          price: 10,
+        },
+        {
+          name: '芒果',
+          price: 20,
+        },
+      ],
+    };
+  };
 
-// 定义 重置 store 的方法
-const handleReset = () => user.$reset()
+  // 定义 重置 store 的方法
+  const handleReset = () => user.$reset();
 </script>
 ```
 
@@ -474,7 +474,7 @@ const handleReset = () => user.$reset()
 - `options`：配置项（可选）。
 
 ```ts
-user.$subscribe(callback, [options])
+user.$subscribe(callback, [options]);
 ```
 
 ### 使用方法
@@ -488,20 +488,20 @@ user.$subscribe(callback, [options])
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  user.$patch((state) => {
-    state.title = '学习 Pinia'
-  })
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    user.$patch((state) => {
+      state.title = '学习 Pinia';
+    });
+  };
 
-// 使用 $subscribe 方法订阅 state
-user.$subscribe((mutation, state) => {
-  console.log('mutation', mutation)
-  console.log('state', state)
-})
+  // 使用 $subscribe 方法订阅 state
+  user.$subscribe((mutation, state) => {
+    console.log('mutation', mutation);
+    console.log('state', state);
+  });
 </script>
 ```
 
@@ -509,21 +509,22 @@ user.$subscribe((mutation, state) => {
 
 `user.$subscribe(callback, [options])` 中 `callback` 包含 `mutation` 和 `state` 两个参数。
 
-- **`mutation`** 包含3个值：
-    - `type` : 操作类型 `'direct' | 'patch object' | 'patch function'`。
-    
-    - `storeId` : 操作的 `store` 的 id。例如：`user.ts` 文件中的 `user`。
+- **`mutation`** 包含 3 个值：
 
-    - `events` : 操作的事件详情，包括针对的数据、新值、旧值等。
+  - `type` : 操作类型 `'direct' | 'patch object' | 'patch function'`。
+
+  - `storeId` : 操作的 `store` 的 id。例如：`user.ts` 文件中的 `user`。
+
+  - `events` : 操作的事件详情，包括针对的数据、新值、旧值等。
 
 - **`state`** : `Proxy` 类型的对象，也就是 `store` 中修改后的 `state`。
 
 ### `State` 订阅与组件分离
 
-默认情况下，状态订阅绑定到添加它们的组件（如果store是在组件的setup()中）。也就是说，当卸载组件时，它们将自动删除。如果要在卸载组件后保留它们，可将 `{detached:true}` 作为第二个参数传递，以从当前组件分离state订阅。
+默认情况下，状态订阅绑定到添加它们的组件（如果 store 是在组件的 setup()中）。也就是说，当卸载组件时，它们将自动删除。如果要在卸载组件后保留它们，可将 `{detached:true}` 作为第二个参数传递，以从当前组件分离 state 订阅。
 
 ```ts
-user.$subscribe(callback, { detached: true })
+user.$subscribe(callback, { detached: true });
 ```
 
 **不设置 `{ detached: true }`**
@@ -542,22 +543,22 @@ user.$subscribe(callback, { detached: true })
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import Children from './Children.vue'
-import useUserStore from '../store/user'
-const user = useUserStore()
-const show = ref(true)
-// 点击卸载组件
-const handleUnmounted = () => {
-  show.value = false
-}
+  import { ref } from 'vue';
+  import Children from './Children.vue';
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const show = ref(true);
+  // 点击卸载组件
+  const handleUnmounted = () => {
+    show.value = false;
+  };
 
-// 点击修改 state 的方法
-const handleChange = () => {
-  user.$patch((state) => {
-    state.title = '学习 Pinia'
-  })
-}
+  // 点击修改 state 的方法
+  const handleChange = () => {
+    user.$patch((state) => {
+      state.title = '学习 Pinia';
+    });
+  };
 </script>
 ```
 
@@ -568,24 +569,23 @@ const handleChange = () => {
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  user.$patch((state) => {
-    state.title = '学习 Pinia'
-  })
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    user.$patch((state) => {
+      state.title = '学习 Pinia';
+    });
+  };
 
-// 使用 $subscribe 方法订阅 state
-user.$subscribe(
-  (mutation, state) => {
-    console.log('mutation', mutation)
-    console.log('state', state)
-  },
-)
+  // 使用 $subscribe 方法订阅 state
+  user.$subscribe((mutation, state) => {
+    console.log('mutation', mutation);
+    console.log('state', state);
+  });
 </script>
 ```
+
 上述例子可以看出，当 `Children` 组件被卸载后，再点击 `修改state` 按钮，控制台中不会有任何打印信息，也就是说 `Children` 组件中的 `17-22` 行代码不会被执行，随着组件被卸载，订阅被自动删除了。
 
 **设置 `{ detached: true }`**
@@ -603,23 +603,23 @@ user.$subscribe(
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import Children from './Children.vue'
-import useUserStore from '../store/user'
-const user = useUserStore()
-const show = ref(true)
-// 点击卸载组件
-const handleUnmounted = () => {
-  show.value = false
-}
+  import { ref } from 'vue';
+  import Children from './Children.vue';
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const show = ref(true);
+  // 点击卸载组件
+  const handleUnmounted = () => {
+    show.value = false;
+  };
 
-// 点击修改 state 的方法
-// 执行后 因为子组件中的 user.$subscribe() 设置了 detached: true，所以依然会被监听
-const handleChange = () => {
-  user.$patch((state) => {
-    state.title = '学习 Pinia'
-  })
-}
+  // 点击修改 state 的方法
+  // 执行后 因为子组件中的 user.$subscribe() 设置了 detached: true，所以依然会被监听
+  const handleChange = () => {
+    user.$patch((state) => {
+      state.title = '学习 Pinia';
+    });
+  };
 </script>
 ```
 
@@ -630,24 +630,24 @@ const handleChange = () => {
   <button @click="handleChange">修改</button>
 </template>
 <script setup lang="ts">
-// 导入 user 模块
-import useUserStore from '../store/user'
-const user = useUserStore()
-const handleChange = () => {
-  user.$patch((state) => {
-    state.title = '学习 Pinia'
-  })
-}
+  // 导入 user 模块
+  import useUserStore from '../store/user';
+  const user = useUserStore();
+  const handleChange = () => {
+    user.$patch((state) => {
+      state.title = '学习 Pinia';
+    });
+  };
 
-// 使用 $subscribe 方法订阅 state
-user.$subscribe(
-  (mutation, state) => {
-    console.log('mutation', mutation)
-    console.log('state', state)
-  },
-  // 此订阅将在卸载组件后保留
-  { detached: true },
-)
+  // 使用 $subscribe 方法订阅 state
+  user.$subscribe(
+    (mutation, state) => {
+      console.log('mutation', mutation);
+      console.log('state', state);
+    },
+    // 此订阅将在卸载组件后保留
+    { detached: true },
+  );
 </script>
 ```
 

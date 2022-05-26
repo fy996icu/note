@@ -4,7 +4,9 @@ toc: menu
 order: 13
 ---
 
-# Hook替代Redux
+<BackTop></BackTop>
+
+# Hook 替代 Redux
 
 函数式组件替代 `Redux` 需要使用 `useReducer` 、`useContext`、`React.createContext`。
 
@@ -22,7 +24,7 @@ order: 13
 
 6. 将读取数据的 API 通过 `MyContext.Provider` 的 `value` 属性传递给所有组件。
 
-7. 各个组件用 `useContext` 获取读写API。
+7. 各个组件用 `useContext` 获取读写 API。
 
 ```jsx
 import React, { useReducer, useContext, createContext } from 'react';
