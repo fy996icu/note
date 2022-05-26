@@ -128,7 +128,7 @@ const State = {
 
 在 `reducers` 文件夹下创建 `user.js` 文件。
 
-接着我们初始化 `State` 和创建 `Reducer` 函数：始终要记住 Reducer 是一个 [纯函数](/doc/document/redux/核心概念.html#纯函数)。
+接着我们初始化 `State` 和创建 `Reducer` 函数：始终要记住 Reducer 是一个 [纯函数](/redux/core_concept#纯函数)。
 
 `Reducer` 函数接收两个参数：`state` 和 `action`，返回一个 **新的 State**。
 
@@ -150,7 +150,7 @@ const initState = {
 };
 
 // 创建 Reducer
-export default userReducer = (preState = initState, action) => {
+export default function userReducer(preState = initState, action) {
   // 解构出 Action 中的 type 和 传递过来的数据
   const { type, data } = action;
   switch (type) {
@@ -164,7 +164,7 @@ export default userReducer = (preState = initState, action) => {
     default:
       return preState;
   }
-};
+}
 ```
 
 之所以将这样的函数称之为 `reducer`，是因为这种函数与被传入 `Array.prototype.reduce(reducer, ?initialValue)` 里的回调函数属于相同的类型。保持 `reducer` 纯净非常重要。永远不要在 `reducer` 里做这些操作：
@@ -175,10 +175,280 @@ export default userReducer = (preState = initState, action) => {
 
 - 调用非纯函数，如 `Date.now()` 或 `Math.random()`。
 
+### 合并 `Reducer`
+
+随着项目的功能越来越多，我们为功能模块创建对应 `reducer`，这样有助于我们分类和管理。
+
+我们可以通过 Redux 提供的 `combineReducers()` 函数，将多个 `reducer` 合并成一个总的 `Reducer`，并暴露给 `Store`。
+
+在 `reducers` 文件夹下创建 `index.js`，用于合并 reducer。
+
+```js
+// reducers/index.js
+
+// 引入combineReducers，用于合并多个reducer
+import { combineReducers } from 'redux';
+// 计数相关reducer
+import count from './count';
+// 用户相关reducer
+import user from './user';
+// 合并所有的reducer变为一个总的reducer
+export default combineReducers({
+  count,
+  user,
+});
+```
+
 ### 注意
 
 需要注意 `reducer` 一定要保持纯净。**只要传入参数相同，返回计算得到的下一个 state 就一定相同。没有特殊情况、没有副作用，没有 API 请求、没有变量修改，单纯执行计算。**
 
 ## Store
 
+### 说明
+
 `Redux` 应用只有一个单一的 `Store`。当需要拆分数据处理逻辑时，你应该使用 `Reducer` 组合，而不是创建多个 `Store`。
+
+### 职责
+
+Store 有以下职责：
+
+- 维持应用的 State。
+
+- 提供 `getState()` 方法获取 State。
+
+- 提供 `dispatch(action)` 方法更新 State。
+
+- 通过 `subscribe(listener)` 注册监听器。
+
+- 通过 `subscribe(listener)` 返回的函数注销监听器。
+
+### 创建 `Store`
+
+根据已有的 Reducer 来创建 Store 是非常容易的。我们已经使用 Redux 提供的 `combineReducers()` 将多个 Reducer 合并成为一个。现在我们将其导入，并传递 `createStore()`。
+
+```js
+// redux/store.js
+
+// 引入createStore，专门用于创建redux中最为核心的store对象
+import { createStore } from 'redux';
+
+// 引入汇总之后的reducer
+import reducers from './reducers';
+
+// 暴露store
+export default createStore(reducers);
+```
+
+### getState
+
+我们将 `Action`、`Reducer`、`Store` 都创建好了，接下来我们在 UI 组件中试试，通过 `getState()` 函数获取 `State`。
+
+新建 `User.jsx` 组件，并导入 `store`:
+
+```jsx | pure
+import React from 'react';
+
+// 导入 store
+import store from '../../redux/store';
+
+const User = () => {
+  // 获取所有的 State
+  console.log(store.getState());
+  /* 
+    控制台输出：{
+      count: 0,
+      user:{
+        userInfo:{name:'张三', age: 30},
+        userList:[]
+      }
+    }
+  */
+  return (
+    <div>
+      <h1>User组件</h1>
+    </div>
+  );
+};
+
+export default User;
+```
+
+查看控制台的输出内容我们可知，通过 `store.getState()` 我们可以获取到 Store 中的所有数据：
+
+- `count` reducer 中的数据：
+
+  ```js
+  count: 0;
+  ```
+
+- `user` reducer 中的数据：
+
+  ```js
+  user:{
+    userInfo:{name:'张三', age: 30},
+    userList:[]
+  }
+  ```
+
+### dispatch
+
+我们可以通过 `store.dispatch(action)` 来发起 `Action` 更新 `State`:
+
+更改 userInfo 为：`{name: '李四', age: 50}`：
+
+```jsx | pure
+// User 组件
+
+import React, { useState, useEffect } from 'react';
+import store from '../../redux/store';
+// 导入 action
+import { setUserInfo } from '../../redux/actions/user';
+
+const User = () => {
+  // 初始化 state
+  const [state, setState] = useState({
+    name: '',
+    age: 0,
+  });
+  // 修改信息-发起名为 setUserInfo 的Action，并传递参数更改 State
+  const changeUserInfo = () => {
+    store.dispatch(setUserInfo({ name: '李四', age: 50 }));
+  };
+  // 组件挂载完毕就获取 store中的state，并赋值
+  useEffect(() => {
+    const { user } = store.getState();
+    setState(user.userInfo);
+  }, []);
+  return (
+    <div>
+      <h1>User组件</h1>
+      <ul>
+        <li>姓名：{state.name}</li>
+        <li>年龄：{state.age}</li>
+      </ul>
+      <button onClick={changeUserInfo}>修改信息</button>
+    </div>
+  );
+};
+
+export default User;
+```
+
+<Badge>注意</Badge>：初始化进入页面正常显示：`姓名：张三；年龄：30`，但是点击 `修改信息` 按钮会发现页面并没有更新，并不是我们发起的 Action 错误，确实是修改了 State 的，只是页面没有重新获取到最新的值来更新页面。
+
+此时我们可以通过 `store.subscribe()` 来监听 Store 的变化，从而更新页面。
+
+### subscribe
+
+`subscribe(listener)` 是一个变化监听器，每当我们通过 `store.dispatch(action)` 的时候就会执行，`state` 树中的一部分可能已经变化。你可以在回调函数里调用 `getState()` 来拿到当前 `state`。
+
+通过 `subscribe()` 监听 `state` 的变化拿到最新的 `state`，再通过 `setState(state)` 更新页面，从而解决我们之前修改了 state 页面不更新的问题：
+
+```jsx | pure
+// User 组件
+
+import React, { useState, useEffect } from 'react';
+import store from '../../redux/store';
+// 导入 action
+import { setUserInfo } from '../../redux/actions/user';
+
+const User = () => {
+  // 初始化 state
+  const [state, setState] = useState({
+    name: '',
+    age: 0,
+  });
+
+  // 修改信息-发起名为 setUserInfo 的Action，并传递参数更改 State
+  const changeUserInfo = () => {
+    store.dispatch(setUserInfo({ name: '李四', age: 50 }));
+  };
+
+  // 组件挂载完毕就获取 store中的state，并赋值，再添加一个监听器
+  useEffect(() => {
+    const { user } = store.getState();
+    setState(user.userInfo);
+    // 监听器-发起action将会监听执行
+    store.subscribe(() => {
+      const { user } = store.getState();
+      setState(user.userInfo);
+    });
+  }, []);
+
+  return (
+    <div>
+      <h1>User组件</h1>
+      <ul>
+        <li>姓名：{state.name}</li>
+        <li>年龄：{state.age}</li>
+      </ul>
+      <button onClick={changeUserInfo}>修改信息</button>
+    </div>
+  );
+};
+
+export default User;
+```
+
+<Badge>注意</Badge>：这样我们在点击 `修改信息` 按钮之后就能正确赋值，而且页面也会随之更新了，但是我们的 `subscribe()` 监听器会一直存在，不会随着组件的卸载而取消监听，所以我们需要在组件卸载时取消监听。
+
+### unsubscribe
+
+上面的例子存在一个问题就是监听器会一直存在，不会随着组件的卸载而取消监听，所以我们需要在组件卸载时取消监听。
+
+`subscribe()` 函数执行时会返回一个函数，这个函数就是取消监听器的函数，我更愿意称它为 `unsubscribe()` 函数。
+
+取消监听的方法：
+
+```jsx | pure
+import React, { useState, useEffect } from 'react';
+import store from '../../redux/store';
+// 导入 action
+import { setUserInfo } from '../../redux/actions/user';
+
+const User = () => {
+  // 初始化 state
+  const [state, setState] = useState({
+    name: '',
+    age: 0,
+  });
+  // 修改信息-发起名为 setUserInfo 的Action，并传递参数更改 State
+  const changeUserInfo = () => {
+    store.dispatch(setUserInfo({ name: '李四', age: 50 }));
+  };
+  // 组件挂载完毕就获取 store中的state，并赋值，再添加一个监听器
+  useEffect(() => {
+    const { user } = store.getState();
+    setState(user.userInfo);
+
+    // 监听器-发起action将会监听执行
+    const unsubscribe = store.subscribe(() => {
+      const { user } = store.getState();
+      setState(user.userInfo);
+    });
+
+    // 页面卸载时-取消监听
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return (
+    <div>
+      <h1>User组件</h1>
+      <ul>
+        <li>姓名：{state.name}</li>
+        <li>年龄：{state.age}</li>
+      </ul>
+      <button onClick={changeUserInfo}>修改信息</button>
+    </div>
+  );
+};
+
+export default User;
+```
+
+这样每当页面挂载就会添加一个监听器，组件卸载时取消这个监听器。
+
+但是每次这样添加监听器，卸载监听器确实很麻烦，有没有什么插件可以解决这个问题呢？有！那就是[react-redux](/redux/react-redux)。

@@ -3,6 +3,7 @@ title: 简介
 toc: menu
 order: 0
 ---
+
 # 简介
 
 `Pinia` 是 `Vue` 新一代的轻量级状态管理库，相当于 `Vuex`，也是 `Vue` 核心团队推荐的状态管理库。
@@ -15,11 +16,11 @@ order: 0
 
 ## 诞生
 
-`Pinia` 从2019年11月左右，开始尝试重新使用 [Composition API](/doc/document/vue3/compositionApi.html#setup-组件选项) 设计 `Vue Store`。
+`Pinia` 从 2019 年 11 月左右，开始尝试重新使用 [Composition API](/vue3/start/composition-api) 设计 `Vue Store`。
 
 `Pinia` 试图尽可能接近 `Vuex` 的理念，旨在测试 `Vuex` 下一次迭代的一个方案。目前，`Vuex 5` 的 [open RFC API](https://github.com/vuejs/rfcs/discussions/270)与 `Pinia` 的 API 非常相似，这说明 `Pinia` 成功了。
 
-注意，`Pinia` 的作者([Eduardo](https://github.com/posva))，也是 `Vue.js` 核心团队的一员，积极参与 `Router` 和 `Vuex` 等API的设计。设计 `Pinia` 的目的是想重新设计使用 `store` 的体验，同时保持 `Vue` 的容易理解的理念。将 `Pinia` 的API与 `Vuex` 保持尽可能的接近，因为它不断向前发展，使人们能够方便地迁移到 `Vuex`，甚至在未来融合两个项目。
+注意，`Pinia` 的作者([Eduardo](https://github.com/posva))，也是 `Vue.js` 核心团队的一员，积极参与 `Router` 和 `Vuex` 等 API 的设计。设计 `Pinia` 的目的是想重新设计使用 `store` 的体验，同时保持 `Vue` 的容易理解的理念。将 `Pinia` 的 API 与 `Vuex` 保持尽可能的接近，因为它不断向前发展，使人们能够方便地迁移到 `Vuex`，甚至在未来融合两个项目。
 
 资源来自掘金社区：[俄小法](https://juejin.cn/user/993614678466078)
 
