@@ -7,8 +7,8 @@ hero:
   desc: 为组件开发场景而生的文档工具
   image: http://huaxhe.gitee.io/vue3_study_docs/images/vue3_logo.png
   actions:
-    - text: 快速上手1
-      link: /resources
+    - text: GitHub
+      link: https://github.com/fy996icu/note
     - text: 快速上手
       link: /resources
 features:
