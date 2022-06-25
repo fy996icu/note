@@ -4,12 +4,12 @@ sidemenu: false
 toc: false
 hero:
   title: dumi
-  desc: 为组件开发场景而生的文档工具
+  desc: 平时的学习文档而已
   image: http://huaxhe.gitee.io/vue3_study_docs/images/vue3_logo.png
   actions:
     - text: GitHub
       link: https://github.com/fy996icu/note
-    - text: 快速上手
+    - text: 立即开始
       link: /resources
 features:
   - icon: https://docsearch.algolia.com/img/logos/vue.svg
@@ -30,5 +30,5 @@ features:
   - icon: https://docsearch.algolia.com/img/logos/eslint.svg
     title: ESLINT
     desc: 考究的默认配置和约定式的目录结构，帮助开发者零成本上手，让所有注意力都能放在文档编写和组件开发上
-footer: MIT Licensed | Copyright © 2021-present Fan Yong
+footer: MIT Licensed | Copyright © 2022-present Fan Yong
 ---

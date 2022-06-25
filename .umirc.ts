@@ -1,5 +1,10 @@
 import { defineConfig } from 'dumi';
 
+// 自定义全局样式
+const baseStyle = `
+img[alt=img] {box-shadow: 0px 0px 16px #e2e2e2;border-radius: 8px;margin-top: 16px;}
+`;
+
 export default defineConfig({
   title: 'dumi',
   mode: 'site',
@@ -13,6 +18,7 @@ export default defineConfig({
   dynamicImport: {
     loading: '@/Loading',
   },
+  styles: [baseStyle],
   hash: true,
   // 配置antd按需加载
   extraBabelPlugins: [

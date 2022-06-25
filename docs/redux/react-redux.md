@@ -168,41 +168,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(User);
 // redux/actions/user.js
 
 // 导入常量
-import { SET_USER_INFO, ADD_USER, SET_USER_LIST } from '../constants';
+import axios from 'axios';
+import { SET_USER_LIST } from '../constants';
 
-// 定义一个设置用户信息的 Action 并导出
-export const setUserInfo = (data) => ({
-  type: SET_USER_INFO,
-  data,
-});
-
-// 定义一个添加用户的 Action 并导出
-export const addUserToList = (data) => ({
-  type: ADD_USER,
-  data,
-});
-
-// 定义一个设置用户列表 Action 并导出
+// 用户列表 Action
 export const getUserList = (data) => ({
   type: SET_USER_LIST,
   data,
 });
 
 // 定义getUserListAsync方法，在这个方法中发送网络请求并派发同步action任务
-export const getUserListAsync = (dispatch) => {
-  // 发送请求
-  fetch('http://localhost:7001/info')
-    .then((response) => {
-      // 转换为json格式
-      return response.json();
-    })
-    .then((data) => {
-      // dispatch：派发任务
-      dispatch(getUserList(data));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+export const getUserListAsync = (params) => (dispatch) => {
+  console.log('请求参数：', params); // 输出：请求参数： {id: '001'}
+  const url = 'https://www.fastmock.site/mock/0fc924bcdbc5617b343b766236bc39aa/react/api/userList';
+  axios.get(url).then((res) => {
+    if (res.data.code === 200) {
+      // 派发同步action任务
+      dispatch(getUserList(res.data.data));
+    }
+  });
 };
 ```
 
@@ -215,57 +199,43 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // 导入 action
-import { setUserInfo, getUserListAsync } from '../../redux/actions/user';
-import { increment } from '../../redux/actions/count';
+import { getUserListAsync } from '../../redux/actions/user';
 
 const User = (props) => {
-  // props 中会包含 count、userInfo、incrementHandler、setUserInfoHandler
-  console.log(props);
-  const { count, userInfo, incrementHandler, setUserInfoHandler } = props;
+  const { userList, getUserListHandler } = props;
+  console.log('用户列表:', userList);
   return (
     <div>
-      <h1>User组件</h1>
-      <h2>计数器：{count}</h2>
-      <button onClick={incrementHandler}>计数器累加</button>
-      <hr />
+      <h1>User组件-用户列表</h1>
       <ul>
-        <li>姓名：{userInfo.name}</li>
-        <li>年龄：{userInfo.age}</li>
+        {userList.map((item) => (
+          <li key={item.id}>
+            姓名：{item.chineseName}—— 年龄：{item.age}—— 城市：{item.city}
+          </li>
+        ))}
       </ul>
-      <button onClick={setUserInfoHandler}>修改信息</button>
+      <button onClick={getUserListHandler}>获取用户列表</button>
     </div>
   );
 };
 
-// mapStateToProps方法：告诉React-Redux, 需要将store中保存的哪些数据映射到当前组件的props上
 const mapStateToProps = (state) => {
-  console.log(state); // 输出：{count: 0, user:{userInfo:{name:'张三', age: 30}, userList:[]}}
+  const { user } = state;
   return {
-    count: state.count,
-    userInfo: state.user.userInfo,
+    userList: user.userList,
   };
 };
 
-// mapStateToProps方法：告诉React-Redux, 需要将store中保存的哪些数据映射到当前组件的props上
 const mapDispatchToProps = (dispatch) => {
   return {
-    incrementHandler() {
-      // 执行increment这个action，并传递参数
-      dispatch(increment(1));
-    },
-    setUserInfoHandler() {
-      // 执行setUserInfo这个action，并传递参数
-      dispatch(setUserInfo({ name: '李四', age: 50 }));
-    },
-    // 执行getUserListAsync这个异步action，并且是一个函数
+    // 定义getUserListAsync这个异步action，并且是一个函数
     getUserListHandler() {
       // dispatch函数接收的是一个对象，但是我们需要接收的是一个函数，完了！！！写不下去了
-      dispatch(getUserListAsync); // 不能这样写，dispatch不能接收函数
+      // dispatch(getUserListAsync({ id: "001" })); // 不能这样写，dispatch不能接收函数
     },
   };
 };
 
-// 通过 connect 函数将 User 组件与 mapStateToProps 和 mapDispatchToProps 方法关联
 export default connect(mapStateToProps, mapDispatchToProps)(User);
 ```
 
