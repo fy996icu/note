@@ -58,6 +58,13 @@ export default defineConfig({
       ],
     },
     {
+      title: '代码片段',
+      children: [
+        { title: 'JavaScript', path: '/code_js' },
+        { title: 'CSS', path: '/code_css' },
+      ],
+    },
+    {
       title: 'GitHub',
       path: 'https://github.com/fy996icu/note_umi',
     },
