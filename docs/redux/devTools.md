@@ -1,7 +1,7 @@
 ---
 title: Redux DevTools
 toc: menu
-order: 7
+order: 8
 ---
 
 <BackTop></BackTop>
@@ -105,7 +105,7 @@ $ yarn add redux-devtools-extension -D
 // store.js
 
 // 引入createStore，专门用于创建redux中最为核心的store对象
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
 // 引入汇总之后的reducer
 import reducers from './reducers';
@@ -119,7 +119,9 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 // 使用调试工具-在生产环境也使用extension
 // import { composeWithDevTools } from "redux-devtools-extension/logOnlyInProduction";
 
-const composeEnhancers = composeWithDevTools({});
+const composeEnhancers = composeWithDevTools({
+  // 可以添加一些配置
+});
 const store = createStore(reducers, composeEnhancers(applyMiddleware(reduxPromiseMiddleware)));
 
 export default store;
