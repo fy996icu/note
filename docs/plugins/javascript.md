@@ -189,6 +189,20 @@ $ yarn add gojs
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/gojs.png)
 
+## 可视化网络图谱
+
+```bash
+$ yarn add vis-network
+```
+
+**插件名称：** [vis-network](https://www.npmjs.com/package/vis-network)
+
+**在线示例：** [点击查看示例](https://visjs.github.io/vis-network/examples/)
+
+**插件简介：** vis-network 是一种可视化工具，用于显示由节点和边组成的网络图谱。vis-network 易于使用，并支持自定义形状、样式、颜色、大小、图像等。vis-network 可在任何现代浏览器上流畅运行，最多可容纳数千个节点和边。为了处理大量节点，vis-network 支持集群。vis-network 使用 HTML 画布进行渲染。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vis-network.png)
+
 ## 数字滚动
 
 CountUp.js 是一个无依赖的轻量级 JavaScript 类，可用于快速创建以更有趣的方式显示数字数据的动画。
@@ -454,3 +468,31 @@ $ yarn add @popperjs/core
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/popper.png)
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/popper2.png)
+
+## 高级表格插件
+
+```bash
+$ yarn add gridjs
+```
+
+**插件名称：** [Grid.js](https://www.npmjs.com/package/gridjs)
+
+**在线示例：** [点击查看示例](https://gridjs.io/)
+
+**插件简介：** Grid.js 是一个免费的开源 JavaScript 表格插件。它适用于大多数 JavaScript 框架，包括 React、Angular、Vue 和 VanillaJs。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/gridjs.png)
+
+## Canvas 拓展库
+
+```bash
+$ yarn add konva
+```
+
+**插件名称：** [Konva](https://www.npmjs.com/package/konva)
+
+**在线示例：** [点击查看示例](http://konvajs-doc.bluehymn.com/)
+
+**插件简介：** Konva.js - 适用于桌面/移动端应用的 HTML5 2d canvas 库。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/konva.png)

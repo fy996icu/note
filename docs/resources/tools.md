@@ -46,6 +46,10 @@ order: 4
 
 **简介：** 稳定、快速、免费的前端开源项目 CDN 加速服务。
 
+## [JSDELIVR](https://www.jsdelivr.com/)
+
+**简介：** jsDelivr 是一个免费开源的 CDN 解决方案，用于帮助开发者和站长。包含 JavaScript 库、jQuery 插件、CSS 框架、字体等等 Web 上常用的静态资源。
+
 ## [StorySet 自定义插画](https://storyset.com/)
 
 **简介：** StorySet 是一个提供免费插画的网站，你可以按照标签，颜色进行插图筛选，将合适的插图用于你的项目之中。你还可以对插图进行简单的自定义，改变颜色，隐藏不想要的内容，插图支持 png 格式和 svg 格式进行保存。

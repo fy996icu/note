@@ -351,6 +351,20 @@ $ yarn add vue-chartjs chart.js
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vue-chartjs.png)
 
+## 关系图谱
+
+这是一个 Vue 关系图谱组件，可以展示如组织机构图谱、股权架构图谱、集团关系图谱等知识图谱，可提供多种图谱布局，包括树状布局、中心布局、力学布局自动布局等，可以实现类似企查查那样的关系图谱。
+
+```bash
+$ yarn add relation-graph
+```
+
+**插件名称：** [relation-graph](https://www.npmjs.com/package/relation-graph)
+
+**在线示例：** [点击查看示例](http://relation-graph.com/#/docs/start)
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/relation-graph.png)
+
 ## HTML meta 管理器
 
 ```bash
@@ -381,6 +395,20 @@ $ yarn add vuex-persistedstate
 
 **插件简介：** Vuex 状态机制，一刷新就会重置，解决问题的方式一般都是存储起来(session/local Storage)，vuex-persistedstate 插件帮我们集成了这些功能。
 
+<Badge>注意</Badge>：此插件已经停止更新。
+
+推荐使用 `vuex-persist` 替代：
+
+```bash
+$ yarn add vuex-persist
+```
+
+**插件名称：** [vuex-persist](https://www.npmjs.com/package/vuex-persist)
+
+**在线示例：** [点击查看示例](https://github.com/championswimmer/vuex-persist#readme)
+
+**插件简介：** 一个支持 Typescript 的 Vuex 插件，使您能够将应用程序的状态保存到持久存储中，例如 Cookies 或 localStorage。
+
 ## 二维码生成器
 
 ```bash
@@ -392,3 +420,17 @@ $ yarn add vue-qrcode
 **在线示例：** [点击查看示例](https://github.com/rx-ts/vue/tree/master/packages/vue-qrcode)
 
 **插件简介：** 一个用 qrcode 生成二 ​​ 维码的 Vue 组件。
+
+## 虚拟滚动条
+
+```bash
+$ yarn add vue-virtual-scroller
+```
+
+**插件名称：** [vue-virtual-scroller](https://www.npmjs.com/package/vue-virtual-scroller)
+
+**在线示例：** [点击查看示例](https://akryum.github.io/vue-virtual-scroller/#/)
+
+**插件简介：** 快速滚动任意数量的数据。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vue-virtual-scroller.png)

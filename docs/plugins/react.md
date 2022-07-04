@@ -154,3 +154,17 @@ $ yarn add @floating-ui/react-dom
 **插件简介：** Floating UI 是一个用于创建浮动元素的低级工具包。工具提示、弹出框、下拉菜单、菜单等。
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/floating-ui.png)
+
+## 不可变状态树
+
+```bash
+$ yarn add immer
+```
+
+**插件名称：** [Immer](https://www.npmjs.com/package/immer)
+
+**在线示例：** [点击查看示例](https://immerjs.github.io/immer/)
+
+**插件简介：** Immer 简化了不可变数据结构的处理，Immer 可以在需要使用不可变数据结构的任何上下文中使用。例如与 React state、React 或 Redux reducers 或者 configuration management 结合使用。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/immer.png)

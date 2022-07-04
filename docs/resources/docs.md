@@ -164,6 +164,14 @@ order: 1
 
 **简介：** jQuery 是一个快速、小型且功能丰富的 JavaScript 库。它使 HTML 文档遍历和操作、事件处理、动画和 Ajax 之类的事情变得更加简单，它具有易于使用的 API，可在多种浏览器中工作。jQuery 结合了多功能性和可扩展性，改变了数百万人编写 JavaScript 的方式。
 
+### [ESLint](https://eslint.bootcss.com/)
+
+**简介：** 可组装的 JavaScript 和 JSX 检查工具。ESLint 最初是由 Nicholas C. Zakas 于 2013 年 6 月创建的开源项目。它的目标是提供一个插件化的 javascript 代码检测工具。
+
+### [Babel](https://www.babeljs.cn/)
+
+**简介：** Babel 是一个工具链，主要用于将采用 ECMAScript 2015+ 语法编写的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。
+
 ## CSS 系列
 
 ### [Less](https://less.bootcss.com/)
