@@ -55,6 +55,7 @@ export default defineConfig({
         { title: 'Redux', path: '/redux' },
         { title: 'Vue3.x', path: '/vue3' },
         { title: 'Pinia', path: '/pinia' },
+        { title: 'Git', path: '/git' },
       ],
     },
     {
