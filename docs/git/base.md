@@ -93,6 +93,40 @@ user.email=2120084903@qq.com
 
 通过输出的内容可以看到 `user.name=fanyong` 和 `user.email=2120084903@qq.com` 都被设置上了，按 `Q` 键退出。
 
+## 工作区和暂存区
+
+### 工作区
+
+工作区（Working Directory），也称为工作目录，也就是要进行版本管理的文件夹，你在电脑里能看到的目录。
+
+### 暂存区
+
+暂存区（Stage 或者 Index），暂时存放将要记录修改版本的文件的区域，英文叫 `stage` 或 `index`。一般存放在 `.git` 目录下的 `index` 文件`（.git/index）`中，所以我们把暂存区有时也叫作索引（index）。
+
+### 版本库
+
+版本库（Repository），工作区有一个隐藏目录 `.git`，这个不算工作区，而是 Git 的版本库。
+
+Git 的版本库里存了很多东西，其中最重要的就是称为 `stage`（或者叫 `index`）的暂存区，还有 Git 为我们自动创建的第一个分支 `master `，以及指向 master 的一个指针叫 `HEAD`。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/git-stage.jpeg)
+
+前面讲了我们把文件往 Git 版本库里添加的时候，是分两步执行的：
+
+1. 第一步是用 `git add` 把文件添加进去，实际上就是把文件修改添加到暂存区。
+
+2. 第二步是用 `git commit` 提交更改，实际上就是把暂存区的所有内容提交到当前分支。
+
+因为我们创建 Git 版本库时，Git 自动为我们创建了唯一一个 `master` 分支，所以，现在 `git commit` 就是往 `master` 分支上提交更改。
+
+工作目录下的每一个文件都不外乎这两种状态：`已跟踪` 或 `未跟踪`。
+
+`git add` 可以把文件加入暂存区。 `git commit` 命令可以把暂存区的文件更新变化记录到版本库中永久保存。
+
+<Alert type="warning">
+  注意，不在暂存区的文件，不会被追踪。
+</Alert>
+
 ## 添加文件
 
 版本库建好了我们就可以向里面添加文件了，通过 `git add 文件` 命令可以让新建的文件被 Git 跟踪。
@@ -404,3 +438,277 @@ index b9e0581..c1f973d 100644
 - `git diff --cached 文件名`：是比较 `暂存区` 和 `版本库` 中指定文件的差异。
 
 - `git diff HEAD 文件名`：是比较 `工作区` 和 `版本库` 中指定文件的差异，其中 `HEAD` 代表最近一次提交的信息。
+
+## 查看日志
+
+`git log` 命令帮助我们输出 Git 的所有操作日志。
+
+### 查看详细日志
+
+通过 `git log` 可以查看到每次操作的详细日志。
+
+```bash
+# 查看操作日志
+$ git log
+
+# 输出：
+commit 6416e4ce78123ec72d7ade19501825558ca4ab51 (HEAD -> master)
+Author: fanyong <2120084903@qq.com>
+Date:   Fri Jul 8 00:09:01 2022 +0800
+
+    README.txt补全这首诗
+
+commit 732c774e40203a33d67b937bfdf7139972f8d33a
+Author: fanyong <2120084903@qq.com>
+Date:   Thu Jul 7 23:42:26 2022 +0800
+
+    README.txt新增诗句
+
+commit 84f92b0984bc8ded5395ad540ceced90f11ef062
+Author: fanyong <2120084903@qq.com>
+Date:   Thu Jul 7 23:36:26 2022 +0800
+
+    README.txt新增诗句
+```
+
+<Alert type="info">
+  注意，按 Q 键可以退出查看日志，回车键查看更多。
+</Alert>
+
+### 查看修改的差异
+
+通过 `git log -p` 可以查看到文件每次修改的差异。
+
+```bash
+# 查看修改的差异
+$ git log -p
+
+# 输出：
+commit 6416e4ce78123ec72d7ade19501825558ca4ab51 (HEAD -> master)
+Author: fanyong <2120084903@qq.com>
+Date:   Fri Jul 8 00:09:01 2022 +0800
+
+    README.txt补全这首诗
+
+diff --git a/README.txt b/README.txt
+index 26034a3..b9e0581 100644
+--- a/README.txt
++++ b/README.txt
+@@ -1,2 +1,4 @@
+ 云想衣裳花想容
+ 春风拂槛露华浓
++若非群玉山头见
++会向瑶台月下逢
+
+commit 732c774e40203a33d67b937bfdf7139972f8d33a
+Author: fanyong <2120084903@qq.com>
+Date:   Thu Jul 7 23:42:26 2022 +0800
+
+    README.txt新增诗句
+
+diff --git a/README.txt b/README.txt
+index 7a0709c..26034a3 100644
+--- a/README.txt
++++ b/README.txt
+@@ -1 +1,2 @@
+ 云想衣裳花想容
++春风拂槛露华浓
+```
+
+### 查看最近 N 次的差异
+
+通过 `git log -p -N` 可以查看到最近 `N` (N 是数字)次修改的差异。
+
+```bash
+# 查看最近 3 次的差异
+$ git log -p -3
+
+# 输出：
+commit 6416e4ce78123ec72d7ade19501825558ca4ab51 (HEAD -> master)
+Author: fanyong <2120084903@qq.com>
+Date:   Fri Jul 8 00:09:01 2022 +0800
+
+    README.txt补全这首诗
+
+diff --git a/README.txt b/README.txt
+index 26034a3..b9e0581 100644
+--- a/README.txt
++++ b/README.txt
+@@ -1,2 +1,4 @@
+ 云想衣裳花想容
+ 春风拂槛露华浓
++若非群玉山头见
++会向瑶台月下逢
+
+commit 732c774e40203a33d67b937bfdf7139972f8d33a
+Author: fanyong <2120084903@qq.com>
+Date:   Thu Jul 7 23:42:26 2022 +0800
+
+    README.txt新增诗句
+
+diff --git a/README.txt b/README.txt
+index 7a0709c..26034a3 100644
+--- a/README.txt
++++ b/README.txt
+@@ -1 +1,2 @@
+ 云想衣裳花想容
++春风拂槛露华浓
+
+commit 84f92b0984bc8ded5395ad540ceced90f11ef062
+Author: fanyong <2120084903@qq.com>
+Date:   Thu Jul 7 23:36:26 2022 +0800
+
+    README.txt新增诗句
+
+diff --git a/README.txt b/README.txt
+index b9e0581..7a0709c 100644
+--- a/README.txt
++++ b/README.txt
+@@ -1,4 +1 @@
+ 云想衣裳花想容
+-春风拂槛露华浓
+-若非群玉山头见
+-会向瑶台月下逢
+(END)
+```
+
+### 查看统计信息
+
+通过 `git log --stat` 可以查看每次提交的下面列出所有被修改过的文件、有多少文件被修改了以及被修改过 的文件的哪些行被移除或是添加了。 在每次提交的最后还有一个总结。
+
+```bash
+# 查看统计信息
+$ git log --stat
+
+# 输出：
+commit 6416e4ce78123ec72d7ade19501825558ca4ab51 (HEAD -> master)
+Author: fanyong <2120084903@qq.com>
+Date:   Fri Jul 8 00:09:01 2022 +0800
+
+    README.txt补全这首诗
+
+ README.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 732c774e40203a33d67b937bfdf7139972f8d33a
+Author: fanyong <2120084903@qq.com>
+Date:   Thu Jul 7 23:42:26 2022 +0800
+
+    README.txt新增诗句
+
+ README.txt | 1 +
+ 1 file changed, 1 insertion(+)
+```
+
+通过输出的信息可以看到每次修改点的统计信息，类似这样的 `1 file changed, 2 insertions(+)`。
+
+### 在一行内显示日志
+
+通过 `git log --oneline` 我们可以将每次提交的信息以独立一行的形式显示。
+
+```bash
+# 在一行内显示日志
+$ git log --oneline
+
+# 输出：
+6416e4c (HEAD -> master) README.txt补全这首诗
+732c774 README.txt新增诗句
+84f92b0 README.txt新增诗句
+c523445 README.txt新增诗句
+3e5c834 README.txt新增诗句
+666b492 README.txt新增诗句
+1f282c1 新增b.txt文件
+d5f2447 a.txt文件
+d4810b1 新增README.txt文件
+(END)
+```
+
+### 图形化输出
+
+通过 `git log --graph` 我们可以查看历史中什么时候出现了分支、合并。
+
+```bash
+# 图形化输出
+$ git log --graph
+
+# 输出：
+Merge branch 'dev'
+*   commit cea5a108103558bf6ee283b4ef9bece7030ad5ce (HEAD -> master)
+|\  Merge: b2554c8 653427e
+| | Author: fanyong <2120084903@qq.com>
+| | Date:   Fri Jul 8 23:08:27 2022 +0800
+| |
+| |     Merge branch 'dev'
+| |
+| * commit 653427ea429190e790ef548a27f0227f492dfe1e (dev)
+| | Author: fanyong <2120084903@qq.com>
+| | Date:   Fri Jul 8 23:08:16 2022 +0800
+| |
+| |     dev分支b.txt文件新增诗句
+| |
+* | commit b2554c8b99a1c5416cb5427fb5ae5804bc636dc5
+|/  Author: fanyong <2120084903@qq.com>
+|   Date:   Fri Jul 8 23:06:18 2022 +0800
+|
+|       master分支a.txt文件新增诗句
+|
+* commit 750d3a48327323b4ae4d03644927abd853f8ad1b
+| Author: fanyong <2120084903@qq.com>
+| Date:   Fri Jul 8 23:02:56 2022 +0800
+|
+|     dev分支c.txt文件新增诗句
+|
+* commit 5cc43d138caaa30cdfa403bba33419c177c1d6eb
+| Author: fanyong <2120084903@qq.com>
+| Date:   Fri Jul 8 22:58:49 2022 +0800
+|
+```
+
+通过图形化的输出信息现在我们可以更清楚明了地看到何时工作分叉、又何时归并。
+
+### 逆向显示
+
+通过 `git log --reverse` 逆向显示所有日志。
+
+```bash
+# 逆向独立行显示日志
+$ git log --reverse --oneline
+
+# 输出：
+d4810b1 新增README.txt文件
+d5f2447 a.txt文件
+1f282c1 新增b.txt文件
+666b492 README.txt新增诗句
+3e5c834 README.txt新增诗句
+c523445 README.txt新增诗句
+84f92b0 README.txt新增诗句
+732c774 README.txt新增诗句
+6416e4c README.txt补全这首诗
+5cc43d1 dev分支新增c.txt文件
+750d3a4 dev分支c.txt文件新增诗句
+b2554c8 master分支a.txt文件新增诗句
+653427e (dev) dev分支b.txt文件新增诗句
+cea5a10 (HEAD -> master) Merge branch 'dev'
+(END)
+```
+
+通过 `--reverse` 选项输出的信息我们看到我们最先提交的信息排在了最上面。
+
+### 显示指定用户的日志
+
+通过 `git log --author` 可以查看指定用户的提交日志。
+
+```bash
+# 显示用户为 fanyong 的提交日志，并且只显示 5 行
+$ git log --author=fanyong --oneline -5
+
+# 输出：
+cea5a10 (HEAD -> master) Merge branch 'dev'
+653427e (dev) dev分支b.txt文件新增诗句
+b2554c8 master分支a.txt文件新增诗句
+750d3a4 dev分支c.txt文件新增诗句
+5cc43d1 dev分支新增c.txt文件
+(END)
+```
+
+通过输出信息我们可以看到用户名为 `fanyong` 的 `5` 条提交日志。
