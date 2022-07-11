@@ -206,7 +206,7 @@ f77f156 HEAD@{3}: commit: 修改test.txt，第二次提交
 
 ## 修改暂存状态
 
-有时候我们需要将添加到暂存区的状态撤销回来，我们依然使用 `git reset` 命令。
+有时候我们需要将添加到暂存区的状态撤销回来，我们依然使用 `git reset` 或者 `git restore` 命令。
 
 ### 取消工作区的修改
 
@@ -559,3 +559,60 @@ $ git commit -m '删除 index.txt'
 ```
 
 ## 文件回滚
+
+有时候我们需要将某个文件回退到指定的版本，我们可以使用 `git reset <commit id> <file>` 命令。
+
+新增 `study.txt` 文件并新增和修改一个提交四次，内容如下：
+
+```bash
+$ cat study.txt
+# 输出：
+新增study.txt文件
+修改study.txt文件，第二次提交
+修改study.txt文件，第三次提交
+修改study.txt文件，第四次提交
+
+$ git log --oneline study.txt
+# 输出：
+fa04776 (HEAD -> master) 修改study.txt文件，第四次提交
+c49fd1e 修改study.txt文件，第三次提交
+33fc0c9 修改study.txt文件，第二次提交
+cf36a49 新增study.txt文档
+(END)
+```
+
+现在我们需要将 `study.txt` 回滚到 `修改study.txt文件，第二次提交` 这个提交点：
+
+```bash
+# 1、查看 study.txtx 的提交日志，找到回滚点的 commit id
+$ git log --oneline study.txt
+# 输出：
+fa04776 修改study.txt文件，第四次提交
+c49fd1e 修改study.txt文件，第三次提交
+33fc0c9 修改study.txt文件，第二次提交
+cf36a49 新增study.txt文档
+(END)
+
+# 2、回滚到 33fc0c9 这个 commit id
+$ git reset 33fc0c9 study.txt
+# 输出：
+Unstaged changes after reset:
+M	study.txt
+
+# 3、提交到本地仓库
+$ git commit -m '回滚到修改study.txt文件，第二次提交'
+
+# 4、更新到工作目录
+$ git restore study.txt
+
+# 5、查看内容
+$ cat study.txt
+# 输出：
+新增study.txt文件
+修改study.txt文件，第二次提交
+
+# 6、提交到远程仓库
+$ git push origin master
+```
+
+通过输出信息我们可知 `study.txt` 回退到了 `修改study.txt文件，第二次提交` 这个提交点。
