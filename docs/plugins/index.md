@@ -22,6 +22,20 @@ $ yarn add @vueuse/core
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vueuse.png)
 
+**其他**
+
+```bash
+$ yarn add vue-composable
+```
+
+**插件名称：** [vue-composable](https://www.npmjs.com/package/vue-composable)
+
+**在线示例：** [点击查看示例](https://pikax.me/vue-composable/#introduction)
+
+**插件简介：** 这个库的目标是成为许多现实世界可组合函数的一站式商店，通过积极的 tree-shaking 来让你的最终代码保持清晰。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vue-composable.png)
+
 ## 数字滚动插件
 
 ```bash
@@ -434,3 +448,82 @@ $ yarn add vue-virtual-scroller
 **插件简介：** 快速滚动任意数量的数据。
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vue-virtual-scroller.png)
+
+## 关键词高亮
+
+**Vue 3.x**
+
+```bash
+$ yarn add vue3-highlight
+```
+
+**插件名称：** [vue3-highlight](https://www.npmjs.com/package/vue3-highlight/v/0.2.4)
+
+**在线示例：** [点击查看示例](https://mooncom.github.io/vue3-highlight/dist/)
+
+**插件简介：** 实现了一个句子根据查询字词进行高亮显示的功能，查询的字词的输入格式为数组（为了 兼容分词查询功能），根据字词数组的内容进行多个词的高亮展示。使用模板差值 `{{ }}` 和 `v-text`，而不是`v-html` 进行高亮字词的展示，减少 `XSS` 攻击的风险。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vue3-highlight.png)
+
+**Vue 2.x**
+
+```bash
+$ yarn add v-highlight-component
+```
+
+**插件名称：** [v-highlight-component](https://www.npmjs.com/package/v-highlight-component)
+
+**在线示例：** [点击查看示例](https://mooncom.github.io/vue3-highlight/dist/)
+
+**插件简介：** 实现了一个句子根据查询字词进行高亮显示的功能，查询的字词的输入格式为数组（为了 兼容分词查询功能），根据字词数组的内容进行多个词的高亮展示。使用模板差值 `{{ }}` 和 `v-text`，而不是`v-html` 进行高亮字词的展示，减少 `XSS` 攻击的风险。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vue3-highlight.png)
+
+**其他**
+
+```bash
+$ yarn add vue-search-highlight
+```
+
+**插件名称：** [vue-search-highlight](https://www.npmjs.com/package/vue-search-highlight)
+
+**在线示例：** [点击查看示例](https://wintc.top/laboratory/#/search-highlight)
+
+**插件简介：** Vue 文本关键字高亮组件，v1.1.0 开始支持 HTML 内容跨标签匹配关键字。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vue-search-highlight.png)
+
+## Vue PDF 查看器
+
+```bash
+# Vue2
+$ yarn add pdfvuer
+
+# Vue3
+$ yarn add pdfvuer@next
+```
+
+**插件名称：** [Pdfvuer](https://www.npmjs.com/package/pdfvuer)
+
+**在线示例：** [点击查看示例](https://arkokoley.github.io/pdfvuer/)
+
+**插件简介：** Vue 的 PDF 查看器，使用 Mozilla 的 PDF.js，支持 Vue2 和 Vue3。
+
+```html
+<template>
+  <pdf src="./static/relativity.pdf" :page="1">
+    <template slot="loading"> loading content here... </template>
+  </pdf>
+</template>
+
+<script>
+  import pdf from 'pdfvuer';
+  import 'pdfjs-dist/build/pdf.worker.entry'; // not needed since v1.9.1
+
+  export default {
+    components: {
+      pdf,
+    },
+  };
+</script>
+```

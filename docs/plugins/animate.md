@@ -145,3 +145,17 @@ $ yarn add @svgdotjs/svg.js
 **插件简介：** 用于操作和动画 SVG 的轻量级库，没有任何依赖项。
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/svgjs.png)
+
+## GreenSock 动画平台
+
+```bash
+$ yarn add gsap
+```
+
+**插件名称：** [GSAP](https://www.npmjs.com/package/gsap/v/3.7.1)
+
+**在线示例：** [点击查看示例](https://greensock.com/docs/v3/GSAP)
+
+**插件简介：** GreenSock 动画平台（GSAP）可以对 JavaScript 可以操作的所有内容进行动画处理（CSS 属性，SVG，React，画布，通用对象等），同时解决了不同浏览器上存在的兼容性问题，而且速度极快（比 jQuery 快 20 倍）。大约有 1000 万个站点和许多主要品牌都使用 GSAP。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/gsap.png)

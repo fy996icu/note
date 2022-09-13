@@ -37,3 +37,15 @@ order: 5
 ## [Extfans](https://www.extfans.com/)
 
 **简介：** Chrome 插件拓展下载网，国内访问不到 Chrome 拓展商店的可以使用这个网站下载，还是挺不错的。
+
+## [Similarsites](https://cn.similarsites.com/)
+
+**简介：** 它可以通过你已知的某个网站，快速搜索查询到大量同类型网站，通过举一反三，找到大量优质站点。
+
+## [Greasy Fork](https://greasyfork.org/zh-CN)
+
+**简介：** 在这个网站里面可以下载到许多 Tampermonkey（油猴）的脚本。
+
+## [GreenSock](https://greensock.com/)
+
+**简介：** GreenSock 动画平台（GSAP）可以对 JavaScript 可以操作的所有内容进行动画处理（CSS 属性，SVG，React，画布，通用对象等），同时解决了不同浏览器上存在的兼容性问题，而且速度极快（比 jQuery 快 20 倍）。大约有 1000 万个站点和许多主要品牌都使用 GSAP。

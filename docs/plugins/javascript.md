@@ -496,3 +496,17 @@ $ yarn add konva
 **插件简介：** Konva.js - 适用于桌面/移动端应用的 HTML5 2d canvas 库。
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/konva.png)
+
+## 生成符号字
+
+```bash
+$ yarn add figlet
+```
+
+**插件名称：** [Figlet](https://www.npmjs.com/package/figlet)
+
+**在线示例：** [点击查看示例](http://patorjk.com/software/taag/)
+
+**插件简介：** 通过 figlet 可以使用代码生成许多符号字。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/figlet.png)

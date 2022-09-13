@@ -87,3 +87,70 @@ module.exports = {
 **插件简介：** 使用交互式可缩放树形图可视化 webpack 输出文件的大小。打包文件分析工具我们就可以优化我们的项目。
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/webpack-bundle-analyzer.png)
+
+## 按需组件自动导入
+
+```bash
+$ yarn add unplugin-vue-components -D
+```
+
+**插件名称：** [unplugin-vue-components](https://www.npmjs.com/package/unplugin-vue-components)
+
+**在线示例：** [点击查看示例](https://github.com/antfu/unplugin-vue-components)
+
+**插件简介：** Vue 的按需组件自动导入。
+
+```html
+<template>
+  <div>
+    <!-- 无需导入，直接用 -->
+    <HelloWorld msg="Hello Vue 3.0 + Vite" />
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'App',
+  };
+</script>
+```
+
+## 自动导入 API
+
+```bash
+$ yarn add unplugin-auto-import -D
+```
+
+**插件名称：** [unplugin-auto-import](https://www.npmjs.com/package/unplugin-auto-import)
+
+**在线示例：** [点击查看示例](https://github.com/antfu/unplugin-auto-import#readme)
+
+**插件简介：** 自动导入 Vite、Webpack、Rollup 和 esbuild 的 API。支持 TypeScript。
+
+```js
+/* Vue */
+
+// without
+import { computed, ref } from 'vue';
+const count = ref(0);
+const doubled = computed(() => count.value * 2);
+
+// with
+const count = ref(0);
+const doubled = computed(() => count.value * 2);
+
+/* React */
+
+// without
+import { useState } from 'react';
+export function Counter() {
+  const [count, setCount] = useState(0);
+  return <div>{count}</div>;
+}
+
+// with
+export function Counter() {
+  const [count, setCount] = useState(0);
+  return <div>{count}</div>;
+}
+```
