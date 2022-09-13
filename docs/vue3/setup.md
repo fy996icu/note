@@ -1,12 +1,12 @@
 ---
-group:
-  title: 快速上手
-order: 4
+title: 了解 Setup
+toc: menu
+order: 3
 ---
 
 <BackTop></BackTop>
 
-# Setup
+# 了解 Setup
 
 ## 参数
 

@@ -1,7 +1,7 @@
 ---
-group:
-  title: Script Setup
-order: 10
+title: 宏命令报错问题
+toc: menu
+order: 22
 ---
 
 <BackTop></BackTop>

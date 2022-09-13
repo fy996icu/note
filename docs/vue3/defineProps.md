@@ -1,7 +1,7 @@
 ---
-group:
-  title: Script Setup
-order: 3
+title: defineProps
+toc: menu
+order: 15
 ---
 
 <BackTop></BackTop>

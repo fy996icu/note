@@ -1,7 +1,7 @@
 ---
-group:
-  title: 快速上手
-order: 5
+title: 依赖注入
+toc: menu
+order: 4
 ---
 
 <BackTop></BackTop>
@@ -12,7 +12,7 @@ order: 5
 
 `provide` 与 `inject` 可实现跨层级组件间通信（祖孙间通信）。
 
-![provide 与 inject](https://v3.cn.vuejs.org/images/components_provide.png)
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/provide-inject.png)
 
 例如，我们有这样的层次结构：
 

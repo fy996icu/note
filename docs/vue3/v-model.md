@@ -1,12 +1,12 @@
 ---
-group:
-  title: 快速上手
-order: 12
+title: v-model 变更
+toc: menu
+order: 10
 ---
 
 <BackTop></BackTop>
 
-# v-model 的变更
+# v-model 变更
 
 用于自定义组件时，`v-model` prop 和事件默认名称已更改。
 

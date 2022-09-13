@@ -1,12 +1,12 @@
 ---
-group:
-  title: 快速上手
+title: 生命周期
+toc: menu
 order: 2
 ---
 
 <BackTop></BackTop>
 
-# 生命周期钩子
+# 生命周期
 
 ## 生命周期示意图
 

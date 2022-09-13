@@ -1,12 +1,12 @@
 ---
-group:
-  title: Script Setup
-order: 2
+title: 组件使用
+toc: menu
+order: 14
 ---
 
 <BackTop></BackTop>
 
-# 组件的使用
+# 组件使用
 
 ## 组件自动注册
 

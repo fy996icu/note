@@ -1,7 +1,7 @@
 ---
-group:
-  title: Script Setup
-order: 7
+title: 与<script>使用
+toc: menu
+order: 19
 ---
 
 <BackTop></BackTop>

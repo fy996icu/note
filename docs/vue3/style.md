@@ -1,7 +1,7 @@
 ---
-group:
-  title: 快速上手
-order: 13
+title: style 特性
+toc: menu
+order: 11
 ---
 
 <BackTop></BackTop>

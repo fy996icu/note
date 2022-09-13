@@ -1,7 +1,7 @@
 ---
-group:
-  title: Script Setup
-order: 1
+title: 响应性语法糖
+toc: menu
+order: 13
 ---
 
 <BackTop></BackTop>

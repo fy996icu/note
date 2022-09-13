@@ -1,7 +1,7 @@
 ---
-group:
-  title: Script Setup
-order: 8
+title: 顶层 await
+toc: menu
+order: 20
 ---
 
 <BackTop></BackTop>

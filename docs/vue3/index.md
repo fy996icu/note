@@ -1,12 +1,12 @@
 ---
-group:
-  title: 快速上手
+title: 基本介绍
+toc: menu
 order: 0
 ---
 
 <BackTop></BackTop>
 
-# 认识 Vue3
+# 基本介绍
 
 ## 了解相关信息
 

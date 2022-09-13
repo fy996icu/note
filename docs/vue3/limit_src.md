@@ -1,7 +1,7 @@
 ---
-group:
-  title: Script Setup
-order: 9
+title: 限制使用 src 导入
+toc: menu
+order: 21
 ---
 
 <BackTop></BackTop>

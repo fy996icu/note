@@ -1,12 +1,12 @@
 ---
-group:
-  title: 快速上手
-order: 11
+title: 移除的 API
+toc: menu
+order: 9
 ---
 
 <BackTop></BackTop>
 
-# 被移除的 API
+# 移除的 API
 
 ## `keyCode` 修饰符
 

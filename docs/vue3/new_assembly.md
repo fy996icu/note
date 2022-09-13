@@ -1,7 +1,7 @@
 ---
-group:
-  title: 快速上手
-order: 9
+title: 新的组件
+toc: menu
+order: 7
 ---
 
 <BackTop></BackTop>

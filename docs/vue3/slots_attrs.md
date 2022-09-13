@@ -1,7 +1,7 @@
 ---
-group:
-  title: Script Setup
-order: 6
+title: useSlots 和 useAttrs
+toc: menu
+order: 18
 ---
 
 <BackTop></BackTop>

@@ -1,7 +1,7 @@
 ---
-group:
-  title: 快速上手
-order: 8
+title: Ref 数组
+toc: menu
+order: 6
 ---
 
 <BackTop></BackTop>

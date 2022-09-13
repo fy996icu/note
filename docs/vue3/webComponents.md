@@ -1,7 +1,7 @@
 ---
-group:
-  title: 快速上手
-order: 6
+title: Web Components
+toc: menu
+order: 12
 ---
 
 <BackTop></BackTop>

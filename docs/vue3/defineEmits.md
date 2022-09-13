@@ -1,7 +1,7 @@
 ---
-group:
-  title: Script Setup
-order: 4
+title: defineEmits
+toc: menu
+order: 16
 ---
 
 <BackTop></BackTop>

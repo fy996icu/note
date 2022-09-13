@@ -1,7 +1,7 @@
 ---
-group:
-  title: Script Setup
-order: 5
+title: defineExpose
+toc: menu
+order: 17
 ---
 
 <BackTop></BackTop>

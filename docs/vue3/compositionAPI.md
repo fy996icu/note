@@ -1,6 +1,6 @@
 ---
-group:
-  title: 快速上手
+title: 组合式 API
+toc: menu
 order: 1
 ---
 
@@ -16,7 +16,23 @@ order: 1
 
 **选项式 API 和 组合式 API 图例**
 
-![api对比图](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/api%E5%AF%B9%E6%AF%94.png)
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/api%E5%AF%B9%E6%AF%94.png)
+
+## Option API 的问题
+
+在传统的 `Vue OptionsAPI` 中，新增或者修改一个需求，就需要分别在 `data` 、`methods`、`computed` 里修改 ，滚动条反复上下移动。
+
+![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f84e4e2c02424d9a99862ade0a2e4114~tplv-k3u1fbpfcp-watermark.image)
+
+![img](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e5ac7e20d1784887a826f6360768a368~tplv-k3u1fbpfcp-watermark.image)
+
+## 使用 Composition API
+
+我们可以更加优雅的组织我们的代码，函数。让相关功能的代码更加有序的组织在一起。
+
+![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bc0be8211fc54b6c941c036791ba4efe~tplv-k3u1fbpfcp-watermark.image)
+
+![img](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6cc55165c0e34069a75fe36f8712eb80~tplv-k3u1fbpfcp-watermark.image)
 
 ## setup 组件选项
 
@@ -109,7 +125,7 @@ order: 1
 
 **注意**：将值封装在一个对象中，看似没有必要，但为了保持 JavaScript 中不同数据类型的行为统一，这是必须的。这是因为在 JavaScript 中，`Number` 或 `String` 等基本类型是通过值而非引用传递的。
 
-![ref](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/ref.gif)
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/ref.gif)
 
 在任何值周围都有一个封装对象，这样我们就可以在整个应用中安全地传递它，而不必担心在某个地方失去它的响应性。
 
