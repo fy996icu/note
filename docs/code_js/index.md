@@ -1,9 +1,9 @@
 ---
-title: JavaScript片段
+title: DOM操作
 toc: menu
 order: 0
 ---
 
 <BackTop></BackTop>
 
-# JavaScript 片段
+# DOM 操作
