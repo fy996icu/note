@@ -22,7 +22,7 @@ export default defineConfig({
   hash: true,
   algolia: {
     appId: 'SIZ4S3LOST',
-    apiKey: '66c9dbfacce505e6c0bd676a09481a09',
+    apiKey: '3f58dca05e25408fbd309428058efcfc',
     indexName: 'fy996icu',
   },
   // 配置antd按需加载
