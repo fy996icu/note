@@ -8,8 +8,8 @@ img[alt=img] {box-shadow: 0px 0px 16px #e2e2e2;border-radius: 8px;margin-top: 16
 export default defineConfig({
   title: 'dumi',
   mode: 'site',
-  base: '/note',
-  publicPath: '/note/',
+  // base: '/note',
+  // publicPath: '/note/',
   locales: [['zh-CN', '中文']],
   favicon:
     'https://user-images.githubusercontent.com/9554297/83762004-a0761b00-a6a9-11ea-83b4-9c8ff721d4b8.png',
@@ -26,7 +26,7 @@ export default defineConfig({
     indexName: 'fy996icu',
   },
   sitemap: {
-    hostname: 'https://fy996icu.github.io/note/',
+    hostname: 'https://fy996icu.github.io/',
   },
   // 配置antd按需加载
   extraBabelPlugins: [
