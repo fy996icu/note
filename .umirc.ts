@@ -54,7 +54,10 @@ export default defineConfig({
     },
     {
       title: '项目配置',
-      children: [{ title: 'Vue项目配置', path: '/vueconfig' }],
+      children: [
+        { title: 'Vue2.x', path: '/vueconfig' },
+        { title: 'Vue3.x', path: '/projectconfig' },
+      ],
     },
     {
       title: '技术文档',
