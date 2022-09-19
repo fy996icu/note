@@ -5,3 +5,6 @@ package.json
 .umi
 .umi-production
 .umi-test
+
+# 不格式化docs里面的md文件
+docs/**/*.md

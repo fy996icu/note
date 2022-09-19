@@ -116,7 +116,7 @@ module.exports = {
 }
 ```
 
-## 重启 Vs Code
+## 重启 VSCode
 
 有时候我们配置好后会发现不起作用，这时候我们重启一下 Vs Code 就行了。
 
@@ -492,23 +492,24 @@ dist
 
 ## 常用 Prettier 规则
 
-| 规则 | 默认值 | 说明 |
-| --- | :-: | --- |
-| `printWidth` | `80` | 换行长度 |
-| `tabWidth` | `2` | tab 缩进大小 |
-| `useTabs` | `false` | 使用 tab 而不是空格缩进行 |
-| `semi` | `true` | 每行末尾自动添加分号 |
-| `singleQuote` | `false` | 使用单引号而不是双引号 |
-| `quoteProps: "<as-needed &#124; consistent &#124; preserve>"` | `as-needed` | 对象属性的引号使用。 <br/> `as-needed`：仅在需要的时候使用。<br/> `consistent`：有一个属性需要引号，就都需要引号。<br/>`preserve`：保留用户输入的情况。 |
-| `jsxSingleQuote` | `false` | 在 `JSX` 中使用单引号而不是双引号 |
-| `trailingComma: "<es5 &#124; none &#124; all>"` | `es5` | 末尾使用逗号。 <br/> `none`：末尾没有逗号。<br/> `es5`：es5 有效的地方保留。<br/>`all`：在可能的地方都加上逗号。 |
-| `bracketSpacing` | `true` | 在对象文字中的括号之间打印空格。<br/> `true`- 示例：`{ foo: bar }` <br/> `false`- 示例：`{foo: bar}` |
-| `bracketSameLine` 标注 ① | `false` | 将 `>`多行 `HTML（HTML、JSX、Vue、Angular）`元素放在最后一行的末尾，而不是单独放在下一行（不适用于自闭合元素）。 |
-| `arrowParens: "<always &#124; avoid>"` | `always` | 箭头函数只有一个参数周围包含括号。<br/> `always`- 始终包括括号：`(x) => x` <br/> `avoid`- 尽可能省略括号：`x => x` |
-| `proseWrap: "<always &#124; never &#124; preserve>"` | `preserve` | 是否换行，默认情况下，`Prettier` 将按原样包含 `markdown` 文本，因为某些服务使用对行敏感的渲染器，例如 GitHub 注释和 BitBucket。<br/> `always`- 如果超过打印宽度，请换行。 <br/> `never`- 不要换行。<br/>`preserve`- 按原样显示。 |
-| `htmlWhitespaceSensitivity: "<css &#124; strict &#124; ignore>"` | `css` | 指定 HTML、Vue、Angular 和 Handlebars 的全局空格敏感性。<br/> `css`- 遵守 CSS display 属性的默认值。 <br/> `strict`- 空格被认为是敏感的。<br/>`ignore`- 空格被认为是不敏感的。 |
-| `vueIndentScriptAndStyle` | `false` | 是否缩进 Vue 文件中的代码 `script` 和 `style` 标签。 |
-| `endOfLine: "<lf &#124; crlf &#124; cr &#124; auto>"` | `lf` | 行结尾的风格。 <br/> `lf`- 仅换行 (`\n`)，常见于 Linux 和 macOS 以及 git repos 内部<br/>`crlf`- 回车 + 换行字符 (`\r\n`)，常见于 Windows<br/>`cr`- 仅回车字符 (`\r`)，很少使用<br/>`auto`- 保持现有的行尾（一个文件中的混合值通过查看第一行之后使用的内容进行标准化） |
+| 规则 | 默认值 | 可选值 | 说明 |
+| --- | :-: | --- | --- |
+| `printWidth` | `80` | 无 | 指定每行代码的最佳长度，如果超出该长度则格式化 |
+| `tabWidth` | `2` | 无 | 指定每个制表符占用的空格数 |
+| `useTabs` | `false` | `true` &#124; `false` | 是否使用 tab 缩进，而不是空格缩进 |
+| `semi` | `true` | `true` &#124; `false` | 是否在每行末尾自动添加分号 |
+| `singleQuote` | `false` | `true` &#124; `false` | 是否使用单引号而不是双引号 |
+| `quoteProps: "<as-needed &#124; consistent &#124; preserve>"` | `as-needed` |`as-needed`：只有在需求要的情况下加引号。<br/> `consistent`：有一个需要引号就给其他都统一加上。<br/>`preserve`：保留用户输入的引号。 | 指定 object的 key 添加引号的方式。 |
+| `jsxSingleQuote` | `false` | `true` &#124; `false` | 是否在 `JSX` 中使用单引号而不是双引号 |
+| `trailingComma: "<es5 &#124; none &#124; all>"` | `es5` | `none`：无尾随逗号。<br/> `es5`：在 ES5 中有效的尾随逗号（如对象与数组等）。<br/>`all`：尽可能添加尾随逗号（如函数参数）。 | 指定添加尾随逗号的方式。 |
+| `bracketSpacing` | `true` | <br/> `true`- 示例：`{ foo: bar }` <br/> `false`- 示例：`{foo: bar}`  |是否在括号内添加空格。|
+| `bracketSameLine` 标注 ① | `false` | `true` &#124; `false`  | 将 `>`多行 `HTML（HTML、JSX、Vue、Angular）`元素放在最后一行的末尾，而不是单独放在下一行（不适用于自闭合元素）。 |
+| `arrowParens: "<always &#124; avoid>"` | `always` | `always`：始终包括括号：`(x) => x` <br/> `avoid`：尽可能省略括号：`x => x` | 是否在箭头函数仅有一个参数时也给参数加上括号 |
+| `proseWrap: "<always &#124; never &#124; preserve>"` | `preserve` | `always`：如果超过打印宽度，请换行。 <br/> `never`：不要换行。<br/>`preserve`：按原样显示。 | 散文是否换行，默认情况下，`Prettier` 将按原样包含 `markdown` 文本，因为某些服务使用对行敏感的渲染器，例如 GitHub 注释和 BitBucket。<br/>  |
+| `htmlWhitespaceSensitivity: "<css &#124; strict &#124; ignore>"` | `css` | `css`：将块级元素中的空格进行格式化。 <br/> `strict`：所有空格都不格式化。<br/>`ignore`：所有空格格式化。 | 指定 HTML 标签中空格的处理方式 |
+| `vueIndentScriptAndStyle` | `false` | `true` &#124; `false`   | 是否缩进 Vue 文件中的代码 `script` 和 `style` 标签，可能会影响到编辑器的代码折叠功能。 |
+| `endOfLine: "<lf &#124; crlf &#124; cr &#124; auto>"` | `lf` | `lf`：仅换行 (`\n`)，常见于 Linux 和 macOS 以及 git repos 内部<br/>`crlf`：回车 + 换行字符 (`\r\n`)，常见于 Windows<br/>`cr`：仅回车字符 (`\r`)，很少使用<br/>`auto`：保持现有的行尾（一个文件中的混合值通过查看第一行之后使用的内容进行标准化） | 指定文件结尾换行符。 |
+| `embeddedLanguageFormatting` | `auto` | `auto`：如果 Prettier 可以自动识别嵌入代码，请格式化它。<br/>`off`：永远不要自动格式化嵌入代码。 | 控制 Prettier 是否格式化文件中嵌入的引用代码。<br/> 当 Prettier 识别出看起来你已经放置了一些代码的情况时，它知道如何在另一个文件中的字符串中格式化，例如在 JavaScript 中带有标签的标记模板中 `html` 或 `Markdown` 中的代码块中，默认情况下它会尝试格式化该代码。<br/>有时这种行为是不可取的，特别是在您可能不打算将字符串解释为代码的情况下。此选项允许您在默认行为 `auto` 和完全禁用此功能 `off` 之间切换。|
 
 常用 `Prettier` 规则 <Badge>标注</Badge>
 
@@ -517,13 +518,24 @@ dist
 `true`- 例子：
 
 ```html
-<button className="prettier-class" id="prettier-id" onClick="{this.handleClick}">Click Here</button>
+<button
+  className="prettier-class"
+  id="prettier-id"
+  onClick={this.handleClick}>
+  Click Here
+</button>
 ```
 
 `false`- 例子：
 
 ```html
-<button className="prettier-class" id="prettier-id" onClick="{this.handleClick}">Click Here</button>
+<button
+  className="prettier-class"
+  id="prettier-id"
+  onClick={this.handleClick}
+>
+  Click Here
+</button>
 ```
 
 ## Prettier 忽略
