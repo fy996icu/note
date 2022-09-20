@@ -78,7 +78,11 @@ export default defineConfig({
     },
     {
       title: '工具软件',
-      children: [{ title: 'VSCode', path: '/tools' }],
+      children: [
+        { title: 'VSCode', path: '/tools' },
+        { title: 'npm', path: '/package' },
+        { title: 'nvm', path: '/package/nvm' },
+      ],
     },
     {
       title: 'GitHub',

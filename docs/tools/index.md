@@ -8,6 +8,8 @@ order: 0
 
 # VSCode 配置
 
+文档主要来源于 [后盾人](https://doc.houdunren.com/)。
+
 ## 中文语言
 
 VSCode 默认是英文界面，使用起来并不是特别方便，可以使用中文语言包插件来汉化 VSCode。
