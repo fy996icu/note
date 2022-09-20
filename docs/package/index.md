@@ -10,7 +10,7 @@ order: 0
 
 文档主要来源于 [后盾人](https://doc.houdunren.com/)。
 
-## 安装配置
+## 安装 npm
 
 `npm` 是随同 [NodeJS](https://nodejs.org/zh-cn/) 一起安装的包管理工具，是常用的前端包管理工作。
 
