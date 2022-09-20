@@ -81,7 +81,9 @@ export default defineConfig({
       children: [
         { title: 'VSCode', path: '/tools' },
         { title: 'npm', path: '/package' },
+        { title: 'yarn', path: '/package/yarn' },
         { title: 'nvm', path: '/package/nvm' },
+        { title: 'nrm', path: '/package/nrm' },
       ],
     },
     {

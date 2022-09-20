@@ -6,6 +6,8 @@ order: 0
 
 <BackTop></BackTop>
 
+![](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vscode-logo.png)
+
 # VSCode 配置
 
 文档主要来源于 [后盾人](https://doc.houdunren.com/)。
