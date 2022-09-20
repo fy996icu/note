@@ -77,6 +77,10 @@ export default defineConfig({
       ],
     },
     {
+      title: '工具软件',
+      children: [{ title: 'VSCode', path: '/tools' }],
+    },
+    {
       title: 'GitHub',
       path: 'https://github.com/fy996icu/note_umi',
     },
