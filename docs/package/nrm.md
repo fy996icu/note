@@ -157,4 +157,11 @@ set nu!
 
 最后 `wq` 保存，再次进入到 `vim` 就会永久显示行号，不用每次都 `set nu!`。
 
+### 修改失败
 
+Mac m1 芯片电脑修改失败，请执行以下命令：
+
+```bash
+npm uninstall -g nrm
+npm i -g @adams549659584/nrm
+```
