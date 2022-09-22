@@ -148,7 +148,6 @@ const exitFullscreen = () => {
 
 ```jsx
 import React, { useEffect } from 'react';
-import { message } from 'antd';
 const Demo = () => {
   const style = {
     border: '1px solid #eee',
@@ -165,7 +164,6 @@ const Demo = () => {
     const box = document.querySelector(domId);
     box.addEventListener('contextmenu', function (event) {
       event.preventDefault();
-      message.warn('右键菜单已被禁止！');
     });
   };
   return (
@@ -214,7 +212,6 @@ const disabledContextmenu = (domId) => {
 
 ```jsx
 import React, { useEffect } from 'react';
-import { message } from 'antd';
 const Demo = () => {
   const style = {
     border: '1px solid #eee',
@@ -231,7 +228,6 @@ const Demo = () => {
     const box = document.querySelector(domId);
     box.addEventListener('selectstart', function (event) {
       event.preventDefault();
-      message.warn('文本已禁止选中！');
     });
   };
   return (

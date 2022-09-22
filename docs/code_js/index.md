@@ -501,3 +501,33 @@ const isVisible = function (ele, container) {
     : bottom - containerRect.bottom <= height;
 };
 ```
+
+## 获取元素的兄弟节点
+
+**获取上一个兄弟节点**
+
+```js
+const prev = ele.previousSibling;
+```
+
+**获取下一个兄弟节点**
+
+```js
+const next = ele.nextSibling;
+```
+
+**获取父节点**
+
+```js
+const parent = ele.parentNode;
+```
+
+**获取所有兄弟节点**
+
+```js
+// 先获取兄弟节点
+const parent = ele.parentNode;
+
+// 排除自身
+const siblings = [].slice.call(parent.children).filter(child => child !== ele);
+```

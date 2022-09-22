@@ -59,3 +59,83 @@ const isIe = function () {
 const isIE = !!document.documentMode;
 ```
 
+## 检测大写锁定是否打开
+
+**支持 `Shift` 键**
+
+```tsx
+/**
+ * title: 检测大写锁定是否打开
+ * desc: 试着切换一下大小写再输入
+ */
+import React, { useState, useRef, useEffect, CSSProperties } from 'react'
+import { Input } from 'antd'
+import type { InputProps, InputRef } from 'antd'
+const style: CSSProperties = {
+	padding: '20px',
+	width: '60%',
+}
+
+const tips: CSSProperties = {
+	opacity: '0',
+	color: 'red',
+	margin: '10px 0 0 0',
+}
+
+const Demo: React.FC = () => {
+	const inputEl = useRef<InputRef>(null)
+	const [status, setStatus] = useState<InputProps['status']>('')
+
+	useEffect(() => {
+		testCapsLock(inputEl.current!.input as HTMLInputElement)
+	}, [])
+
+	/**
+	 * 检测大写锁定是否打开
+	 * @param ele 输入框
+	 */
+	const testCapsLock = (ele: HTMLInputElement | HTMLTextAreaElement) => {
+		const messageEle: HTMLElement | null = document.getElementById('capsLockTips')
+		ele!.addEventListener('keypress', (e: Event) => {
+			const keyCode = (e as KeyboardEvent).keyCode || (e as KeyboardEvent).which
+			const shiftKey = (e as KeyboardEvent).shiftKey || keyCode === 16
+			const s = String.fromCharCode(keyCode)
+			const capsLockOn = (s.toUpperCase() === s && s.toLowerCase() !== s) || (s.toUpperCase() !== s && s.toLowerCase() === s && shiftKey)
+			if (capsLockOn) setStatus('error')
+			else setStatus('')
+			messageEle!.style.opacity = capsLockOn ? '1' : '0'
+		})
+	}
+
+	return (
+		<div style={style}>
+			<form>
+				<Input.Password ref={inputEl} allowClear status={status} placeholder="请输入密码" autoComplete="off" />
+			</form>
+			<p id="capsLockTips" style={tips}>
+				大写锁定已打开
+			</p>
+		</div>
+	)
+}
+
+export default Demo
+```
+
+```ts
+/**
+ * 检测大写锁定是否打开
+ * @param ele 输入框DOM
+ */
+const testCapsLock = (ele: HTMLInputElement | HTMLTextAreaElement) => {
+  const messageEle: HTMLElement | null = document.getElementById('capsLockTips')
+  ele!.addEventListener('keypress', (e: Event) => {
+    const keyCode = (e as KeyboardEvent).keyCode || (e as KeyboardEvent).which
+    const shiftKey = (e as KeyboardEvent).shiftKey || keyCode === 16
+    const s = String.fromCharCode(keyCode)
+    const capsLockOn = (s.toUpperCase() === s && s.toLowerCase() !== s) || (s.toUpperCase() !== s && s.toLowerCase() === s && shiftKey)
+    if (capsLockOn) console.log('大写锁定已打开')
+    else console.log('大写锁定已关闭')
+  })
+}
+```
