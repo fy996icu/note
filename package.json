@@ -43,6 +43,7 @@
     "@types/jest": "^27.0.3",
     "@types/styled-components": "^5.1.25",
     "@umijs/fabric": "^2.8.1",
+    "@umijs/plugin-esbuild": "^1.4.1",
     "@umijs/test": "^3.0.5",
     "babel-plugin-import": "^1.13.5",
     "dumi": "^1.1.0",

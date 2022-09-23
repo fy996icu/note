@@ -18,16 +18,17 @@ export default defineConfig({
   dynamicImport: {
     loading: '@/Loading',
   },
+  esbuild: {},
   styles: [baseStyle],
   hash: true,
-  // algolia: {
-  //   appId: 'SIZ4S3LOST',
-  //   apiKey: '3f58dca05e25408fbd309428058efcfc',
-  //   indexName: 'fy996icu',
-  // },
-  // sitemap: {
-  //   hostname: 'https://fy996icu.github.io/note/',
-  // },
+  algolia: {
+    appId: 'SIZ4S3LOST',
+    apiKey: '3f58dca05e25408fbd309428058efcfc',
+    indexName: 'fy996icu',
+  },
+  sitemap: {
+    hostname: 'https://fy996icu.github.io/note/',
+  },
   // 配置antd按需加载
   extraBabelPlugins: [
     [

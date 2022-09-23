@@ -160,3 +160,62 @@ const uuid = (): string => {
 }
 ```
 
+## 生成十六进制颜色
+
+```tsx
+import { Button } from 'antd'
+import React, { CSSProperties, useEffect, useRef, useState } from 'react'
+
+const boxStyle: CSSProperties = {
+	width: '200px',
+	height: '100px',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	marginBottom: '20px',
+	border: '1px solid #ddd',
+	background: '#eee',
+}
+const Demo: React.FC = () => {
+	const [color, setColor] = useState<string>('#ffffff')
+	const boxEl = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		boxEl.current!.style.background = color
+	}, [color])
+
+	/**
+	 * 随机生成十六进制颜色代码
+	 * @returns string-十六进制颜色值
+	 */
+	const randomHexColorCode = () => {
+		let n = (Math.random() * 0xfffff * 1000000).toString(16)
+		return '#' + n.slice(0, 6)
+	}
+	const createColor = () => {
+		setColor(randomHexColorCode())
+	}
+	return (
+		<>
+			<div style={boxStyle} ref={boxEl}>
+				当前颜色色值：{color}
+			</div>
+			<Button type="primary" onClick={createColor}>
+				生成颜色
+			</Button>
+		</>
+	)
+}
+
+export default Demo
+```
+```ts
+/**
+ * 随机生成十六进制颜色代码
+ * @returns string-十六进制颜色值
+ */
+const randomHexColorCode = () => {
+  let n = (Math.random() * 0xfffff * 1000000).toString(16)
+  return '#' + n.slice(0, 6)
+}
+```
