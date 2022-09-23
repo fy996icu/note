@@ -160,7 +160,6 @@ const Demo: React.FC = () => {
 	)
 }
 export default Demo`}},dependencies:{react:{version:">= 16.8.0"},"styled-components":{version:"5.3.5"},"react-dom":{version:">= 16.8.0"},"react-is":{version:">= 16.8.0"}},identifier:"code_css-demo-5"}},"code_css-demo-6":{component:Object(B.c)({loader:function(){var F=Object(S.a)(D.a.mark(function W(){var m,h,i,d,g,v,f,C;return D.a.wrap(function(r){for(;;)switch(r.prev=r.next){case 0:return m=s("K+nK"),r.t0=m,r.next=4,Promise.resolve().then(s.bind(null,"qqnG"));case 4:return r.t1=r.sent,h=(0,r.t0)(r.t1),r.t2=m,r.next=9,Promise.resolve().then(s.t.bind(null,"q1tI",7));case 9:return r.t3=r.sent,i=(0,r.t2)(r.t3),r.t4=m,r.next=14,Promise.resolve().then(s.bind(null,"vOnD"));case 14:return r.t5=r.sent,d=(0,r.t4)(r.t5),v=d.default.text(g||(g=(0,h.default)([`
-	font-family: initial;
 	font-size: 120px;
 	font-weight: bolder;
 	fill: transparent;
@@ -171,7 +170,6 @@ export default Demo`}},dependencies:{react:{version:">= 16.8.0"},"styled-compone
 import styled from 'styled-components'
 
 const TextWrap = styled.text\`
-	font-family: initial;
 	font-size: 120px;
 	font-weight: bolder;
 	fill: transparent;
