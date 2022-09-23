@@ -278,7 +278,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 const TextWrap = styled.text`
-	font-family: initial;
 	font-size: 120px;
 	font-weight: bolder;
 	fill: transparent;
@@ -302,7 +301,6 @@ export default Demo
 ```
 ```css
 text {
-  font-family: initial;
   font-size: 120px;
   font-weight: bolder;
   fill: transparent;
