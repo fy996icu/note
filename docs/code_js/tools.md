@@ -105,3 +105,58 @@ const copyText = (text: string): void => {
   }
 }
 ```
+
+## 生成 uuid
+
+生成 `uuid` 可以使用 [Nano ID](https://www.npmjs.com/package/nanoid/v/2.1.2) 这个库，也可以自己写。
+
+```tsx
+import { Button } from 'antd'
+import React, { useEffect, useState } from 'react'
+
+const Demo: React.FC = () => {
+	const [uuidStr, setUuidStr] = useState<string>('')
+	useEffect(() => {
+		setUuidStr(uuid())
+	}, [])
+
+	/**
+	 * 生成 uuid
+	 * @returns string-生成的 uuid
+	 */
+	const uuid = (): string => {
+		const temp_url = URL.createObjectURL(new Blob())
+		const uuid = temp_url.toString()
+		//释放这个url
+		URL.revokeObjectURL(temp_url)
+		return uuid.substring(uuid.lastIndexOf('/') + 1)
+	}
+	const creatUuid = () => {
+		setUuidStr(uuid())
+	}
+	return (
+		<>
+			<h3>生成的 uuid：{uuidStr}</h3>
+			<Button type="primary" onClick={creatUuid}>
+				生成 uuid
+			</Button>
+		</>
+	)
+}
+
+export default Demo
+```
+```ts
+/**
+ * 生成 uuid
+ * @returns string-生成的 uuid
+ */
+const uuid = (): string => {
+  const temp_url = URL.createObjectURL(new Blob())
+  const uuid = temp_url.toString()
+  //释放这个url
+  URL.revokeObjectURL(temp_url)
+  return uuid.substring(uuid.lastIndexOf('/') + 1)
+}
+```
+

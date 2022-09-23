@@ -139,3 +139,91 @@ const testCapsLock = (ele: HTMLInputElement | HTMLTextAreaElement) => {
   })
 }
 ```
+
+## 检测鼠标是否在元素内
+
+检测鼠标是否落在一个块级元素内部。
+
+```tsx
+/**
+ * title: 检测鼠标是否落在一个块级元素内部。
+ * desc: 试试将鼠标放在灰色盒子内
+ */
+import React, { CSSProperties, useEffect, useRef, useState } from 'react'
+
+const boxStyle: CSSProperties = {
+	padding: '20px',
+	background: '#eee',
+}
+
+const wrapStyle: CSSProperties = {
+	padding: '3rem',
+	border: '1px solid #ddd',
+}
+
+const Demo: React.FC = () => {
+	const [inStatus, setInStatus] = useState<Boolean>(false)
+	const boxEl = useRef<HTMLDivElement>(null)
+	const wrapEl = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		wrapEl.current?.addEventListener('mousemove', (e: MouseEvent) => {
+			setInStatus(checkMouseInBox(boxEl.current!))
+		})
+	}, [])
+
+	/**
+	 * 检测鼠标是否落在一个块级元素内部
+	 * @param ele 需要检测鼠标是否在内部的DOM
+	 * @returns true-在内部；false-不在内部
+	 */
+	const checkMouseInBox = (ele: HTMLElement) => {
+		// 鼠标相对屏幕横坐标
+		const x = Number((window?.event as MouseEvent).clientX)
+		// 鼠标相对屏幕纵坐标
+		const y = Number((window?.event as MouseEvent).clientY)
+		// ele相对屏幕的横坐标
+		const div_x = Number(ele.getBoundingClientRect().left)
+		// ele相对屏幕的横坐标+width
+		const div_x_width = Number(ele.getBoundingClientRect().left + ele.clientWidth)
+		// ele相对屏幕的纵坐标
+		const div_y = Number(ele.getBoundingClientRect().top)
+		// ele相对屏幕的纵坐标+height
+		const div_y_height = Number(ele.getBoundingClientRect().top + ele.clientHeight)
+		return x > div_x && x < div_x_width && y > div_y && y < div_y_height
+	}
+	return (
+		<>
+			<div style={wrapStyle} ref={wrapEl}>
+				<div style={boxStyle} ref={boxEl}>
+					<h3>鼠标是否在容器内：{inStatus ? 'true' : 'false'}</h3>
+				</div>
+			</div>
+		</>
+	)
+}
+
+export default Demo
+```
+```ts
+/**
+ * 检测鼠标是否落在一个块级元素内部
+ * @param ele 需要检测鼠标是否在内部的DOM
+ * @returns true-在内部；false-不在内部
+ */
+const checkMouseInBox = (ele: HTMLElement) => {
+  // 鼠标相对屏幕横坐标
+  const x = Number((window?.event as MouseEvent).clientX)
+  // 鼠标相对屏幕纵坐标
+  const y = Number((window?.event as MouseEvent).clientY)
+  // ele相对屏幕的横坐标
+  const div_x = Number(ele.getBoundingClientRect().left)
+  // ele相对屏幕的横坐标+width
+  const div_x_width = Number(ele.getBoundingClientRect().left + ele.clientWidth)
+  // ele相对屏幕的纵坐标
+  const div_y = Number(ele.getBoundingClientRect().top)
+  // ele相对屏幕的纵坐标+height
+  const div_y_height = Number(ele.getBoundingClientRect().top + ele.clientHeight)
+  return x > div_x && x < div_x_width && y > div_y && y < div_y_height
+}
+```
