@@ -26,3 +26,35 @@ pnpm add vue-tsc@latest -D
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vue3-config-knownissue.png)
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vue3-config-knownissue2.png)
+
+
+## module 报错
+
+我们在配置 `postcss.config.js` 或者 `tailwind.config.js` 文件的时候出现 `'module' is not defined` 的警告。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/module-error.png)
+
+我们需要配置 `.eslintrc.cjs` 文件，设置 `node: true`，警告就会立马消失。
+
+```js
+/* eslint-env node */
+require('@rushstack/eslint-patch/modern-module-resolution')
+
+module.exports = {
+  root: true,
+  env: {
+    node: true,
+  },
+  extends: [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/eslint-config-typescript',
+    '@vue/eslint-config-prettier',
+    './.eslintrc-auto-import.json',
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+  },
+}
+```
+
