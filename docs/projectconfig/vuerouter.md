@@ -11,7 +11,14 @@ order: 1
 ## 安装 Vue Router
 
 ```bash
-$ pnpm add vue-router
+# npm
+npm i vue-router
+
+# yarn
+yarn add vue-router
+
+# pnpm
+pnpm add vue-router
 ```
 
 ## 创建路由文件

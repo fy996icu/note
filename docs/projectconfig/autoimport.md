@@ -38,7 +38,14 @@ export default {
 ### 安装插件
 
 ```bash
+# npm
 npm i unplugin-vue-components -D
+
+# yarn
+yarn add unplugin-vue-components -D
+
+# pnpm
+pnpm add unplugin-vue-components -D
 ```
 
 ### 支持UI库
@@ -248,7 +255,14 @@ declare module '@vue/runtime-core' {
 ### 安装插件
 
 ```bash
+# npm
 npm i unplugin-auto-import -D
+
+# yarn
+yarn add unplugin-auto-import -D
+
+# pnpm
+pnpm add unplugin-auto-import -D
 ```
 
 ### 配置插件
@@ -551,7 +565,14 @@ module.exports = {
 (1)、安装 less：
 
 ```bash
+# npm
 npm i less -D
+
+# yarn
+yarn add less -D
+
+# pnpm
+pnpm add less -D
 ```
 
 (2)、在 `vite.config.ts` 配置 less：

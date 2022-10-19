@@ -15,25 +15,53 @@ order: 2
 1、安装 eslint：
 
 ```bash
-$ pnpm add eslint eslint-plugin-vue -D
+# npm
+npm i eslint eslint-plugin-vue -D
+
+# yarn
+yarn add eslint eslint-plugin-vue -D
+
+# pnpm
+pnpm add eslint eslint-plugin-vue -D
 ```
 
 2、并安装 `@typescript-eslint/parser` 替代掉默认的解析器：
 
 ```bash
-$ pnpm add @typescript-eslint/parser -D
+# npm
+npm i @typescript-eslint/parser -D
+
+# yarn
+yarn add @typescript-eslint/parser -D
+
+# pnpm
+pnpm add @typescript-eslint/parser -D
 ```
 
 3、安装对应的插件 `@typescript-eslint/eslint-plugin` 它作为 `eslint` 默认规则的补充：
 
 ```bash
-$ pnpm add @typescript-eslint/eslint-plugin -D
+# npm
+npm i @typescript-eslint/eslint-plugin -D
+
+# yarn
+yarn add @typescript-eslint/eslint-plugin -D
+
+# pnpm
+pnpm add @typescript-eslint/eslint-plugin -D
 ```
 
 4、初始化 `eslint`，会在根目录下生成 `.eslintrc.cjs` 配置文件：
 
 ```bash
-$ pnpm eslint --init
+# npm
+npm eslint --init
+
+# yarn
+yarn eslint --init
+
+# pnpm
+pnpm eslint --init
 ```
 
 5、更改 `.eslintrc.cjs`：
@@ -70,7 +98,14 @@ module.exports = {
 1、安装 `prettier` 和对应依赖插件：
 
 ```bash
-$ pnpm add prettier eslint-config-prettier eslint-plugin-prettier -D
+# npm
+npm i prettier eslint-config-prettier eslint-plugin-prettier -D
+
+# yarn
+yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+
+# pnpm
+pnpm add prettier eslint-config-prettier eslint-plugin-prettier -D
 ```
 
 2、项目根目录新建 `.prettierrc` 文件，并根据需求配置：

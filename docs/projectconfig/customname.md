@@ -49,7 +49,14 @@ export default {
 ### 安装插件
 
 ```bash
+# npm
 npm i vite-plugin-vue-setup-extend -D
+
+# yarn
+yarn add vite-plugin-vue-setup-extend -D
+
+# pnpm
+pnpm add vite-plugin-vue-setup-extend -D
 ```
 
 ### 配置插件
