@@ -101,3 +101,19 @@ VSCode 会在后台监测文件，可能会出现以下进程cpu占用过高，�
   "source.organizeImports": true
 }
 ```
+
+## 没有代码提示
+
+使用 vscode 打代码时老是没有提示。
+
+一般都移动一下光标之后再继续写就能有代码提示了. 效果如图：
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vscode-no-tips.gif)
+
+在设置中搜索 `prevent` 把 `Snippets Prevent Quick Suggestions` 勾选取消掉：
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vscode-no-tips2.png)
+
+设置完就立即生效了：
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vscode-no-tips3.gif)

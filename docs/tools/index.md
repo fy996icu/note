@@ -386,3 +386,12 @@ HTML 标签前后自动换行，访问 `设置 > 扩展 〉HTML` 进行配置。
 - `vscode-element-helper` [Element UI 代码提示](https://marketplace.visualstudio.com/items?itemName=ElemeFE.vscode-element-helper)
 
 - `Vant Snippets` [Vant 代码片段](https://marketplace.visualstudio.com/items?itemName=fishku.vant-snippets)
+
+
+## 关闭插件自动更新
+
+有时候新版本的插件可能会有 BUG，我们会选择安装旧版本，但是 VSCode 会自动更新插件，就会导致我们即使安装了旧版本的插件在重启后也会自动更新插件，我们可以关闭掉自动更新插件：
+
+在设置中搜索 `extensions.autoUpdate` 将 `Extensions: Auto Update` 这一项设置成 `false` 就行了。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/vscode-extension-autoupdate.png)
