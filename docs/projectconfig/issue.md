@@ -58,3 +58,49 @@ module.exports = {
 }
 ```
 
+## 驼峰命名报错
+
+有时候我们创建组件会使用 `src/components/SvgIcon/index.vue` 这种命名方式，ESLint 会报错，`index.vue` 必须使用驼峰命名：报错提示 <font color="red">error Component name “index“ should always be multi-word vue/multi-word-component-names</font>
+
+**报错原因：**
+
+原因是 `eslint-plugin-vue` 版本更新了，相较之前版本，`@8` 版本中新增了不少规则，第一条就是 `'vue/multi-word-component-names': 'error'`, 要求组件名称以 `驼峰格式` 命名，所以 `index.vue` 会报错。
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/components-name-error.png)
+
+**解决方案：**
+
+- 按照规则，使用驼峰命名，例如：SvgIcon.vue。
+
+- 在 `.eslintrc.js` 文件中关闭命名规则，或者配置 `ignores` 忽略掉指定的组件名字。
+
+```js
+/* eslint-env node */
+require('@rushstack/eslint-patch/modern-module-resolution')
+
+module.exports = {
+  root: true,
+  env: {
+    node: true,
+  },
+  extends: [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/eslint-config-typescript',
+    '@vue/eslint-config-prettier',
+    './.eslintrc-auto-import.json',
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+  },
+  rules: {
+    // 组件驼峰命名
+    'vue/multi-word-component-names': [
+      'error',
+      {
+        ignores: ['index'], //需要忽略的组件名
+      },
+    ],
+  },
+}
+```
