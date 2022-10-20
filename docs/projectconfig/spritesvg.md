@@ -454,6 +454,135 @@ svg 目录结构说明
 
 - 2、新增或者修改了 svg 文件需要重启一下项目才会起作用。
 
+## 图标预览
+
+我们使用插件自动加载 `./src/assets/images/svg/` 下的 svg 图标，但是每次要使用图标还需要在文件夹里面找，如果图标特别多，那将是非常的麻烦，而且 svg 图标不方便预览，文件名也不太好记。我们可以写一个组件 `IconPreview`，将所有图标都放在里面预览，并点击它就能复制 `name`，就像 `Element UI` 和 `Antd` 图标库那样就方便多啦。
+
+### 文件名配置方式
+
+新建 `src/views/IconPreview/index.vue` 组件并配置好路由：
+
+```html
+<!-- IconPreview/index.vue -->
+
+<script setup lang="ts">
+import { message } from 'ant-design-vue/es'
+import 'ant-design-vue/es/message/style/css'
+/**
+ * 获取指定文件夹的所有 svg 文件名生成数组
+ * @returns svg 文件名数组
+ */
+const getFiles = (): string[] => {
+  // 得到 @/assets/images/svg 文件夹下面的所有 svg 路径
+  const filePaths = import.meta.glob('@/assets/images/svg/**/*.svg')
+  const icons: string[] = []
+  for (const path in filePaths) {
+    const fileName = path.replace(/(.*\/)*([^.]+).*/gi, '$2')
+    icons.push(fileName)
+  }
+  return icons
+}
+
+// 所有图标文件名数组
+const icons = reactive<string[]>(getFiles())
+
+// 点击复制到剪贴板
+const copyText = (text: string): void => {
+  const textAreaEle = document.createElement('textarea')
+  textAreaEle.style.border = '0'
+  textAreaEle.style.padding = '0'
+  textAreaEle.style.margin = '0'
+  textAreaEle.style.position = 'absolute'
+  textAreaEle.style.left = '-9999px'
+  textAreaEle.style.top = `${document.documentElement.scrollTop}px`
+  textAreaEle.value = text
+  document.body.appendChild(textAreaEle)
+  textAreaEle.focus()
+  textAreaEle.select()
+  try {
+    document.execCommand('copy')
+    message.success('已复制到剪贴板')
+  } catch (err) {
+    message.success('复制失败')
+  } finally {
+    document.body.removeChild(textAreaEle)
+  }
+}
+</script>
+<template>
+  <h1>SVG 图标预览</h1>
+  <div class="icon-wrap">
+    <a-row :gutter="[16, 16]">
+      <a-col :span="4" v-for="item in icons" :key="item" @click="copyText(item)">
+        <div class="icon-card">
+          <div class="icon-show">
+            <svg-icon :name="item" size="40px" color="#3c5ece" />
+          </div>
+          <div class="icon-name">{{ item }}</div>
+        </div>
+      </a-col>
+    </a-row>
+  </div>
+</template>
+
+<style scoped lang="less">
+h1 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.icon-wrap {
+  text-align: center;
+}
+.icon-card {
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 6px;
+  transition: background 0.3s;
+  &:hover {
+    background: #f5f5f5;
+    .icon-show {
+      transform: scale(1.4);
+    }
+  }
+}
+.icon-show {
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
+}
+
+.icon-name {
+  text-align: center;
+  margin-top: 15px;
+}
+</style>
+```
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/load-svg-iconpreview.png)
+
+### 目录配置方式
+
+目录配置方式只需要修改 `getFiles` 方法拼接上目录就行：
+
+```ts
+/**
+ * 获取指定文件夹的所有 svg 文件名生成数组
+ * @returns svg 文件名数组
+ */
+const getFiles = (): string[] => {
+  // 得到 @/assets/images/svg 文件夹下面的所有 svg 路径
+  const filePaths = import.meta.glob('@/assets/images/svg/**/*.svg')
+  const icons: string[] = []
+  for (const path in filePaths) {
+    const fileName = path.replace('/src/assets/images/svg/', '').replace('.svg', '').split('/').join('-')
+    icons.push(fileName)
+  }
+  return icons
+}
+```
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/load-svg-iconpreview2.png)
+
 
 ## 颜色问题
 
