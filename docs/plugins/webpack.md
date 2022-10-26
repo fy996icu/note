@@ -1,5 +1,5 @@
 ---
-title: webpack插件
+title: Webpack插件
 toc: menu
 order: 10
 ---
