@@ -510,3 +510,40 @@ $ yarn add figlet
 **插件简介：** 通过 figlet 可以使用代码生成许多符号字。
 
 ![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/figlet.png)
+
+## 复制到剪贴板
+
+```bash
+# npm
+npm i copy-to-clipboard
+
+# yarn
+yarn add copy-to-clipboard
+
+# pnpm
+pnpm add copy-to-clipboard
+```
+
+**插件名称：** [copy-to-clipboard](https://www.npmjs.com/package/copy-to-clipboard)
+
+**在线示例：** [点击查看示例](https://github.com/sudodoki/copy-to-clipboard#readme)
+
+
+## 顶部进度条
+
+```bash
+# npm
+npm i nprogress
+
+# yarn
+yarn add nprogress
+
+# pnpm
+pnpm add nprogress
+```
+
+**插件名称：** [NProgress](https://www.npmjs.com/package/nprogress)
+
+**在线示例：** [点击查看示例](https://usabilitypost.com/2013/08/19/new-ui-pattern-website-loading-bars/)
+
+![img](https://cdn.jsdelivr.net/gh/fy996icu/pics/img/nprogress.jpeg)
