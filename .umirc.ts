@@ -68,6 +68,7 @@ export default defineConfig({
         { title: 'Vue3.x', path: '/vue3' },
         { title: 'Pinia', path: '/pinia' },
         { title: 'Git', path: '/git' },
+        { title: 'Python', path: '/python' },
       ],
     },
     {
@@ -75,6 +76,7 @@ export default defineConfig({
       children: [
         { title: 'JavaScript', path: '/code_js' },
         { title: 'CSS', path: '/code_css' },
+        { title: '正则表达式', path: '/code_reg' },
       ],
     },
     {
